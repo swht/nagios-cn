@@ -1624,27 +1624,27 @@ void display_info_table(const char *title, int refresh, authdata *current_authda
 	time(&current_time);
 	get_time_string(&current_time, date_time, (int)sizeof(date_time), LONG_DATE_TIME);
 
-	printf("Last Updated: %s<BR>\n", date_time);
+	printf("最近更新: %s<BR>\n", date_time);
 	if(refresh == TRUE)
-		printf("Updated every %d seconds<br>\n", refresh_rate);
+		printf("更新间隔%d秒一次<br>\n", refresh_rate);
 
 	printf("Nagios&reg; Core&trade; %s - <A HREF='https://www.nagios.org' TARGET='_new' CLASS='homepageURL'>www.nagios.org</A><BR>\n", PROGRAM_VERSION);
 
 	if(current_authdata != NULL)
-		printf("Logged in as <i>%s</i><BR>\n", (!strcmp(current_authdata->username, "")) ? "?" : current_authdata->username);
+		printf("登陆帐户: <i>%s</i><BR>\n", (!strcmp(current_authdata->username, "")) ? "?" : current_authdata->username);
 
 	if(nagios_process_state != STATE_OK)
-		printf("<DIV CLASS='infoBoxBadProcStatus'>Warning: Monitoring process may not be running!<BR>Click <A HREF='%s?type=%d'>here</A> for more info.</DIV>", EXTINFO_CGI, DISPLAY_PROCESS_INFO);
+		printf("<DIV CLASS='infoBoxBadProcStatus'>告警: 监控进程未运行。<br>点击 <A HREF='%s?type=%d'>这里</A> 查看详细信息。</DIV>", EXTINFO_CGI, DISPLAY_PROCESS_INFO);
 
 	if(result == ERROR)
-		printf("<DIV CLASS='infoBoxBadProcStatus'>Warning: Could not read program status information!</DIV>");
+		printf("<DIV CLASS='infoBoxBadProcStatus'>告警: 无法读取程序状态信息!</DIV>");
 
 	else {
 		if(enable_notifications == FALSE)
-			printf("<DIV CLASS='infoBoxBadProcStatus'>- Notifications are disabled</DIV>");
+			printf("<DIV CLASS='infoBoxBadProcStatus'>- 通知机制被禁用。</DIV>");
 
 		if(execute_service_checks == FALSE)
-			printf("<DIV CLASS='infoBoxBadProcStatus'>- Service checks are disabled</DIV>");
+			printf("<DIV CLASS='infoBoxBadProcStatus'>- 服务检查机制被禁用。</DIV>");
 		}
 
 	printf("</TD></TR>\n");
@@ -1665,24 +1665,24 @@ void display_nav_table(char *url, int archive) {
 		printf("<tr>\n");
 		printf("<td align=center valign=center CLASS='navBoxItem'>\n");
 		if(archive == 0) {
-			printf("Latest Archive<br>");
-			printf("<a href='%sarchive=1'><img src='%s%s' border=0 alt='Latest Archive' title='Latest Archive'></a>", url, url_images_path, LEFT_ARROW_ICON);
+			printf("最近的档案<br>");
+			printf("<a href='%sarchive=1'><img src='%s%s' border=0 alt='最近的档案' title='最近的档案'></a>", url, url_images_path, LEFT_ARROW_ICON);
 			}
 		else {
-			printf("Earlier Archive<br>");
-			printf("<a href='%sarchive=%d'><img src='%s%s' border=0 alt='Earlier Archive' title='Earlier Archive'></a>", url, archive + 1, url_images_path, LEFT_ARROW_ICON);
+			printf("更早的档案<br>");
+			printf("<a href='%sarchive=%d'><img src='%s%s' border=0 alt='更早的档案' title='更早的档案'></a>", url, archive + 1, url_images_path, LEFT_ARROW_ICON);
 			}
 		printf("</td>\n");
 
 		printf("<td width=15></td>\n");
 
 		printf("<td align=center CLASS='navBoxDate'>\n");
-		printf("<DIV CLASS='navBoxTitle'>Log File Navigation</DIV>\n");
+		printf("<DIV CLASS='navBoxTitle'>日志文件导航</DIV>\n");
 		get_time_string(&last_scheduled_log_rotation, date_time, (int)sizeof(date_time), LONG_DATE_TIME);
 		printf("%s", date_time);
-		printf("<br>to<br>");
+		printf("<br>到<br>");
 		if(archive == 0)
-			printf("Present..");
+			printf("现在...");
 		else {
 			get_time_string(&this_scheduled_log_rotation, date_time, (int)sizeof(date_time), LONG_DATE_TIME);
 			printf("%s", date_time);
@@ -1694,12 +1694,12 @@ void display_nav_table(char *url, int archive) {
 
 			printf("<td align=center valign=center CLASS='navBoxItem'>\n");
 			if(archive == 1) {
-				printf("Current Log<br>");
-				printf("<a href='%s'><img src='%s%s' border=0 alt='Current Log' title='Current Log'></a>", url, url_images_path, RIGHT_ARROW_ICON);
+				printf("当前日志<br>");
+				printf("<a href='%s'><img src='%s%s' border=0 alt='当前日志' title='当前日志'></a>", url, url_images_path, RIGHT_ARROW_ICON);
 				}
 			else {
-				printf("More Recent Archive<br>");
-				printf("<a href='%sarchive=%d'><img src='%s%s' border=0 alt='More Recent Archive' title='More Recent Archive'></a>", url, archive - 1, url_images_path, RIGHT_ARROW_ICON);
+				printf("更多近期日志<br>");
+				printf("<a href='%sarchive=%d'><img src='%s%s' border=0 alt='更多近期日志' title='更多近期日志'></a>", url, archive - 1, url_images_path, RIGHT_ARROW_ICON);
 				}
 			printf("</td>\n");
 			}
@@ -1720,7 +1720,7 @@ void display_nav_table(char *url, int archive) {
 		archive_basename = strrchr((char *)&archive_file, '/') + 1;
 
 	/* now it's safe to print the filename */
-	printf("<BR><DIV CLASS='navBoxFile'>File: %s</DIV>\n", archive_basename);
+	printf("<BR><DIV CLASS='navBoxFile'>文件: %s</DIV>\n", archive_basename);
 
 	return;
 	}
@@ -1893,10 +1893,10 @@ void include_ssi_file(const char *filename) {
 			case EFAULT: /* Bad address. */
 			case ENOMEM: /* Out of memory (i.e. kernel memory). */
 			case ENAMETOOLONG: /* File name too long. */
-				printf("<br /> A stat call returned %d while looking for the file %s.<br />", errno, filename);
+				printf("<br /> -%d: %s 的文件状态获取调用返回错误。<br />", errno, filename);
 				return;
 			case EACCES: /* Permission denied. -- The file should be accessible by nagios. */
-				printf("<br /> A stat call returned a permissions error(%d) while looking for the file %s.<br />", errno, filename);
+				printf("<br /> -%d: %s 的文件权限错误。<br />", errno, filename);
 				return;
 			case ENOENT: /* A component of the path file_name does not exist, or the path is an empty string. Just return if the file doesn't exist. */
 				return;
@@ -1922,25 +1922,25 @@ void include_ssi_file(const char *filename) {
 /* displays an error if CGI config file could not be read */
 void cgi_config_file_error(const char *config_file) {
 
-	printf("<H1>Whoops!</H1>\n");
+	printf("<H1>错误信息!</H1>\n");
 
-	printf("<P><STRONG><FONT COLOR='RED'>Error: Could not open CGI config file '%s' for reading!</FONT></STRONG></P>\n", config_file);
+	printf("<P><STRONG><FONT COLOR='RED'>错误: CGI配置文件 '%s' 无法打开!</FONT></STRONG></P>\n", config_file);
 
 	printf("<P>\n");
-	printf("Here are some things you should check in order to resolve this error:\n");
+	printf("按如下步骤来解决这个错误:\n");
 	printf("</P>\n");
 
 	printf("<P>\n");
 	printf("<OL>\n");
 
-	printf("<LI>Make sure you've installed a CGI config file in its proper location.  See the error message about for details on where the CGI is expecting to find the configuration file.  A sample CGI configuration file (named <b>cgi.cfg</b>) can be found in the <b>sample-config/</b> subdirectory of the Nagios source code distribution.\n");
-	printf("<LI>Make sure the user your web server is running as has permission to read the CGI config file.\n");
+	printf("<LI>Nagios的CGI配置文件在合适的路径上。查看错误信息中关于CGI配置文件的位置。示例的CGI配置文件(<b>cgi.cfg</b>)在Nagios源码下的<b>sample-config/</b>目录中。\n");
+	printf("<LI>Web服务器有读取Nagios的CGI配置文件的权限。\n");
 
 	printf("</OL>\n");
 	printf("</P>\n");
 
 	printf("<P>\n");
-	printf("Make sure you read the documentation on installing and configuring Nagios thoroughly before continuing.  If all else fails, try sending a message to one of the mailing lists.  More information can be found at <a href='https://www.nagios.org'>https://www.nagios.org</a>.\n");
+	printf("请阅读\"Installing and configuration\"文档后在尝试。如果还有其他错误信息，请发送邮件至邮件列表。可以从<a href='http://www.nagios.org'>http://www.nagios.org</a>获取更多的信息。\n");
 	printf("</P>\n");
 
 	return;
@@ -1951,25 +1951,25 @@ void cgi_config_file_error(const char *config_file) {
 /* displays an error if main config file could not be read */
 void main_config_file_error(const char *config_file) {
 
-	printf("<H1>Whoops!</H1>\n");
+	printf("<H1>错误信息！</H1>\n");
 
-	printf("<P><STRONG><FONT COLOR='RED'>Error: Could not open main config file '%s' for reading!</FONT></STRONG></P>\n", config_file);
+	printf("<P><STRONG><FONT COLOR='RED'>错误: 主配置文件'%s'无法打开！</FONT></STRONG></P>\n",config_file);
 
 	printf("<P>\n");
-	printf("Here are some things you should check in order to resolve this error:\n");
+	printf("按如下步骤来解决这个错误:\n");
 	printf("</P>\n");
 
 	printf("<P>\n");
 	printf("<OL>\n");
 
-	printf("<LI>Make sure you've installed a main config file in its proper location.  See the error message about for details on where the CGI is expecting to find the configuration file.  A sample main configuration file (named <b>nagios.cfg</b>) can be found in the <b>sample-config/</b> subdirectory of the Nagios source code distribution.\n");
-	printf("<LI>Make sure the user your web server is running as has permission to read the main config file.\n");
+	printf("<LI>请你确认主配置文件nagios.cfg被安装在正确的位置。更详细的内容请检查CGI的配置文件中出错信息。一个的样例的主配置文件(<b>nagiso.cfg</b>)可以在<b>sample-config/</b>目录中找到，它在Nagios的源程序目录下。\n");
+	printf("<LI>请确认Web服务程序(Apache)具备正确地权限设置以便于程序读入主配置文件。\n");
 
 	printf("</OL>\n");
 	printf("</P>\n");
 
 	printf("<P>\n");
-	printf("Make sure you read the documentation on installing and configuring Nagios thoroughly before continuing.  If all else fails, try sending a message to one of the mailing lists.  More information can be found at <a href='https://www.nagios.org'>https://www.nagios.org</a>.\n");
+	printf("继续进行前请确认Nagios的配置和文档被正确安装并配置。如果不是这样，请你发一封信到邮件列表中的一个地址中，更多的信息可以查阅<a href='http://www.nagios.org'>http://www.nagios.org</a>Web站点。\n");
 	printf("</P>\n");
 
 	return;
@@ -1979,25 +1979,25 @@ void main_config_file_error(const char *config_file) {
 /* displays an error if object data could not be read */
 void object_data_error(void) {
 
-	printf("<H1>Whoops!</H1>\n");
+	printf("<H1>错误信息</H1>\n");
 
-	printf("<P><STRONG><FONT COLOR='RED'>Error: Could not read object configuration data!</FONT></STRONG></P>\n");
+	printf("<P><STRONG><FONT COLOR='RED'>错误: 无法正确地读出配置文件中的对象数据！</FONT></STRONG></P>\n");
 
 	printf("<P>\n");
-	printf("Here are some things you should check in order to resolve this error:\n");
+	printf("你需要按如下过程来做以解决这个错误：\n");
 	printf("</P>\n");
 
 	printf("<P>\n");
 	printf("<OL>\n");
 
-	printf("<LI>Verify configuration options using the <b>-v</b> command-line option to check for errors.\n");
-	printf("<LI>Check the Nagios log file for messages relating to startup or status data errors.\n");
+	printf("<LI>使用<b>-v</b>命令行参数来校对配置文件配置选项中的错误。\n");
+	printf("<LI>Nagios的日志文件中将列出此次检查出错的内容及状态。\n");
 
 	printf("</OL>\n");
 	printf("</P>\n");
 
 	printf("<P>\n");
-	printf("Make sure you read the documentation on installing, configuring and running Nagios thoroughly before continuing.  If all else fails, try sending a message to one of the mailing lists.  More information can be found at <a href='https://www.nagios.org'>https://www.nagios.org</a>.\n");
+	printf("继续进行前请确认Nagios的配置和文档被正确安装并配置。如果不是这样，请你发一封信到邮件列表中的一个地址中，更多的信息可以查阅<a href='https://www.nagios.org'>http://www.nagios.org</a>的主页站点。\n");
 	printf("</P>\n");
 
 	return;
@@ -2007,29 +2007,29 @@ void object_data_error(void) {
 /* displays an error if status data could not be read */
 void status_data_error(void) {
 
-	printf("<H1>Whoops!</H1>\n");
+	printf("<H1>错误信息!</H1>\n");
 
-	printf("<P><STRONG><FONT COLOR='RED'>Error: Could not read host and service status information!</FONT></STRONG></P>\n");
+	printf("<P><STRONG><FONT COLOR='RED'>错误: 无法获得到主机和服务的状态信息！</FONT></STRONG></P>\n");
 
 	printf("<P>\n");
-	printf("The most common cause of this error message (especially for new users), is the fact that Nagios is not actually running.  If Nagios is indeed not running, this is a normal error message.  It simply indicates that the CGIs could not obtain the current status of hosts and services that are being monitored.  If you've just installed things, make sure you read the documentation on starting Nagios.\n");
+	printf("通常这个错误信息特别是对于新手而言意味着Nagios并没有正常地运行起来。如果Nagios没被运行了，这是个正常的出错信息。这只是说明CGIs程序无法获得当前正在变动的主机和服务的状态信息。如果你仅仅是安装了Nagios的话，请确认Nagios处于\"starting Nagios\"的状态之中。\n");
 	printf("</P>\n");
 
 	printf("<P>\n");
-	printf("Some other things you should check in order to resolve this error include:\n");
+	printf("你需要按如下过程来做以解决这个错误：\n");
 	printf("</P>\n");
 
 	printf("<P>\n");
 	printf("<OL>\n");
 
-	printf("<LI>Check the Nagios log file for messages relating to startup or status data errors.\n");
-	printf("<LI>Always verify configuration options using the <b>-v</b> command-line option before starting or restarting Nagios!\n");
+	printf("<LI>检查一下Nagios的日志文件中与Nagios的启动和状态数据相关的日志信息。\n");
+	printf("<LI>通常情况下使用命令行选项<b>-v</b>(如, nagios -v nagios.cfg)来验证配置文件的正确性，之后再启动或重启动Nagios!\n");
 
 	printf("</OL>\n");
 	printf("</P>\n");
 
 	printf("<P>\n");
-	printf("Make sure you read the documentation on installing, configuring and running Nagios thoroughly before continuing.  If all else fails, try sending a message to one of the mailing lists.  More information can be found at <a href='https://www.nagios.org'>https://www.nagios.org</a>.\n");
+	printf("确保你在\"Installing and configuration\"中阅读文件之前你的Nagios可以正常运行。如果全都不行，到如下站点上发出你的问题<a href='https://www.nagios.org'>https://www.nagios.org</a>.\n");
 	printf("</P>\n");
 
 	return;
