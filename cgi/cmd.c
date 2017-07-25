@@ -128,7 +128,7 @@ int main(void) {
 	if(result == ERROR) {
 		document_header(FALSE);
 		if(content_type == WML_CONTENT)
-			printf("<p>Error: Could not open CGI config file!</p>\n");
+			printf("<p>错误: CGI配置文件无法打开!</p>\n");
 		else
 			cgi_config_file_error(get_cgi_config_location());
 		document_footer();
@@ -140,7 +140,7 @@ int main(void) {
 	if(result == ERROR) {
 		document_header(FALSE);
 		if(content_type == WML_CONTENT)
-			printf("<p>Error: Could not open main config file!</p>\n");
+			printf("<p>错误: 主配置文件无法打开!</p>\n");
 		else
 			main_config_file_error(main_config_file);
 		document_footer();
@@ -160,7 +160,7 @@ int main(void) {
 	if(result == ERROR) {
 		document_header(FALSE);
 		if(content_type == WML_CONTENT)
-			printf("<p>Error: Could not read object config data!</p>\n");
+			printf("<p>错误: 无法读取对象配置数据!</p>\n");
 		else
 			object_data_error();
 		document_footer();
@@ -180,7 +180,7 @@ int main(void) {
 
 		/* left column of the first row */
 		printf("<td align=left valign=top width=33%%>\n");
-		display_info_table("External Command Interface", FALSE, &current_authdata);
+		display_info_table("外部命令接口", FALSE, &current_authdata);
 		printf("</td>\n");
 
 		/* center column of the first row */
@@ -231,7 +231,7 @@ int main(void) {
 		if(content_type == WML_CONTENT)
 			printf("<p>Error: No command specified!</p>\n");
 		else
-			printf("<P><DIV CLASS='errorMessage'>Error: No command was specified</DIV></P>\n");
+			printf("<P><DIV CLASS='errorMessage'>错误: 未指明命令</DIV></P>\n");
 		}
 
 	/* if this is the first request for a command, present option */
@@ -241,7 +241,7 @@ int main(void) {
 	/* the user wants to commit the command */
 	else if(command_mode == CMDMODE_COMMIT) {
 		if (formid_ok == ERROR)	/* we're expecting an id but it wasn't there... */
-			printf("<p>Error: Invalid form id!</p>\n");
+			printf("<p>错误: Invalid form id!</p>\n");
 		else
 			commit_command_data(command_type);
 	}
@@ -268,7 +268,7 @@ void document_header(int use_stylesheet) {
 
 		printf("<wml>\n");
 
-		printf("<card id='card1' title='Command Results'>\n");
+		printf("<card id='card1' title='命令结果'>\n");
 		}
 
 	else {
@@ -279,7 +279,7 @@ void document_header(int use_stylesheet) {
 		printf("<head>\n");
 		printf("<link rel=\"shortcut icon\" href=\"%sfavicon.ico\" type=\"image/ico\">\n", url_images_path);
 		printf("<title>\n");
-		printf("External Command Interface\n");
+		printf("外部命令接口\n");
 		printf("</title>\n");
 
 		if(use_stylesheet == TRUE) {
@@ -710,259 +710,259 @@ void request_command_data(int cmd) {
 		comment_author = current_authdata.username;
 
 
-	printf("<P><DIV ALIGN=CENTER CLASS='cmdType'>You are requesting to ");
+	printf("<P><DIV ALIGN=CENTER CLASS='cmdType'>你正在请求:");
 
 	switch(cmd) {
 
 		case CMD_ADD_HOST_COMMENT:
 		case CMD_ADD_SVC_COMMENT:
-			printf("add a %s comment", (cmd == CMD_ADD_HOST_COMMENT) ? "host" : "service");
+			printf(" %s 增加注释", (cmd == CMD_ADD_HOST_COMMENT) ? "主机" : "服务");
 			break;
 
 		case CMD_DEL_HOST_COMMENT:
 		case CMD_DEL_SVC_COMMENT:
-			printf("delete a %s comment", (cmd == CMD_DEL_HOST_COMMENT) ? "host" : "service");
+			printf(" %s 删除注释", (cmd == CMD_DEL_HOST_COMMENT) ? "主机" : "服务");
 			break;
 
 		case CMD_DELAY_HOST_NOTIFICATION:
 		case CMD_DELAY_SVC_NOTIFICATION:
-			printf("delay a %s notification", (cmd == CMD_DELAY_HOST_NOTIFICATION) ? "host" : "service");
+			printf(" %s 通知延时", (cmd == CMD_DELAY_HOST_NOTIFICATION) ? "主机" : "服务");
 			break;
 
 		case CMD_SCHEDULE_SVC_CHECK:
-			printf("schedule a service check");
+			printf("调度服务检查");
 			break;
 
 		case CMD_ENABLE_SVC_CHECK:
 		case CMD_DISABLE_SVC_CHECK:
-			printf("%s active checks of a particular service", (cmd == CMD_ENABLE_SVC_CHECK) ? "enable" : "disable");
+			printf("特别服务检查：%s", (cmd == CMD_ENABLE_SVC_CHECK) ? "启用" : "禁用");
 			break;
 
 		case CMD_ENABLE_NOTIFICATIONS:
 		case CMD_DISABLE_NOTIFICATIONS:
-			printf("%s notifications", (cmd == CMD_ENABLE_NOTIFICATIONS) ? "enable" : "disable");
+			printf("通知：%s", (cmd == CMD_ENABLE_NOTIFICATIONS) ? "启用" : "禁用");
 			break;
 
 		case CMD_SHUTDOWN_PROCESS:
 		case CMD_RESTART_PROCESS:
-			printf("%s the Nagios process", (cmd == CMD_SHUTDOWN_PROCESS) ? "shutdown" : "restart");
+			printf("Nagios进程的%s", (cmd == CMD_SHUTDOWN_PROCESS) ? "宕机" : "重启");
 			break;
 
 		case CMD_ENABLE_HOST_SVC_CHECKS:
 		case CMD_DISABLE_HOST_SVC_CHECKS:
-			printf("%s active checks of all services on a host", (cmd == CMD_ENABLE_HOST_SVC_CHECKS) ? "enable" : "disable");
+			printf("主机的所有服务检查：%s ", (cmd == CMD_ENABLE_HOST_SVC_CHECKS) ? "启用" : "禁用");
 			break;
 
 		case CMD_SCHEDULE_HOST_SVC_CHECKS:
-			printf("schedule a check of all services for a host");
+			printf("调度主机的所有的服务");
 			break;
 
 		case CMD_DEL_ALL_HOST_COMMENTS:
 		case CMD_DEL_ALL_SVC_COMMENTS:
-			printf("delete all comments for a %s", (cmd == CMD_DEL_ALL_HOST_COMMENTS) ? "host" : "service");
+			printf("%s的所有的注释被删除", (cmd == CMD_DEL_ALL_HOST_COMMENTS) ? "主机" : "服务");
 			break;
 
 		case CMD_ENABLE_SVC_NOTIFICATIONS:
 		case CMD_DISABLE_SVC_NOTIFICATIONS:
-			printf("%s notifications for a service", (cmd == CMD_ENABLE_SVC_NOTIFICATIONS) ? "enable" : "disable");
+			printf("服务的通知：%s", (cmd == CMD_ENABLE_SVC_NOTIFICATIONS) ? "启用" : "禁用");
 			break;
 
 		case CMD_ENABLE_HOST_NOTIFICATIONS:
 		case CMD_DISABLE_HOST_NOTIFICATIONS:
-			printf("%s notifications for a host", (cmd == CMD_ENABLE_HOST_NOTIFICATIONS) ? "enable" : "disable");
+			printf("主机的通知：%s", (cmd == CMD_ENABLE_HOST_NOTIFICATIONS) ? "启用" : "禁用");
 			break;
 
 		case CMD_ENABLE_ALL_NOTIFICATIONS_BEYOND_HOST:
 		case CMD_DISABLE_ALL_NOTIFICATIONS_BEYOND_HOST:
-			printf("%s notifications for all hosts and services beyond a host", (cmd == CMD_ENABLE_ALL_NOTIFICATIONS_BEYOND_HOST) ? "enable" : "disable");
+			printf("所有主机和服务的通知：%s", (cmd == CMD_ENABLE_ALL_NOTIFICATIONS_BEYOND_HOST) ? "启用" : "禁用");
 			break;
 
 		case CMD_ENABLE_HOST_SVC_NOTIFICATIONS:
 		case CMD_DISABLE_HOST_SVC_NOTIFICATIONS:
-			printf("%s notifications for all services on a host", (cmd == CMD_ENABLE_HOST_SVC_NOTIFICATIONS) ? "enable" : "disable");
+			printf("主机的所有服务的通知：%s", (cmd == CMD_ENABLE_HOST_SVC_NOTIFICATIONS) ? "启用" : "禁用");
 			break;
 
 		case CMD_ACKNOWLEDGE_HOST_PROBLEM:
 		case CMD_ACKNOWLEDGE_SVC_PROBLEM:
-			printf("acknowledge a %s problem", (cmd == CMD_ACKNOWLEDGE_HOST_PROBLEM) ? "host" : "service");
+			printf("%s的问题确认", (cmd == CMD_ACKNOWLEDGE_HOST_PROBLEM) ? "主机" : "服务");
 			break;
 
 		case CMD_START_EXECUTING_SVC_CHECKS:
 		case CMD_STOP_EXECUTING_SVC_CHECKS:
-			printf("%s executing active service checks", (cmd == CMD_START_EXECUTING_SVC_CHECKS) ? "start" : "stop");
+			printf("%s执行主动服务检查", (cmd == CMD_START_EXECUTING_SVC_CHECKS) ? "开始" : "结束");
 			break;
 
 		case CMD_START_ACCEPTING_PASSIVE_SVC_CHECKS:
 		case CMD_STOP_ACCEPTING_PASSIVE_SVC_CHECKS:
-			printf("%s accepting passive service checks", (cmd == CMD_START_ACCEPTING_PASSIVE_SVC_CHECKS) ? "start" : "stop");
+			printf("%s接受被动服务检查", (cmd == CMD_START_ACCEPTING_PASSIVE_SVC_CHECKS) ? "开始" : "结束");
 			break;
 
 		case CMD_ENABLE_PASSIVE_SVC_CHECKS:
 		case CMD_DISABLE_PASSIVE_SVC_CHECKS:
-			printf("%s accepting passive service checks for a particular service", (cmd == CMD_ENABLE_PASSIVE_SVC_CHECKS) ? "start" : "stop");
+			printf("%s接受特定服务的被动检查", (cmd == CMD_ENABLE_PASSIVE_SVC_CHECKS) ? "开始" : "结束");
 			break;
 
 		case CMD_ENABLE_EVENT_HANDLERS:
 		case CMD_DISABLE_EVENT_HANDLERS:
-			printf("%s event handlers", (cmd == CMD_ENABLE_EVENT_HANDLERS) ? "enable" : "disable");
+			printf("事件处理：%s", (cmd == CMD_ENABLE_EVENT_HANDLERS) ? "启用" : "禁用");
 			break;
 
 		case CMD_ENABLE_HOST_EVENT_HANDLER:
 		case CMD_DISABLE_HOST_EVENT_HANDLER:
-			printf("%s the event handler for a particular host", (cmd == CMD_ENABLE_HOST_EVENT_HANDLER) ? "enable" : "disable");
+			printf("特定主机的事件处理：%s", (cmd == CMD_ENABLE_HOST_EVENT_HANDLER) ? "启用" : "禁用");
 			break;
 
 		case CMD_ENABLE_SVC_EVENT_HANDLER:
 		case CMD_DISABLE_SVC_EVENT_HANDLER:
-			printf("%s the event handler for a particular service", (cmd == CMD_ENABLE_SVC_EVENT_HANDLER) ? "enable" : "disable");
+			printf("特定服务的事件处理：%s", (cmd == CMD_ENABLE_SVC_EVENT_HANDLER) ? "启用" : "禁用");
 			break;
 
 		case CMD_ENABLE_HOST_CHECK:
 		case CMD_DISABLE_HOST_CHECK:
-			printf("%s active checks of a particular host", (cmd == CMD_ENABLE_HOST_CHECK) ? "enable" : "disable");
+			printf("%s特定主机的主动检查", (cmd == CMD_ENABLE_HOST_CHECK) ? "启用" : "禁用");
 			break;
 
 		case CMD_STOP_OBSESSING_OVER_SVC_CHECKS:
 		case CMD_START_OBSESSING_OVER_SVC_CHECKS:
-			printf("%s obsessing over service checks", (cmd == CMD_STOP_OBSESSING_OVER_SVC_CHECKS) ? "stop" : "start");
+			printf("Obsessing Over服务检查：%s", (cmd == CMD_STOP_OBSESSING_OVER_SVC_CHECKS) ? "结束" : "开始");
 			break;
 
 		case CMD_REMOVE_HOST_ACKNOWLEDGEMENT:
 		case CMD_REMOVE_SVC_ACKNOWLEDGEMENT:
-			printf("remove a %s acknowledgement", (cmd == CMD_REMOVE_HOST_ACKNOWLEDGEMENT) ? "host" : "service");
+			printf("%s的确认被删除", (cmd == CMD_REMOVE_HOST_ACKNOWLEDGEMENT) ? "主机" : "服务");
 			break;
 
 		case CMD_SCHEDULE_HOST_DOWNTIME:
 		case CMD_SCHEDULE_SVC_DOWNTIME:
-			printf("schedule downtime for a particular %s", (cmd == CMD_SCHEDULE_HOST_DOWNTIME) ? "host" : "service");
+			printf("特定%s的宕机调度", (cmd == CMD_SCHEDULE_HOST_DOWNTIME) ? "主机" : "服务");
 			break;
 
 		case CMD_SCHEDULE_HOST_SVC_DOWNTIME:
-			printf("schedule downtime for all services for a particular host");
+			printf("为特定的主机所有服务安排宕机时间");
 			break;
 
 		case CMD_PROCESS_HOST_CHECK_RESULT:
 		case CMD_PROCESS_SERVICE_CHECK_RESULT:
-			printf("submit a passive check result for a particular %s", (cmd == CMD_PROCESS_HOST_CHECK_RESULT) ? "host" : "service");
+			printf("提交特定%s被动检查结果", (cmd == CMD_PROCESS_HOST_CHECK_RESULT) ? "主机" : "服务");
 			break;
 
 		case CMD_ENABLE_HOST_FLAP_DETECTION:
 		case CMD_DISABLE_HOST_FLAP_DETECTION:
-			printf("%s flap detection for a particular host", (cmd == CMD_ENABLE_HOST_FLAP_DETECTION) ? "enable" : "disable");
+			printf("特定主机的心跳检查：%s", (cmd == CMD_ENABLE_HOST_FLAP_DETECTION) ? "启用" : "禁用");
 			break;
 
 		case CMD_ENABLE_SVC_FLAP_DETECTION:
 		case CMD_DISABLE_SVC_FLAP_DETECTION:
-			printf("%s flap detection for a particular service", (cmd == CMD_ENABLE_SVC_FLAP_DETECTION) ? "enable" : "disable");
+			printf("特定服务的心跳检查：%s", (cmd == CMD_ENABLE_SVC_FLAP_DETECTION) ? "启用" : "禁用");
 			break;
 
 		case CMD_ENABLE_FLAP_DETECTION:
 		case CMD_DISABLE_FLAP_DETECTION:
-			printf("%s flap detection for hosts and services", (cmd == CMD_ENABLE_FLAP_DETECTION) ? "enable" : "disable");
+			printf("主机和服务的心跳检查：%s", (cmd == CMD_ENABLE_FLAP_DETECTION) ? "启用" : "禁用");
 			break;
 
 		case CMD_ENABLE_HOSTGROUP_SVC_NOTIFICATIONS:
 		case CMD_DISABLE_HOSTGROUP_SVC_NOTIFICATIONS:
-			printf("%s notifications for all services in a particular hostgroup", (cmd == CMD_ENABLE_HOSTGROUP_SVC_NOTIFICATIONS) ? "enable" : "disable");
+			printf("特定主机组的所有服务的通知：%s", (cmd == CMD_ENABLE_HOSTGROUP_SVC_NOTIFICATIONS) ? "启用" : "禁用");
 			break;
 
 		case CMD_ENABLE_HOSTGROUP_HOST_NOTIFICATIONS:
 		case CMD_DISABLE_HOSTGROUP_HOST_NOTIFICATIONS:
-			printf("%s notifications for all hosts in a particular hostgroup", (cmd == CMD_ENABLE_HOSTGROUP_HOST_NOTIFICATIONS) ? "enable" : "disable");
+			printf("特定主机组的所有主机的通知：%s ", (cmd == CMD_ENABLE_HOSTGROUP_HOST_NOTIFICATIONS) ? "启用" : "禁用");
 			break;
 
 		case CMD_ENABLE_HOSTGROUP_SVC_CHECKS:
 		case CMD_DISABLE_HOSTGROUP_SVC_CHECKS:
-			printf("%s active checks of all services in a particular hostgroup", (cmd == CMD_ENABLE_HOSTGROUP_SVC_CHECKS) ? "enable" : "disable");
+			printf("特定主机组的所有服务的主动检查：%s ", (cmd == CMD_ENABLE_HOSTGROUP_SVC_CHECKS) ? "启用" : "禁用");
 			break;
 
 		case CMD_DEL_HOST_DOWNTIME:
 		case CMD_DEL_SVC_DOWNTIME:
-			printf("cancel scheduled downtime for a particular %s", (cmd == CMD_DEL_HOST_DOWNTIME) ? "host" : "service");
+			printf("%s的宕机时间调度被取消", (cmd == CMD_DEL_HOST_DOWNTIME) ? "主机" : "服务");
 			break;
 
 		case CMD_ENABLE_PERFORMANCE_DATA:
 		case CMD_DISABLE_PERFORMANCE_DATA:
-			printf("%s performance data processing for hosts and services", (cmd == CMD_ENABLE_PERFORMANCE_DATA) ? "enable" : "disable");
+			printf("主机和服务的性能数据处理：%s ", (cmd == CMD_ENABLE_PERFORMANCE_DATA) ? "启用" : "禁用");
 			break;
 
 		case CMD_SCHEDULE_HOSTGROUP_HOST_DOWNTIME:
-			printf("schedule downtime for all hosts in a particular hostgroup");
+			printf("特定主机组的所有主机的宕机时间调度");
 			break;
 
 		case CMD_SCHEDULE_HOSTGROUP_SVC_DOWNTIME:
-			printf("schedule downtime for all services in a particular hostgroup");
+			printf("特定主机组的所有服务的宕机时间调度");
 			break;
 
 		case CMD_START_EXECUTING_HOST_CHECKS:
 		case CMD_STOP_EXECUTING_HOST_CHECKS:
-			printf("%s executing host checks", (cmd == CMD_START_EXECUTING_HOST_CHECKS) ? "start" : "stop");
+			printf("主机检查：%s ", (cmd == CMD_START_EXECUTING_HOST_CHECKS) ? "开始" : "结束");
 			break;
 
 		case CMD_START_ACCEPTING_PASSIVE_HOST_CHECKS:
 		case CMD_STOP_ACCEPTING_PASSIVE_HOST_CHECKS:
-			printf("%s accepting passive host checks", (cmd == CMD_START_ACCEPTING_PASSIVE_HOST_CHECKS) ? "start" : "stop");
+			printf("被动主机检查：%s ", (cmd == CMD_START_ACCEPTING_PASSIVE_HOST_CHECKS) ? "开始" : "结束");
 			break;
 
 		case CMD_ENABLE_PASSIVE_HOST_CHECKS:
 		case CMD_DISABLE_PASSIVE_HOST_CHECKS:
-			printf("%s accepting passive checks for a particular host", (cmd == CMD_ENABLE_PASSIVE_HOST_CHECKS) ? "start" : "stop");
+			printf("特定主机被动检查：%s ", (cmd == CMD_ENABLE_PASSIVE_HOST_CHECKS) ? "开始" : "结束");
 			break;
 
 		case CMD_START_OBSESSING_OVER_HOST_CHECKS:
 		case CMD_STOP_OBSESSING_OVER_HOST_CHECKS:
-			printf("%s obsessing over host checks", (cmd == CMD_START_OBSESSING_OVER_HOST_CHECKS) ? "start" : "stop");
+			printf("Obsessing Over主机的检查：%s", (cmd == CMD_START_OBSESSING_OVER_HOST_CHECKS) ? "开始" : "结束");
 			break;
 
 		case CMD_SCHEDULE_HOST_CHECK:
-			printf("schedule a host check");
+			printf("主机检查调度");
 			break;
 
 		case CMD_START_OBSESSING_OVER_SVC:
 		case CMD_STOP_OBSESSING_OVER_SVC:
-			printf("%s obsessing over a particular service", (cmd == CMD_START_OBSESSING_OVER_SVC) ? "start" : "stop");
+			printf("特定服务的Obsessing Over：%s ", (cmd == CMD_START_OBSESSING_OVER_SVC) ? "开始" : "结束");
 			break;
 
 		case CMD_START_OBSESSING_OVER_HOST:
 		case CMD_STOP_OBSESSING_OVER_HOST:
-			printf("%s obsessing over a particular host", (cmd == CMD_START_OBSESSING_OVER_HOST) ? "start" : "stop");
+			printf("特定主机的Obsessing Over：%s ", (cmd == CMD_START_OBSESSING_OVER_HOST) ? "开始" : "结束");
 			break;
 
 		case CMD_ENABLE_SERVICEGROUP_SVC_NOTIFICATIONS:
 		case CMD_DISABLE_SERVICEGROUP_SVC_NOTIFICATIONS:
-			printf("%s notifications for all services in a particular servicegroup", (cmd == CMD_ENABLE_SERVICEGROUP_SVC_NOTIFICATIONS) ? "enable" : "disable");
+			printf("特定服务组的所有服务的通知：%s ", (cmd == CMD_ENABLE_SERVICEGROUP_SVC_NOTIFICATIONS) ? "启用" : "禁用");
 			break;
 
 		case CMD_ENABLE_SERVICEGROUP_HOST_NOTIFICATIONS:
 		case CMD_DISABLE_SERVICEGROUP_HOST_NOTIFICATIONS:
-			printf("%s notifications for all hosts in a particular servicegroup", (cmd == CMD_ENABLE_SERVICEGROUP_HOST_NOTIFICATIONS) ? "enable" : "disable");
+			printf("特定服务组的所有主机的通知：%s", (cmd == CMD_ENABLE_SERVICEGROUP_HOST_NOTIFICATIONS) ? "启用" : "禁用");
 			break;
 
 		case CMD_ENABLE_SERVICEGROUP_SVC_CHECKS:
 		case CMD_DISABLE_SERVICEGROUP_SVC_CHECKS:
-			printf("%s active checks of all services in a particular servicegroup", (cmd == CMD_ENABLE_SERVICEGROUP_SVC_CHECKS) ? "enable" : "disable");
+			printf("特定服务组的所有服务主动检查：%s", (cmd == CMD_ENABLE_SERVICEGROUP_SVC_CHECKS) ? "启用" : "禁用");
 			break;
 
 		case CMD_SCHEDULE_SERVICEGROUP_HOST_DOWNTIME:
-			printf("schedule downtime for all hosts in a particular servicegroup");
+			printf("特定服务组上的所有主机宕机时间调度");
 			break;
 
 		case CMD_SCHEDULE_SERVICEGROUP_SVC_DOWNTIME:
-			printf("schedule downtime for all services in a particular servicegroup");
+			printf("特定服务组上的所有服务宕机时间调度");
 			break;
 
 		case CMD_CLEAR_HOST_FLAPPING_STATE:
 		case CMD_CLEAR_SVC_FLAPPING_STATE:
-			printf("clear flapping state for a %s", (cmd == CMD_CLEAR_HOST_FLAPPING_STATE) ? "host" : "service");
+			printf("清除摆动信息：%s", (cmd == CMD_CLEAR_HOST_FLAPPING_STATE) ? "主机" : "服务");
 			break;
 
 		case CMD_SEND_CUSTOM_HOST_NOTIFICATION:
 		case CMD_SEND_CUSTOM_SVC_NOTIFICATION:
-			printf("send a custom %s notification", (cmd == CMD_SEND_CUSTOM_HOST_NOTIFICATION) ? "host" : "service");
+			printf("送出用户定制的\"%s\"通知", (cmd == CMD_SEND_CUSTOM_HOST_NOTIFICATION) ? "主机" : "服务");
 			break;
 
 		default:
-			printf("execute an unknown command.  Shame on you!</DIV>");
+			printf("未知命令。 Shame on you!</DIV>");
 			return;
 		}
 
@@ -975,7 +975,7 @@ void request_command_data(int cmd) {
 	printf("<tr>\n");
 	printf("<td align=center valign=top>\n");
 
-	printf("<DIV ALIGN=CENTER CLASS='optBoxTitle'>Command Options</DIV>\n");
+	printf("<DIV ALIGN=CENTER CLASS='optBoxTitle'>命令选项</DIV>\n");
 
 	printf("<TABLE CELLSPACING=0 CELLPADDING=0 BORDER=1 CLASS='optBox'>\n");
 	printf("<TR><TD CLASS='optBoxItem'>\n");
@@ -990,77 +990,77 @@ void request_command_data(int cmd) {
 
 		case CMD_ADD_HOST_COMMENT:
 		case CMD_ACKNOWLEDGE_HOST_PROBLEM:
-			printf("<tr><td CLASS='optBoxRequiredItem'>Host Name:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>主机名:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='host' VALUE='%s'>", escape_string(host_name));
 			printf("</b></td></tr>\n");
 			if(cmd == CMD_ACKNOWLEDGE_HOST_PROBLEM) {
-				printf("<tr><td CLASS='optBoxItem'>Sticky Acknowledgement:</td><td><b>");
+				printf("<tr><td CLASS='optBoxItem'>保持确认:</td><td><b>");
 				printf("<INPUT TYPE='checkbox' NAME='sticky_ack' %s>", (ack_no_sticky == TRUE) ? "" : "CHECKED");
 				printf("</b></td></tr>\n");
-				printf("<tr><td CLASS='optBoxItem'>Send Notification:</td><td><b>");
+				printf("<tr><td CLASS='optBoxItem'>发送通知:</td><td><b>");
 				printf("<INPUT TYPE='checkbox' NAME='send_notification' %s>", (ack_no_send == TRUE) ? "" : "CHECKED");
 				printf("</b></td></tr>\n");
 				}
-			printf("<tr><td CLASS='optBoxItem'>Persistent%s:</td><td><b>", (cmd == CMD_ACKNOWLEDGE_HOST_PROBLEM) ? " Comment" : "");
+			printf("<tr><td CLASS='optBoxItem'>保持%s:</td><td><b>", (cmd == CMD_ACKNOWLEDGE_HOST_PROBLEM) ? " 注释" : "");
 			printf("<INPUT TYPE='checkbox' NAME='persistent' %s>", (cmd == CMD_ACKNOWLEDGE_HOST_PROBLEM) ? "" : "CHECKED");
 			printf("</b></td></tr>\n");
-			printf("<tr><td CLASS='optBoxRequiredItem'>Author (Your Name):</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>作者 (你的名字):</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='com_author' VALUE='%s' %s>", escape_string(comment_author), (lock_author_names == TRUE) ? "READONLY DISABLED" : "");
 			printf("</b></td></tr>\n");
-			printf("<tr><td CLASS='optBoxRequiredItem'>Comment:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>注释:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='com_data' VALUE='%s' SIZE=40>", escape_string(comment_data));
 			printf("</b></td></tr>\n");
 			break;
 
 		case CMD_ADD_SVC_COMMENT:
 		case CMD_ACKNOWLEDGE_SVC_PROBLEM:
-			printf("<tr><td CLASS='optBoxRequiredItem'>Host Name:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>主机名:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='host' VALUE='%s'>", escape_string(host_name));
 			printf("</b></td></tr>\n");
-			printf("<tr><td CLASS='optBoxRequiredItem'>Service:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>服务:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='service' VALUE='%s'>", escape_string(service_desc));
 			if(cmd == CMD_ACKNOWLEDGE_SVC_PROBLEM) {
-				printf("<tr><td CLASS='optBoxItem'>Sticky Acknowledgement:</td><td><b>");
+				printf("<tr><td CLASS='optBoxItem'>保持确认:</td><td><b>");
 				printf("<INPUT TYPE='checkbox' NAME='sticky_ack' %s>", (ack_no_sticky == TRUE) ? "" : "CHECKED");
 				printf("</b></td></tr>\n");
-				printf("<tr><td CLASS='optBoxItem'>Send Notification:</td><td><b>");
+				printf("<tr><td CLASS='optBoxItem'>发送通知:</td><td><b>");
 				printf("<INPUT TYPE='checkbox' NAME='send_notification' %s>", (ack_no_send == TRUE) ? "" : "CHECKED");
 				printf("</b></td></tr>\n");
 				}
-			printf("<tr><td CLASS='optBoxItem'>Persistent%s:</td><td><b>", (cmd == CMD_ACKNOWLEDGE_SVC_PROBLEM) ? " Comment" : "");
+			printf("<tr><td CLASS='optBoxItem'>保持%s:</td><td><b>", (cmd == CMD_ACKNOWLEDGE_SVC_PROBLEM) ? " 注释" : "");
 			printf("<INPUT TYPE='checkbox' NAME='persistent' %s>", (cmd == CMD_ACKNOWLEDGE_SVC_PROBLEM) ? "" : "CHECKED");
 			printf("</b></td></tr>\n");
-			printf("<tr><td CLASS='optBoxRequiredItem'>Author (Your Name):</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>作者 (你的名字):</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='com_author' VALUE='%s' %s>", escape_string(comment_author), (lock_author_names == TRUE) ? "READONLY DISABLED" : "");
 			printf("</b></td></tr>\n");
-			printf("<tr><td CLASS='optBoxRequiredItem'>Comment:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>注释:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='com_data' VALUE='%s' SIZE=40>", escape_string(comment_data));
 			printf("</b></td></tr>\n");
 			break;
 
 		case CMD_DEL_HOST_COMMENT:
 		case CMD_DEL_SVC_COMMENT:
-			printf("<tr><td CLASS='optBoxRequiredItem'>Comment ID:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>注释ID:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='com_id' VALUE='%lu'>", comment_id);
 			printf("</b></td></tr>\n");
 			break;
 
 		case CMD_DELAY_HOST_NOTIFICATION:
-			printf("<tr><td CLASS='optBoxRequiredItem'>Host Name:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>主机名:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='host' VALUE='%s'>", escape_string(host_name));
 			printf("</b></td></tr>\n");
-			printf("<tr><td CLASS='optBoxRequiredItem'>Notification Delay (minutes from now):</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>通知延时(从现在开始的分钟数):</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='not_dly' VALUE='%d'>", notification_delay);
 			printf("</b></td></tr>\n");
 			break;
 
 		case CMD_DELAY_SVC_NOTIFICATION:
-			printf("<tr><td CLASS='optBoxRequiredItem'>Host Name:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>主机名:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='host' VALUE='%s'>", escape_string(host_name));
 			printf("</b></td></tr>\n");
-			printf("<tr><td CLASS='optBoxRequiredItem'>Service:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>服务:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='service' VALUE='%s'>", escape_string(service_desc));
-			printf("<tr><td CLASS='optBoxRequiredItem'>Notification Delay (minutes from now):</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>通知延时(从现在开始的分钟数):</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='not_dly' VALUE='%d'>", notification_delay);
 			printf("</b></td></tr>\n");
 			break;
@@ -1068,20 +1068,20 @@ void request_command_data(int cmd) {
 		case CMD_SCHEDULE_SVC_CHECK:
 		case CMD_SCHEDULE_HOST_CHECK:
 		case CMD_SCHEDULE_HOST_SVC_CHECKS:
-			printf("<tr><td CLASS='optBoxRequiredItem'>Host Name:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>主机名:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='host' VALUE='%s'>", escape_string(host_name));
 			printf("</b></td></tr>\n");
 			if(cmd == CMD_SCHEDULE_SVC_CHECK) {
-				printf("<tr><td CLASS='optBoxRequiredItem'>Service:</td><td><b>");
+				printf("<tr><td CLASS='optBoxRequiredItem'>服务:</td><td><b>");
 				printf("<INPUT TYPE='TEXT' NAME='service' VALUE='%s'>", escape_string(service_desc));
 				printf("</b></td></tr>\n");
 				}
 			time(&t);
 			get_time_string(&t, buffer, sizeof(buffer) - 1, SHORT_DATE_TIME);
-			printf("<tr><td CLASS='optBoxRequiredItem'>Check Time:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>检查时间:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='start_time' VALUE='%s'>", buffer);
 			printf("</b></td></tr>\n");
-			printf("<tr><td CLASS='optBoxItem'>Force Check:</td><td><b>");
+			printf("<tr><td CLASS='optBoxItem'>强制检查:</td><td><b>");
 			printf("<INPUT TYPE='checkbox' NAME='force_check' %s>", (force_check == TRUE) ? "CHECKED" : "");
 			printf("</b></td></tr>\n");
 			break;
@@ -1101,10 +1101,10 @@ void request_command_data(int cmd) {
 		case CMD_START_OBSESSING_OVER_SVC:
 		case CMD_STOP_OBSESSING_OVER_SVC:
 		case CMD_CLEAR_SVC_FLAPPING_STATE:
-			printf("<tr><td CLASS='optBoxRequiredItem'>Host Name:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>主机名:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='host' VALUE='%s'>", escape_string(host_name));
 			printf("</b></td></tr>\n");
-			printf("<tr><td CLASS='optBoxRequiredItem'>Service:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>服务:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='service' VALUE='%s'>", escape_string(service_desc));
 			printf("</b></td></tr>\n");
 			break;
@@ -1130,16 +1130,16 @@ void request_command_data(int cmd) {
 		case CMD_START_OBSESSING_OVER_HOST:
 		case CMD_STOP_OBSESSING_OVER_HOST:
 		case CMD_CLEAR_HOST_FLAPPING_STATE:
-			printf("<tr><td CLASS='optBoxRequiredItem'>Host Name:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>主机名:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='host' VALUE='%s'>", escape_string(host_name));
 			printf("</b></td></tr>\n");
 			if(cmd == CMD_ENABLE_HOST_SVC_CHECKS || cmd == CMD_DISABLE_HOST_SVC_CHECKS || cmd == CMD_ENABLE_HOST_SVC_NOTIFICATIONS || cmd == CMD_DISABLE_HOST_SVC_NOTIFICATIONS) {
-				printf("<tr><td CLASS='optBoxItem'>%s For Host Too:</td><td><b>", (cmd == CMD_ENABLE_HOST_SVC_CHECKS || cmd == CMD_ENABLE_HOST_SVC_NOTIFICATIONS) ? "Enable" : "Disable");
+				printf("<tr><td CLASS='optBoxItem'>同时对主机:%s</td><td><b>", (cmd == CMD_ENABLE_HOST_SVC_CHECKS || cmd == CMD_ENABLE_HOST_SVC_NOTIFICATIONS) ? "启用" : "禁用");
 				printf("<INPUT TYPE='checkbox' NAME='ahas'>");
 				printf("</b></td></tr>\n");
 				}
 			if(cmd == CMD_ENABLE_HOST_NOTIFICATIONS || cmd == CMD_DISABLE_HOST_NOTIFICATIONS) {
-				printf("<tr><td CLASS='optBoxItem'>%s Notifications For Child Hosts Too:</td><td><b>", (cmd == CMD_ENABLE_HOST_NOTIFICATIONS) ? "Enable" : "Disable");
+				printf("<tr><td CLASS='optBoxItem'>同时对子主机的通知:%s:</td><td><b>", (cmd == CMD_ENABLE_HOST_NOTIFICATIONS) ? "启用" : "禁用");
 				printf("<INPUT TYPE='checkbox' NAME='ptc'>");
 				printf("</b></td></tr>\n");
 				}
@@ -1167,20 +1167,20 @@ void request_command_data(int cmd) {
 		case CMD_STOP_ACCEPTING_PASSIVE_HOST_CHECKS:
 		case CMD_START_OBSESSING_OVER_HOST_CHECKS:
 		case CMD_STOP_OBSESSING_OVER_HOST_CHECKS:
-			printf("<tr><td CLASS='optBoxItem' colspan=2>There are no options for this command.<br>Click the 'Commit' button to submit the command.</td></tr>");
+			printf("<tr><td CLASS='optBoxItem' colspan=2>此命令无选项。<br>'点击确定按钮提交该命令</td></tr>");
 			break;
 
 		case CMD_PROCESS_HOST_CHECK_RESULT:
 		case CMD_PROCESS_SERVICE_CHECK_RESULT:
-			printf("<tr><td CLASS='optBoxRequiredItem'>Host Name:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>主机名:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='host' VALUE='%s'>", escape_string(host_name));
 			printf("</b></td></tr>\n");
 			if(cmd == CMD_PROCESS_SERVICE_CHECK_RESULT) {
-				printf("<tr><td CLASS='optBoxRequiredItem'>Service:</td><td><b>");
+				printf("<tr><td CLASS='optBoxRequiredItem'>服务:</td><td><b>");
 				printf("<INPUT TYPE='TEXT' NAME='service' VALUE='%s'>", escape_string(service_desc));
 				printf("</b></td></tr>\n");
 				}
-			printf("<tr><td CLASS='optBoxRequiredItem'>Check Result:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>检查结果:</td><td><b>");
 			printf("<SELECT NAME='plugin_state'>");
 			if(cmd == CMD_PROCESS_SERVICE_CHECK_RESULT) {
 				printf("<OPTION VALUE=%d SELECTED>OK\n", STATE_OK);
@@ -1195,10 +1195,10 @@ void request_command_data(int cmd) {
 				}
 			printf("</SELECT>\n");
 			printf("</b></td></tr>\n");
-			printf("<tr><td CLASS='optBoxRequiredItem'>Check Output:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>检查输出:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='plugin_output' VALUE=''>");
 			printf("</b></td></tr>\n");
-			printf("<tr><td CLASS='optBoxItem'>Performance Data:</td><td><b>");
+			printf("<tr><td CLASS='optBoxItem'>性能数据:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='performance_data' VALUE=''>");
 			printf("</b></td></tr>\n");
 			break;
@@ -1207,23 +1207,23 @@ void request_command_data(int cmd) {
 		case CMD_SCHEDULE_HOST_SVC_DOWNTIME:
 		case CMD_SCHEDULE_SVC_DOWNTIME:
 
-			printf("<tr><td CLASS='optBoxRequiredItem'>Host Name:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>主机名:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='host' VALUE='%s'>", escape_string(host_name));
 			printf("</b></td></tr>\n");
 			if(cmd == CMD_SCHEDULE_SVC_DOWNTIME) {
-				printf("<tr><td CLASS='optBoxRequiredItem'>Service:</td><td><b>");
+				printf("<tr><td CLASS='optBoxRequiredItem'>服务:</td><td><b>");
 				printf("<INPUT TYPE='TEXT' NAME='service' VALUE='%s'>", escape_string(service_desc));
 				}
-			printf("<tr><td CLASS='optBoxRequiredItem'>Author (Your Name):</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>作者 (你的名字):</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='com_author' VALUE='%s' %s>", escape_string(comment_author), (lock_author_names == TRUE) ? "READONLY DISABLED" : "");
 			printf("</b></td></tr>\n");
-			printf("<tr><td CLASS='optBoxRequiredItem'>Comment:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>注释:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='com_data' VALUE='%s' SIZE=40>", escape_string(comment_data));
 			printf("</b></td></tr>\n");
 
 			printf("<tr><td CLASS='optBoxItem'><br></td></tr>\n");
 
-			printf("<tr><td CLASS='optBoxItem'>Triggered By:</td><td>\n");
+			printf("<tr><td CLASS='optBoxItem'>触发自:</td><td>\n");
 			printf("<select name='trigger'>\n");
 			printf("<option value='0'>N/A\n");
 
@@ -1249,38 +1249,38 @@ void request_command_data(int cmd) {
 
 			time(&t);
 			get_time_string(&t, buffer, sizeof(buffer) - 1, SHORT_DATE_TIME);
-			printf("<tr><td CLASS='optBoxRequiredItem'>Start Time:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>开始时间:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='start_time' VALUE='%s'>", buffer);
 			printf("</b></td></tr>\n");
 			t += (unsigned long)7200;
 			get_time_string(&t, buffer, sizeof(buffer) - 1, SHORT_DATE_TIME);
-			printf("<tr><td CLASS='optBoxRequiredItem'>End Time:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>结束时间:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='end_time' VALUE='%s'>", buffer);
 			printf("</b></td></tr>\n");
-			printf("<tr><td CLASS='optBoxItem'>Type:</td><td><b>");
+			printf("<tr><td CLASS='optBoxItem'>类型:</td><td><b>");
 			printf("<SELECT NAME='fixed'>");
-			printf("<OPTION VALUE=1>Fixed\n");
-			printf("<OPTION VALUE=0>Flexible\n");
+			printf("<OPTION VALUE=1>固定\n");
+			printf("<OPTION VALUE=0>可变\n");
 			printf("</SELECT>\n");
 			printf("</b></td></tr>\n");
 
-			printf("<tr><td CLASS='optBoxItem'>If Flexible, Duration:</td><td>");
+			printf("<tr><td CLASS='optBoxItem'>持续时间(如果选择‘可变’):</td><td>");
 			printf("<table border=0><tr>\n");
 			printf("<td align=right><INPUT TYPE='TEXT' NAME='hours' VALUE='2' SIZE=2 MAXLENGTH=2></td>\n");
-			printf("<td align=left>Hours</td>\n");
+			printf("<td align=left>小时</td>\n");
 			printf("<td align=right><INPUT TYPE='TEXT' NAME='minutes' VALUE='0' SIZE=2 MAXLENGTH=2></td>\n");
-			printf("<td align=left>Minutes</td>\n");
+			printf("<td align=left>分钟</td>\n");
 			printf("</tr></table>\n");
 			printf("</td></tr>\n");
 
 			printf("<tr><td CLASS='optBoxItem'><br></td></tr>\n");
 
 			if(cmd == CMD_SCHEDULE_HOST_DOWNTIME) {
-				printf("<tr><td CLASS='optBoxItem'>Child Hosts:</td><td><b>");
+				printf("<tr><td CLASS='optBoxItem'>子主机:</td><td><b>");
 				printf("<SELECT name='childoptions'>");
-				printf("<option value='0'>Do nothing with child hosts\n");
-				printf("<option value='1'>Schedule triggered downtime for all child hosts\n");
-				printf("<option value='2'>Schedule non-triggered downtime for all child hosts\n");
+				printf("<option value='0'>子主机不受任何影响\n");
+				printf("<option value='1'>对所有子主机调度触发的宕机时间\n");
+				printf("<option value='2'>对所有子主机调度非触发的宕机时间\n");
 				printf("</SELECT>\n");
 				printf("</b></td></tr>\n");
 				}
@@ -1295,11 +1295,11 @@ void request_command_data(int cmd) {
 		case CMD_DISABLE_HOSTGROUP_HOST_NOTIFICATIONS:
 		case CMD_ENABLE_HOSTGROUP_SVC_CHECKS:
 		case CMD_DISABLE_HOSTGROUP_SVC_CHECKS:
-			printf("<tr><td CLASS='optBoxRequiredItem'>Hostgroup Name:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>主机组名:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='hostgroup' VALUE='%s'>", escape_string(hostgroup_name));
 			printf("</b></td></tr>\n");
 			if(cmd == CMD_ENABLE_HOSTGROUP_SVC_CHECKS || cmd == CMD_DISABLE_HOSTGROUP_SVC_CHECKS || cmd == CMD_ENABLE_HOSTGROUP_SVC_NOTIFICATIONS || cmd == CMD_DISABLE_HOSTGROUP_SVC_NOTIFICATIONS) {
-				printf("<tr><td CLASS='optBoxItem'>%s For Hosts Too:</td><td><b>", (cmd == CMD_ENABLE_HOSTGROUP_SVC_CHECKS || cmd == CMD_ENABLE_HOSTGROUP_SVC_NOTIFICATIONS) ? "Enable" : "Disable");
+				printf("<tr><td CLASS='optBoxItem'>同时对主机:%s：</td><td><b>", (cmd == CMD_ENABLE_HOSTGROUP_SVC_CHECKS || cmd == CMD_ENABLE_HOSTGROUP_SVC_NOTIFICATIONS) ? "启用" : "禁用");
 				printf("<INPUT TYPE='checkbox' NAME='ahas'>");
 				printf("</b></td></tr>\n");
 				}
@@ -1311,11 +1311,11 @@ void request_command_data(int cmd) {
 		case CMD_DISABLE_SERVICEGROUP_HOST_NOTIFICATIONS:
 		case CMD_ENABLE_SERVICEGROUP_SVC_CHECKS:
 		case CMD_DISABLE_SERVICEGROUP_SVC_CHECKS:
-			printf("<tr><td CLASS='optBoxRequiredItem'>Servicegroup Name:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>服务组名:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='servicegroup' VALUE='%s'>", escape_string(servicegroup_name));
 			printf("</b></td></tr>\n");
 			if(cmd == CMD_ENABLE_SERVICEGROUP_SVC_CHECKS || cmd == CMD_DISABLE_SERVICEGROUP_SVC_CHECKS || cmd == CMD_ENABLE_SERVICEGROUP_SVC_NOTIFICATIONS || cmd == CMD_DISABLE_SERVICEGROUP_SVC_NOTIFICATIONS) {
-				printf("<tr><td CLASS='optBoxItem'>%s For Hosts Too:</td><td><b>", (cmd == CMD_ENABLE_SERVICEGROUP_SVC_CHECKS || cmd == CMD_ENABLE_SERVICEGROUP_SVC_NOTIFICATIONS) ? "Enable" : "Disable");
+				printf("<tr><td CLASS='optBoxItem'>同时对主机%s:</td><td><b>", (cmd == CMD_ENABLE_SERVICEGROUP_SVC_CHECKS || cmd == CMD_ENABLE_SERVICEGROUP_SVC_NOTIFICATIONS) ? "启用" : "禁用");
 				printf("<INPUT TYPE='checkbox' NAME='ahas'>");
 				printf("</b></td></tr>\n");
 				}
@@ -1323,7 +1323,7 @@ void request_command_data(int cmd) {
 
 		case CMD_DEL_HOST_DOWNTIME:
 		case CMD_DEL_SVC_DOWNTIME:
-			printf("<tr><td CLASS='optBoxRequiredItem'>Scheduled Downtime ID:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>调度宕机时间 ID:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='down_id' VALUE='%lu'>", downtime_id);
 			printf("</b></td></tr>\n");
 			break;
@@ -1335,39 +1335,39 @@ void request_command_data(int cmd) {
 		case CMD_SCHEDULE_SERVICEGROUP_SVC_DOWNTIME:
 
 			if(cmd == CMD_SCHEDULE_HOSTGROUP_HOST_DOWNTIME || cmd == CMD_SCHEDULE_HOSTGROUP_SVC_DOWNTIME) {
-				printf("<tr><td CLASS='optBoxRequiredItem'>Hostgroup Name:</td><td><b>");
+				printf("<tr><td CLASS='optBoxRequiredItem'>主机组名:</td><td><b>");
 				printf("<INPUT TYPE='TEXT' NAME='hostgroup' VALUE='%s'>", escape_string(hostgroup_name));
 				printf("</b></td></tr>\n");
 				}
 			else {
-				printf("<tr><td CLASS='optBoxRequiredItem'>Servicegroup Name:</td><td><b>");
+				printf("<tr><td CLASS='optBoxRequiredItem'>服务组名:</td><td><b>");
 				printf("<INPUT TYPE='TEXT' NAME='servicegroup' VALUE='%s'>", escape_string(servicegroup_name));
 				printf("</b></td></tr>\n");
 				}
-			printf("<tr><td CLASS='optBoxRequiredItem'>Author (Your Name):</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>作者 (你的名字):</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='com_author' VALUE='%s' %s>", escape_string(comment_author), (lock_author_names == TRUE) ? "READONLY DISABLED" : "");
 			printf("</b></td></tr>\n");
-			printf("<tr><td CLASS='optBoxRequiredItem'>Comment:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>注释:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='com_data' VALUE='%s' SIZE=40>", escape_string(comment_data));
 			printf("</b></td></tr>\n");
 			time(&t);
 			get_time_string(&t, buffer, sizeof(buffer) - 1, SHORT_DATE_TIME);
-			printf("<tr><td CLASS='optBoxRequiredItem'>Start Time:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>开始时间:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='start_time' VALUE='%s'>", buffer);
 			printf("</b></td></tr>\n");
 			t += (unsigned long)7200;
 			get_time_string(&t, buffer, sizeof(buffer) - 1, SHORT_DATE_TIME);
-			printf("<tr><td CLASS='optBoxRequiredItem'>End Time:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>结束时间:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='end_time' VALUE='%s'>", buffer);
 			printf("</b></td></tr>\n");
 			printf("<tr><td CLASS='optBoxItem'>Type:</td><td><b>");
 			printf("<SELECT NAME='fixed'>");
-			printf("<OPTION VALUE=1>Fixed\n");
-			printf("<OPTION VALUE=0>Flexible\n");
+			printf("<OPTION VALUE=1>固定\n");
+			printf("<OPTION VALUE=0>可变\n");
 			printf("</SELECT>\n");
 			printf("</b></td></tr>\n");
 
-			printf("<tr><td CLASS='optBoxItem'>If Flexible, Duration:</td><td>");
+			printf("<tr><td CLASS='optBoxItem'>持续时间(如果选择‘可变’):</td><td>");
 			printf("<table border=0><tr>\n");
 			printf("<td align=right><INPUT TYPE='TEXT' NAME='hours' VALUE='2' SIZE=2 MAXLENGTH=2></td>\n");
 			printf("<td align=left>Hours</td>\n");
@@ -1376,7 +1376,7 @@ void request_command_data(int cmd) {
 			printf("</tr></table>\n");
 			printf("</td></tr>\n");
 			if(cmd == CMD_SCHEDULE_HOSTGROUP_SVC_DOWNTIME || cmd == CMD_SCHEDULE_SERVICEGROUP_SVC_DOWNTIME) {
-				printf("<tr><td CLASS='optBoxItem'>Schedule Downtime For Hosts Too:</td><td><b>");
+				printf("<tr><td CLASS='optBoxItem'>同时对主机进行宕机时间调度:</td><td><b>");
 				printf("<INPUT TYPE='checkbox' NAME='ahas'>");
 				printf("</b></td></tr>\n");
 				}
@@ -1384,39 +1384,39 @@ void request_command_data(int cmd) {
 
 		case CMD_SEND_CUSTOM_HOST_NOTIFICATION:
 		case CMD_SEND_CUSTOM_SVC_NOTIFICATION:
-			printf("<tr><td CLASS='optBoxRequiredItem'>Host Name:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>主机名:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='host' VALUE='%s'>", escape_string(host_name));
 			printf("</b></td></tr>\n");
 
 			if(cmd == CMD_SEND_CUSTOM_SVC_NOTIFICATION) {
-				printf("<tr><td CLASS='optBoxRequiredItem'>Service:</td><td><b>");
+				printf("<tr><td CLASS='optBoxRequiredItem'>服务名:</td><td><b>");
 				printf("<INPUT TYPE='TEXT' NAME='service' VALUE='%s'>", escape_string(service_desc));
 				printf("</b></td></tr>\n");
 				}
 
-			printf("<tr><td CLASS='optBoxItem'>Forced:</td><td><b>");
+			printf("<tr><td CLASS='optBoxItem'>强迫式:</td><td><b>");
 			printf("<INPUT TYPE='checkbox' NAME='force_notification' ");
 			printf("</b></td></tr>\n");
 
-			printf("<tr><td CLASS='optBoxItem'>Broadcast:</td><td><b>");
+			printf("<tr><td CLASS='optBoxItem'>广播式:</td><td><b>");
 			printf("<INPUT TYPE='checkbox' NAME='broadcast_notification' ");
 			printf("</b></td></tr>\n");
 
-			printf("<tr><td CLASS='optBoxRequiredItem'>Author (Your Name):</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>作者 (你的名字):</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='com_author' VALUE='%s' %s>", escape_string(comment_author), (lock_author_names == TRUE) ? "READONLY DISABLED" : "");
 			printf("</b></td></tr>\n");
-			printf("<tr><td CLASS='optBoxRequiredItem'>Comment:</td><td><b>");
+			printf("<tr><td CLASS='optBoxRequiredItem'>注释:</td><td><b>");
 			printf("<INPUT TYPE='TEXT' NAME='com_data' VALUE='%s' SIZE=40>", escape_string(comment_data));
 			printf("</b></td></tr>\n");
 			break;
 
 		default:
-			printf("<tr><td CLASS='optBoxItem'>This should not be happening... :-(</td><td></td></tr>\n");
+			printf("<tr><td CLASS='optBoxItem'>不应该发生... :-(</td><td></td></tr>\n");
 		}
 
 
 	printf("<tr><td CLASS='optBoxItem' COLSPAN=2></td></tr>\n");
-	printf("<tr><td CLASS='optBoxItem'></td><td CLASS='optBoxItem'><INPUT TYPE='submit' NAME='btnSubmit' VALUE='Commit'> <INPUT TYPE='reset' VALUE='Reset'></td></tr>\n");
+	printf("<tr><td CLASS='optBoxItem'></td><td CLASS='optBoxItem'><INPUT TYPE='submit' NAME='btnSubmit' VALUE='确定'> <INPUT TYPE='reset' VALUE='重置'></td></tr>\n");
 
 	printf("</table>\n");
 	printf("</form>\n");
@@ -1437,7 +1437,7 @@ void request_command_data(int cmd) {
 	printf("</div>\n");
 	printf("</p>\n");
 
-	printf("<P><DIV CLASS='infoMessage'>Please enter all required information before committing the command.<br>Required fields are marked in red.<br>Failure to supply all required values will result in an error.</DIV></P>");
+	printf("<P><DIV CLASS='infoMessage'>请在提交命令前输入所有必须输入的项。<br>红色为必须输入的项。<br>未能提供所需的所有值将会导致一个错误.</DIV></P>");
 
 	return;
 	}
@@ -1862,15 +1862,15 @@ void commit_command_data(int cmd) {
 	/* to be safe, we are going to REQUIRE that the authentication functionality is enabled... */
 	if(use_authentication == FALSE) {
 		if(content_type == WML_CONTENT)
-			printf("<p>Error: Authentication is not enabled!</p>\n");
+			printf("<p>错误: CGI的认证被禁用!</p>\n");
 		else {
 			printf("<P>\n");
-			printf("<DIV CLASS='errorMessage'>Sorry Dave, I can't let you do that...</DIV><br>");
+			printf("<DIV CLASS='errorMessage'>认证没有开启...</DIV><br>");
 			printf("<DIV CLASS='errorDescription'>");
-			printf("It seems that you have chosen to not use the authentication functionality of the CGIs.<br><br>");
-			printf("I don't want to be personally responsible for what may happen as a result of allowing unauthorized users to issue commands to Nagios,");
-			printf("so you'll have to disable this safeguard if you are really stubborn and want to invite trouble.<br><br>");
-			printf("<strong>Read the section on CGI authentication in the HTML documentation to learn how you can enable authentication and why you should want to.</strong>\n");
+			printf("可能是CGI的认证功能没有开启。<br><br>");
+			printf("在没有认证的情况下，Nagios将不能保证使用的结果是正确的,");
+			printf("如果你确实想在无认证的情况下使用这个功能，可能要降低Nagios对权限认证的要求。<br><br>");
+			printf("<strong>在线的HTML帮助里有关于CGI认证权限相关的设置信息以及为何你需要设置认证的内容。</strong>\n");
 			printf("</DIV>\n");
 			printf("</P>\n");
 			}
@@ -1879,11 +1879,11 @@ void commit_command_data(int cmd) {
 	/* the user is not authorized to issue the given command */
 	else if(authorized == FALSE) {
 		if(content_type == WML_CONTENT)
-			printf("<p>Error: You're not authorized to commit that command!</p>\n");
+			printf("<p>错误: 无权限提交命令。</p>\n");
 		else {
-			printf("<P><DIV CLASS='errorMessage'>Sorry, but you are not authorized to commit the specified command.</DIV></P>\n");
-			printf("<P><DIV CLASS='errorDescription'>Read the section of the documentation that deals with authentication and authorization in the CGIs for more information.<BR><BR>\n");
-			printf("<A HREF='javascript:window.history.go(-2)'>Return from whence you came</A></DIV></P>\n");
+			printf("<P><DIV CLASS='errorMessage'>对不起，未授权提交上述命令。</DIV></P>\n");
+			printf("<P><DIV CLASS='errorDescription'>请参阅CGI认证相关信息。<BR><BR>\n");
+			printf("<A HREF='javascript:window.history.go(-2)'>返回上一步</A></DIV></P>\n");
 			}
 		}
 
@@ -1894,19 +1894,19 @@ void commit_command_data(int cmd) {
 		else {
 			printf("<P><DIV CLASS='errorMessage'>%s</DIV></P>\n", error_string);
 			free(error_string);
-			printf("<P><DIV CLASS='errorDescription'>Go <A HREF='javascript:window.history.go(-1)'>back</A> and verify that you entered all required information correctly.<BR>\n");
-			printf("<A HREF='javascript:window.history.go(-2)'>Return from whence you came</A></DIV></P>\n");
+			printf("<P><DIV CLASS='errorDescription'>Go <A HREF='javascript:window.history.go(-1)'>返回</A> 检查是否必须的输入项都正确。<BR>\n");
+			printf("<A HREF='javascript:window.history.go(-2)'>返回上一步</A></DIV></P>\n");
 			}
 		}
 
 	/* if Nagios isn't checking external commands, don't do anything... */
 	else if(check_external_commands == FALSE) {
 		if(content_type == WML_CONTENT)
-			printf("<p>Error: Nagios is not checking external commands!</p>\n");
+			printf("<p>错误: Nagios不检查外部命令。</p>\n");
 		else {
-			printf("<P><DIV CLASS='errorMessage'>Sorry, but Nagios is currently not checking for external commands, so your command will not be committed!</DIV></P>\n");
-			printf("<P><DIV CLASS='errorDescription'>Read the documentation for information on how to enable external commands...<BR><BR>\n");
-			printf("<A HREF='javascript:window.history.go(-2)'>Return from whence you came</A></DIV></P>\n");
+			printf("<P><DIV CLASS='errorMessage'>Nagios不检查外部命令。</DIV></P>\n");
+			printf("<P><DIV CLASS='errorDescription'>请参考手册，开启外部命令功能。<BR><BR>\n");
+			printf("<A HREF='javascript:window.history.go(-2)'>返回上一步</A></DIV></P>\n");
 			}
 		}
 
@@ -1918,19 +1918,19 @@ void commit_command_data(int cmd) {
 
 		if(result == OK) {
 			if(content_type == WML_CONTENT)
-				printf("<p>Your command was submitted successfully...</p>\n");
+				printf("<p>命令成功提交。</p>\n");
 			else {
-				printf("<P><DIV CLASS='infoMessage'>Your command request was successfully submitted to Nagios for processing.<BR><BR>\n");
-				printf("Note: It may take a while before the command is actually processed.<BR><BR>\n");
-				printf("<A HREF='javascript:window.history.go(-2)'>Done</A></DIV></P>");
+				printf("<P><DIV CLASS='infoMessage'>命令成功提交。<BR><BR>\n");
+				printf("注意：命令真正执行还需要一定时间。<BR><BR>\n");
+				printf("<A HREF='javascript:window.history.go(-2)'>完成</A></DIV></P>");
 				}
 			}
 		else {
 			if(content_type == WML_CONTENT)
-				printf("<p>An error occurred while committing your command!</p>\n");
+				printf("<p>提交命令时出错。</p>\n");
 			else {
-				printf("<P><DIV CLASS='errorMessage'>An error occurred while attempting to commit your command for processing.<BR><BR>\n");
-				printf("<A HREF='javascript:window.history.go(-2)'>Return from whence you came</A></DIV></P>\n");
+				printf("<P><DIV CLASS='errorMessage'>提交命令时出错<BR><BR>\n");
+				printf("<A HREF='javascript:window.history.go(-2)'>返回上一步</A></DIV></P>\n");
 				}
 			}
 		}
@@ -2286,11 +2286,11 @@ int write_command_to_file(char *cmd) {
 	if(stat(command_file, &statbuf)) {
 
 		if(content_type == WML_CONTENT)
-			printf("<p>Error: Could not stat() external command file!</p>\n");
+			printf("<p>错误: 外部命令文件无法stat()。</p>\n");
 		else {
-			printf("<P><DIV CLASS='errorMessage'>Error: Could not stat() command file '%s'!</DIV></P>\n", command_file);
+			printf("<P><DIV CLASS='errorMessage'>错误: 外部命令文件无法stat()：'%s'!</DIV></P>\n", command_file);
 			printf("<P><DIV CLASS='errorDescription'>");
-			printf("The external command file may be missing, Nagios may not be running, and/or Nagios may not be checking external commands.\n");
+			printf("外部文件不存在，或Nagios未运行、Nagios不支持外部命令。\n");
 			printf("</DIV></P>\n");
 			}
 
@@ -2302,11 +2302,11 @@ int write_command_to_file(char *cmd) {
 	if(fp == NULL) {
 
 		if(content_type == WML_CONTENT)
-			printf("<p>Error: Could not open command file for update!</p>\n");
+			printf("<p>错误: 无法打开要更新的命令文件</p>\n");
 		else {
-			printf("<P><DIV CLASS='errorMessage'>Error: Could not open command file '%s' for update!</DIV></P>\n", command_file);
+			printf("<P><DIV CLASS='errorMessage'>错误: 无法打开要更新的命令文件：'%s' </DIV></P>\n", command_file);
 			printf("<P><DIV CLASS='errorDescription'>");
-			printf("The permissions on the external command file and/or directory may be incorrect.  Read the FAQs on how to setup proper permissions.\n");
+			printf("外部命令文件或目录权限不对，参考FAQ设置正确的权限\n");
 			printf("</DIV></P>\n");
 			}
 
@@ -2344,7 +2344,7 @@ void clean_comment_data(char *buffer) {
 /* display information about a command */
 void show_command_help(int cmd) {
 
-	printf("<DIV ALIGN=CENTER CLASS='descriptionTitle'>Command Description</DIV>\n");
+	printf("<DIV ALIGN=CENTER CLASS='descriptionTitle'>命令描述</DIV>\n");
 	printf("<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=0 CLASS='commandDescription'>\n");
 	printf("<TR><TD CLASS='commandDescription'>\n");
 
@@ -2352,28 +2352,28 @@ void show_command_help(int cmd) {
 	switch(cmd) {
 
 		case CMD_ADD_HOST_COMMENT:
-			printf("This command is used to add a comment for the specified host.  If you work with other administrators, you may find it useful to share information about a host\n");
-			printf("that is having problems if more than one of you may be working on it.  If you do not check the 'persistent' option, the comment will be automatically be deleted\n");
+			printf("该命令用于对特定的主机增加注释。如果与其他管理员协作，该命令有助于分享主机信息\n");
+			printf("当多个人使用时，如果不选择‘保持’选项，则下次Nagios启动时注释会自动被删除。\n");
 			printf("the next time Nagios is restarted.\n");
 			break;
 
 		case CMD_ADD_SVC_COMMENT:
-			printf("This command is used to add a comment for the specified service.  If you work with other administrators, you may find it useful to share information about a host\n");
-			printf("or service that is having problems if more than one of you may be working on it.  If you do not check the 'persistent' option, the comment will automatically be\n");
+			printf("该命令用于对特定的服务增加注释。如果与其他管理员协作，该命令有助于分享主机信息\n");
+			printf("当多个人使用时，如果不选择‘保持’选项，则下次Nagios启动时注释会自动被删除。\n");
 			printf("deleted the next time Nagios is restarted.\n");
 			break;
 
 		case CMD_DEL_HOST_COMMENT:
-			printf("This command is used to delete a specific host comment.\n");
+			printf("该命令用于删除特定主机的注释。\n");
 			break;
 
 		case CMD_DEL_SVC_COMMENT:
-			printf("This command is used to delete a specific service comment.\n");
+			printf("该命令用于删除特定服务的注释。\n");
 			break;
 
 		case CMD_DELAY_HOST_NOTIFICATION:
-			printf("This command is used to delay the next problem notification that is sent out for the specified host.  The notification delay will be disregarded if\n");
-			printf("the host changes state before the next notification is scheduled to be sent out.  This command has no effect if the host is currently UP.\n");
+			printf("该命令用于延时发出对特定主机的故障通知。当主机状态在下一次调度发送通知前发生改变时，通知延时将被忽略\n");
+			printf("该命令对于状态正常的主机无意义\n");
 			break;
 
 		case CMD_DELAY_SVC_NOTIFICATION:

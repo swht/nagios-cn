@@ -947,8 +947,10 @@ void get_time_string(time_t *raw_time, char *buffer, int buffer_length, int type
 	int month = 0;
 	int day = 0;
 	int year = 0;
-	const char *weekdays[7] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
-	const char *months[12] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+	const char *weekdays[7]={"周日","周一","周二","周三","周四","周五","周六"};
+	const char *months[12]={"1","2","3","4","5","6","7","8","9","10","11","12"};
+//	const char *weekdays[7] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+//	const char *months[12] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 	const char *tzone = "";
 
 	if(raw_time == NULL)
@@ -1025,7 +1027,7 @@ void get_interval_time_string(double time_units, char *buffer, int buffer_length
 	minutes = (int)total_seconds / 60;
 	total_seconds %= 60;
 	seconds = (int)total_seconds;
-	snprintf(buffer, buffer_length, "%dh %dm %ds", hours, minutes, seconds);
+	snprintf(buffer, buffer_length, "%d时 %d分 %d秒", hours, minutes, seconds);
 	buffer[buffer_length - 1] = '\x0';
 
 	return;
