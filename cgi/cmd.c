@@ -2377,209 +2377,211 @@ void show_command_help(int cmd) {
 			break;
 
 		case CMD_DELAY_SVC_NOTIFICATION:
-			printf("This command is used to delay the next problem notification that is sent out for the specified service.  The notification delay will be disregarded if\n");
-			printf("the service changes state before the next notification is scheduled to be sent out.  This command has no effect if the service is currently in an OK state.\n");
+			printf("该命令用于延时发出对特定主机的故障通知。当主机状态在下一次调度发送通知前发生改变时，通知延时将被忽略\n");
+			printf("该命令对于状态正常的服务无意义。\n");
 			break;
 
 		case CMD_SCHEDULE_SVC_CHECK:
-			printf("This command is used to schedule the next check of a particular service.  Nagios will re-queue the service to be checked at the time you specify.\n");
-			printf("If you select the <i>force check</i> option, Nagios will force a check of the service regardless of both what time the scheduled check occurs and whether or not checks are enabled for the service.\n");
+			printf("该命令是用于计划下次对服务的检查。Nagios在设置的特定时间内进行服务检查。\n");
+			printf("如果选择了<b>强制检查</b>选项，Nagios将强制将强制检查服务状态而无视按设置时间段来检查（无论你设置过检查时间段与否）。\n");
 			break;
 
 		case CMD_ENABLE_SVC_CHECK:
-			printf("This command is used to enable active checks of a service.\n");
+			printf("该命令用于启动对一个服务的检查。\n");
 			break;
 
 		case CMD_DISABLE_SVC_CHECK:
-			printf("This command is used to disable active checks of a service.\n");
+			printf("该命令用于停止对一个服务的检查。\n");
 			break;
 
 		case CMD_DISABLE_NOTIFICATIONS:
-			printf("This command is used to disable host and service notifications on a program-wide basis.\n");
+			printf("该命令用于设置主机与服务的通知无效而使之依赖于一个外部程序的控制。\n");
 			break;
 
 		case CMD_ENABLE_NOTIFICATIONS:
-			printf("This command is used to enable host and service notifications on a program-wide basis.\n");
+			printf("该命令用于设置主机与服务的通知使能，依赖于可编程内容。\n");
 			break;
 
 		case CMD_SHUTDOWN_PROCESS:
-			printf("This command is used to shutdown the Nagios process. Note: Once the Nagios has been shutdown, it cannot be restarted via the web interface!\n");
+			printf("该命令用于关闭Nagios进程。注意一旦Nagios服务被关闭，不能通过Web接口来启动Nagios进程。\n");
 			break;
 
 		case CMD_RESTART_PROCESS:
-			printf("This command is used to restart the Nagios process.   Executing a restart command is equivalent to sending the process a HUP signal.\n");
-			printf("All information will be flushed from memory, the configuration files will be re-read, and Nagios will start monitoring with the new configuration information.\n");
+			printf("该命令命令用于重启Nagios服务，执行该命令相当于向Nagios进程发出HUP信号。\n");
+			printf("全部内存中的信息将被保存下来配置将重新调入，Nagios将以新的配置内容进行监控。\n");
 			break;
 
 		case CMD_ENABLE_HOST_SVC_CHECKS:
-			printf("This command is used to enable active checks of all services associated with the specified host.  This <i>does not</i> enable checks of the host unless you check the 'Enable for host too' option.\n");
+			printf("该命令用于启用特定主机上的所有服务检查。这个<B>将不会</B>对主机进行检查除非你选择了‘主机检查’使能选项。\n");
 			break;
 
 		case CMD_DISABLE_HOST_SVC_CHECKS:
-			printf("This command is used to disable active checks of all services associated with the specified host.  When a service is disabled Nagios will not monitor the service.  Doing this will prevent any notifications being sent out for\n");
-			printf("the specified service while it is disabled.  In order to have Nagios check the service in the future you will have to re-enable the service.\n");
-			printf("Note that disabling service checks may not necessarily prevent notifications from being sent out about the host which those services are associated with.  This <i>does not</i> disable checks of the host unless you check the 'Disable for host too' option.\n");
+			printf("该命令用于禁止对特定主机上的所有服务检查。服务禁止检查时将主要是对特定服务故障时，当该服务被禁用后将不再产生报警。这<i>不会</i>停止对主机的检查除非你同时选择解除对主机检查选项。\n");
+			//printf("the specified service while it is disabled.  In order to have Nagios check the service in the future you will have to re-enable the service.\n");
+			//printf("Note that disabling service checks may not necessarily prevent notifications from being sent out about the host which those services are associated with.  This <i>does not</i> disable checks of the host unless you check the 'Disable for host too' option.\n");
 			break;
 
 		case CMD_SCHEDULE_HOST_SVC_CHECKS:
-			printf("This command is used to scheduled the next check of all services on the specified host.  If you select the <i>force check</i> option, Nagios will force a check of all services on the host regardless of both what time the scheduled checks occur and whether or not checks are enabled for those services.\n");
+			printf("该命令用于规划特定主机上的所有的服务下次到检查时间。如果选择了<b>强制检查</b>选项，Nagios将强行检查全部的主机服务而不管你是否在计划中设置了下次检查该主机服务的时间段。\n");
 			break;
 
 		case CMD_DEL_ALL_HOST_COMMENTS:
-			printf("This command is used to delete all comments associated with the specified host.\n");
+			printf("该命令将删除指定主机的所有注释。\n");
 			break;
 
 		case CMD_DEL_ALL_SVC_COMMENTS:
-			printf("This command is used to delete all comments associated with the specified service.\n");
+			printf("该命令将删除指定服务的所有注释。\n");
 			break;
 
 		case CMD_ENABLE_SVC_NOTIFICATIONS:
-			printf("This command is used to enable notifications for the specified service.  Notifications will only be sent out for the\n");
-			printf("service state types you defined in your service definition.\n");
+			printf("该命令用于使能对指定服务的通知。通知服务仅仅是在你设置的状态产生时才被发送。\n");
+			//printf("service state types you defined in your service definition.\n");
 			break;
 
 		case CMD_DISABLE_SVC_NOTIFICATIONS:
-			printf("This command is used to prevent notifications from being sent out for the specified service.  You will have to re-enable notifications\n");
-			printf("for this service before any alerts can be sent out in the future.\n");
+			printf("该命令用于关闭指定的服务状态通知。今后你可以重新开启该所对应的服务状态的通知功能\n");
+			//printf("for this service before any alerts can be sent out in the future.\n");
 			break;
 
 		case CMD_ENABLE_HOST_NOTIFICATIONS:
-			printf("This command is used to enable notifications for the specified host.  Notifications will only be sent out for the\n");
-			printf("host state types you defined in your host definition.  Note that this command <i>does not</i> enable notifications\n");
-			printf("for services associated with this host.\n");
+			printf("该命令用于使能对指定主机的通知。通知服务仅仅是当你指定的主机处于某设置状态时才被发送。\n");
+			printf("注意这个命令<i>并不是</i>开启与该主机相关联服务的通知。\n");
+			//printf("for services associated with this host.\n");
 			break;
 
 		case CMD_DISABLE_HOST_NOTIFICATIONS:
-			printf("This command is used to prevent notifications from being sent out for the specified host.  You will have to re-enable notifications for this host\n");
-			printf("before any alerts can be sent out in the future.  Note that this command <i>does not</i> disable notifications for services associated with this host.\n");
+			printf("该命令用于对特定主机的通知服务的关闭。你可以重新开启该通知。\n");
+			printf("注意这个命令<i>并不是</i>关闭了与特定主机相关服务的通知。\n");
 			break;
 
 		case CMD_ENABLE_ALL_NOTIFICATIONS_BEYOND_HOST:
-			printf("This command is used to enable notifications for all hosts and services that lie \"beyond\" the specified host\n");
+			printf("该命令用于使能主机及服务的全部通知服务。\n");
 			printf("(from the view of Nagios).\n");
 			break;
 
 		case CMD_DISABLE_ALL_NOTIFICATIONS_BEYOND_HOST:
-			printf("This command is used to temporarily prevent notifications from being sent out for all hosts and services that lie\n");
-			printf("\"beyond\" the specified host (from the view of Nagios).\n");
+			printf("该命令关闭全部主机及服务的通知服务。\n");
+			//printf("\"beyond\" the specified host (from the view of Nagios).\n");
 			break;
 
 		case CMD_ENABLE_HOST_SVC_NOTIFICATIONS:
-			printf("This command is used to enable notifications for all services on the specified host.  Notifications will only be sent out for the\n");
-			printf("service state types you defined in your service definition.  This <i>does not</i> enable notifications for the host unless you check the 'Enable for host too' option.\n");
+			printf("该命令用于打开指定主机上全部服务的通知。通知仅仅是当你设置出的服务状态产生时才被发出。\n");
+			printf("该命令<b>并不</B>启用主机的状态检查通知除非你选择了同时使能主机通知。\n");
 			break;
 
 		case CMD_DISABLE_HOST_SVC_NOTIFICATIONS:
-			printf("This command is used to prevent notifications from being sent out for all services on the specified host.  You will have to re-enable notifications for\n");
-			printf("all services associated with this host before any alerts can be sent out in the future.  This <i>does not</i> prevent notifications from being sent out about the host unless you check the 'Disable for host too' option.\n");
+			printf("该命令用于阻止特定主机所有服务的通知。当你的指定主机相关的服务可以向外发出通知服务时，你不得不重新它。\n");
+			printf("该命令<i>并不</B>阻止对特定主机的检查通知除非你选择了同时阻止主机通知。\n");
 			break;
 
 		case CMD_ACKNOWLEDGE_HOST_PROBLEM:
-			printf("This command is used to acknowledge a host problem.  When a host problem is acknowledged, future notifications about problems are temporarily disabled until the host changes from its current state.\n");
-			printf("If you want acknowledgement to disable notifications until the host recovers, check the 'Sticky Acknowledgement' checkbox.\n");
-			printf("Contacts for this host will receive a notification about the acknowledgement, so they are aware that someone is working on the problem.  Additionally, a comment will also be added to the host.\n");
-			printf("Make sure to enter your name and fill in a brief description of what you are doing in the comment field.  If you would like the host comment to remain once the acknowledgement is removed, check\n");
-			printf("the 'Persistent Comment' checkbox.  If you do not want an acknowledgement notification sent out to the appropriate contacts, uncheck the 'Send Notification' checkbox.\n");
+			printf("该命令用于标记主机问题。当主机问题被标记后，该故障将临时被关闭了直到它的状态发生改变。如果想直到主机恢复后再使能通知，须将选项'粘附标记'勾选\n");
+			printf("通知与该主机收到标记通知的，因为他们可能关注这个问题，另外，一个注释也被加在该主机上。确保你输入的名字和填写的短语说明可以记录在注释域中。如果你希望Nagios重启动后保存这些注释，\n");
+			printf("勾'保存注释'的选项。如果你不想把将标记服务时通知发送给该主机的联系人，不要勾选'发送通知'选项。\n");
+			//printf("Make sure to enter your name and fill in a brief description of what you are doing in the comment field.  If you would like the host comment to remain once the acknowledgement is removed, check\n");
+			//printf("the 'Persistent Comment' checkbox.  If you do not want an acknowledgement notification sent out to the appropriate contacts, uncheck the 'Send Notification' checkbox.\n");
 			break;
 
 		case CMD_ACKNOWLEDGE_SVC_PROBLEM:
-			printf("This command is used to acknowledge a service problem.  When a service problem is acknowledged, future notifications about problems are temporarily disabled until the service changes from its current state.\n");
-			printf("If you want acknowledgement to disable notifications until the service recovers, check the 'Sticky Acknowledgement' checkbox.\n");
-			printf("Contacts for this service will receive a notification about the acknowledgement, so they are aware that someone is working on the problem.  Additionally, a comment will also be added to the service.\n");
-			printf("Make sure to enter your name and fill in a brief description of what you are doing in the comment field.  If you would like the service comment to remain once the acknowledgement is removed, check\n");
-			printf("the 'Persistent Comment' checkbox.  If you do not want an acknowledgement notification sent out to the appropriate contacts, uncheck the 'Send Notification' checkbox.\n");
+			printf("该命令用于标记服务的问题。当主机服务问题被标记后，服务的通知被临时关闭了直到服务的状态发生改变。如果想直到服务恢复后再使能通知，须将选项'粘附标记'勾选\n");
+			printf("通知该服务应收到标记通知的人，因为他们可能关注这个问题，另外，一个注释也被加在该服务上。确保你输入的名字和填写的短语说明可以记录在注释域中。如果你希望Nagios重启动后保存这些注释，\n");
+			printf("勾选'保存注释'的选项。如果你不想把将标记服务时通知发送给该服务的联系人，不要勾选'发送通知'选项。\n");
+			//printf("Make sure to enter your name and fill in a brief description of what you are doing in the comment field.  If you would like the service comment to remain once the acknowledgement is removed, check\n");
+			//printf("the 'Persistent Comment' checkbox.  If you do not want an acknowledgement notification sent out to the appropriate contacts, uncheck the 'Send Notification' checkbox.\n");
 			break;
 
 		case CMD_START_EXECUTING_SVC_CHECKS:
-			printf("This command is used to resume execution of active service checks on a program-wide basis.  Individual services which are disabled will still not be checked.\n");
+			printf("该命令用于程序设置执行使能服务检查。非法服务依然不会被检查。\n");
 			break;
 
 		case CMD_STOP_EXECUTING_SVC_CHECKS:
-			printf("This command is used to temporarily stop Nagios from actively executing any service checks.  This will have the side effect of preventing any notifications from being sent out (for any and all services and hosts).\n");
-			printf("Service checks will not be executed again until you issue a command to resume service check execution.\n");
+			printf("该命令用于临时关闭所有的服务检查。这可能对防止已经被发出通知过程产生影响。\n");
+			printf("服务检查将不会执行直接你重新选择了服务检查执行。\n");
 			break;
 
 		case CMD_START_ACCEPTING_PASSIVE_SVC_CHECKS:
-			printf("This command is used to make Nagios start accepting passive service check results that it finds in the external command file\n");
+			printf("该命令将使Nagios开始接受强制检查结果，该结果是由外部命令文件产生的结果。\n");
 			break;
 
 		case CMD_STOP_ACCEPTING_PASSIVE_SVC_CHECKS:
-			printf("This command is use to make Nagios stop accepting passive service check results that it finds in the external command file.  All passive check results that are found will be ignored.\n");
+			printf("该命令将阻止Nagios接受强制检查结果，该结果是由外部命令文件产生的结果。\n");
 			break;
 
 		case CMD_ENABLE_PASSIVE_SVC_CHECKS:
-			printf("This command is used to allow Nagios to accept passive service check results that it finds in the external command file for this particular service.\n");
+			printf("该命令将使Nagios同意接受强制检查结果，该结果是由外部命令文件产生的结果。\n");
 			break;
 
 		case CMD_DISABLE_PASSIVE_SVC_CHECKS:
-			printf("This command is used to stop Nagios accepting passive service check results that it finds in the external command file for this particular service.  All passive check results that are found for this service will be ignored.\n");
+			printf("该命令将使Nagios避免接受强制检查结果，该结果是由外部命令文件产生的结果。\n");
 			break;
 
 		case CMD_ENABLE_EVENT_HANDLERS:
-			printf("This command is used to allow Nagios to run host and service event handlers.\n");
+			printf("该命令用于主机和服务的事件处理使能。\n");
 			break;
 
 		case CMD_DISABLE_EVENT_HANDLERS:
-			printf("This command is used to temporarily prevent Nagios from running any host or service event handlers.\n");
+			printf("该命令用于主机和服务的事件处理关闭。\n");
 			break;
 
 		case CMD_ENABLE_SVC_EVENT_HANDLER:
-			printf("This command is used to allow Nagios to run the service event handler for a particular service when necessary (if one is defined).\n");
+			printf("该命令用于对指定主机服务(如果定义了一个服务的话)的事件处理使能。\n");
 			break;
 
 		case CMD_DISABLE_SVC_EVENT_HANDLER:
-			printf("This command is used to temporarily prevent Nagios from running the service event handler for a particular service.\n");
+			printf("该命令用于阻止对指定主机服务(如果定义了一个服务的话)的事件处理。\n");
 			break;
 
 		case CMD_ENABLE_HOST_EVENT_HANDLER:
-			printf("This command is used to allow Nagios to run the host event handler for a particular service when necessary (if one is defined).\n");
+			printf("该命令用于对指定主机(如果定义了一个的话)的事件处理使能。\n");
 			break;
 
 		case CMD_DISABLE_HOST_EVENT_HANDLER:
-			printf("This command is used to temporarily prevent Nagios from running the host event handler for a particular host.\n");
+			printf("该命令用于阻止对指定主机(如果定义了一个的话)的事件处理。\n");
 			break;
 
 		case CMD_ENABLE_HOST_CHECK:
-			printf("This command is used to enable active checks of this host.\n");
+			printf("该命令用于对主机启用检查。\n");
 			break;
 
 		case CMD_DISABLE_HOST_CHECK:
-			printf("This command is used to temporarily prevent Nagios from actively checking the status of a particular host.  If Nagios needs to check the status of this host, it will assume that it is in the same state that it was in before checks were disabled.\n");
+			printf("该命令用于阻止对主机检查，如果Nagios要检测它要先假定以前被中止的状态没有发生改变。\n");
 			break;
 
 		case CMD_START_OBSESSING_OVER_SVC_CHECKS:
-			printf("This command is used to have Nagios start obsessing over service checks.  Read the documentation on distributed monitoring for more information on this.\n");
+			printf("该命令用于使能Nagios的Obsessing over服务检查。需要阅读文档的分布式检测内容获得更多信息。\n");
 			break;
 
 		case CMD_STOP_OBSESSING_OVER_SVC_CHECKS:
-			printf("This command is used stop Nagios from obsessing over service checks.\n");
+			printf("该命令用于阻止Nagios的Obsessing over服务检查。\n");
 			break;
 
 		case CMD_REMOVE_HOST_ACKNOWLEDGEMENT:
-			printf("This command is used to remove an acknowledgement for a particular host problem.  Once the acknowledgement is removed, notifications may start being\n");
-			printf("sent out about the host problem. \n");
+			printf("该命令取消对主机问题的标记。一旦标记被取消，主机发生问题时将会有通知发出。注意\n");
+			printf("该命令<b>并不会</b>删除原先的标记，\n");
+			printf("如果你想删除它你必须使用删除标记命令。\n");
 			break;
 
 		case CMD_REMOVE_SVC_ACKNOWLEDGEMENT:
-			printf("This command is used to remove an acknowledgement for a particular service problem.  Once the acknowledgement is removed, notifications may start being\n");
-			printf("sent out about the service problem.\n");
+			printf("该命令取消对服务问题的标记。一旦标记被取消，主机上的服务发生问题时将会有通知发出。注意\n");
+			printf("该命令<b>并不会</b>删除原先的标记，\n");
+			printf("如果你想删除它你必须使用删除服务问题标记命令。\n");
 			break;
 
 		case CMD_PROCESS_SERVICE_CHECK_RESULT:
-			printf("This command is used to submit a passive check result for a particular service.  It is particularly useful for resetting security-related services to OK states once they have been dealt with.\n");
+			printf("该命令用于对特定服务强制检查结果的确认。这用于在有安全相关的服务状态一旦被检测后设置为OK状态时比较有用。\n");
 			break;
 
 		case CMD_PROCESS_HOST_CHECK_RESULT:
-			printf("This command is used to submit a passive check result for a particular host.\n");
+			printf("该命令用于对特定主机强制检查结果的确认。\n");
 			break;
 
 		case CMD_SCHEDULE_HOST_DOWNTIME:
-			printf("This command is used to schedule downtime for a particular host.  During the specified downtime, Nagios will not send notifications out about the host.\n");
-			printf("When the scheduled downtime expires, Nagios will send out notifications for this host as it normally would.  Scheduled downtimes are preserved\n");
-			printf("across program shutdowns and restarts.  Both the start and end times should be specified in the following format:  <b>mm/dd/yyyy hh:mm:ss</b>.\n");
-			printf("If you select the <i>fixed</i> option, the downtime will be in effect between the start and end times you specify.  If you do not select the <i>fixed</i>\n");
-			printf("option, Nagios will treat this as \"flexible\" downtime.  Flexible downtime starts when the host goes down or becomes unreachable (sometime between the\n");
-			printf("start and end times you specified) and lasts as long as the duration of time you enter.  The duration fields do not apply for fixed downtime.\n");
+			printf("该命令将设置对指定主机设置宕机计划时间段。在宕机时间段中，Nagios将不会发送主机问题通知。\n");
+			printf("在宕机计划时间段外，Nagios将按计划进行检查并发出问题通知。\n");
+			printf("宕机计划时间段设置的开始时间与结束时间格式应是<b>mm/dd/yyy hh:mm:ss</b>。\n");
+			printf("如果你选择了<B>固定</B>选项，宕机时间将在指定的设置的开始时间到结束时间内起作用。如果没有选择<B>固定</b>选项，Nagios将力图\"柔性\"地来处理宕机时间。\n");
+			printf("柔性的处理宕机时间将视主机宕机开始直接你设置的时间结束或是最后你发出阶段时间结束为止，这个阶段时间长度将不可控。\n");
+			//printf("start and end times you specified) and lasts as long as the duration of time you enter.  The duration fields do not apply for fixed downtime.\n");
 			break;
 
 		case CMD_SCHEDULE_HOST_SVC_DOWNTIME:
@@ -2593,217 +2595,220 @@ void show_command_help(int cmd) {
 			break;
 
 		case CMD_SCHEDULE_SVC_DOWNTIME:
-			printf("This command is used to schedule downtime for a particular service.  During the specified downtime, Nagios will not send notifications out about the service.\n");
-			printf("When the scheduled downtime expires, Nagios will send out notifications for this service as it normally would.  Scheduled downtimes are preserved\n");
-			printf("across program shutdowns and restarts.  Both the start and end times should be specified in the following format:  <b>mm/dd/yyyy hh:mm:ss</b>.\n");
-			printf("If you select the <i>fixed</i> option, the downtime will be in effect between the start and end times you specify.  If you do not select the <i>fixed</i>\n");
-			printf("option, Nagios will treat this as \"flexible\" downtime.  Flexible downtime starts when the service enters a non-OK state (sometime between the\n");
-			printf("start and end times you specified) and lasts as long as the duration of time you enter.  The duration fields do not apply for fixed downtime.\n");
+			printf("该命令将设置对指定服务设置宕机计划时间段。在宕机时间段中，Nagios将不会发送服务问题通知。\n");
+			printf("在宕机计划时间段外，Nagios将按计划进行检查并发出问题通知。\n");
+			printf("宕机计划时间段设置的开始时间与结束时间格式应是<b>mm/dd/yyyy hh:mm:ss</b>。\n");
+			printf("如果你选择了<B>固定</B>选项，宕机时间将在指定的设置的开始时间到结束时间内起作用。如果没有选择<B>固定</b>选项，Nagios将力图\"柔性\"地来处理宕机时间。\n");
+			printf("柔性的处理宕机时间将视服务宕机开始直接你设置的时间结束或是最后你发出阶段时间结束为止，这个阶段时间长度将不可控。\n");
+			//printf("start and end times you specified) and lasts as long as the duration of time you enter.  The duration fields do not apply for fixed downtime.\n");
 			break;
 
 		case CMD_ENABLE_HOST_FLAP_DETECTION:
-			printf("This command is used to enable flap detection for a specific host.  If flap detection is disabled on a program-wide basis, this will have no effect,\n");
+			printf("该命令用于使能对指定主机的心跳监测置如果心跳检查被指示停止了的话。\n");
 			break;
 
 		case CMD_DISABLE_HOST_FLAP_DETECTION:
-			printf("This command is used to disable flap detection for a specific host.\n");
+			printf("该命令用于阻止主机的心跳监测。\n");
 			break;
 
 		case CMD_ENABLE_SVC_FLAP_DETECTION:
-			printf("This command is used to enable flap detection for a specific service.  If flap detection is disabled on a program-wide basis, this will have no effect,\n");
+			printf("该命令用于使能对指定服务的心跳监测置如果心跳检查被指示停止了的话。\n");
 			break;
 
 		case CMD_DISABLE_SVC_FLAP_DETECTION:
-			printf("This command is used to disable flap detection for a specific service.\n");
+			printf("该命令用于阻止服务的心跳监测。\n");
 			break;
 
 		case CMD_ENABLE_FLAP_DETECTION:
-			printf("This command is used to enable flap detection for hosts and services on a program-wide basis.  Individual hosts and services may have flap detection disabled.\n");
+			printf("该命令用于使能对指定主机和服务的心跳监测置如果心跳检查被指示停止了的话。\n");
 			break;
 
 		case CMD_DISABLE_FLAP_DETECTION:
-			printf("This command is used to disable flap detection for hosts and services on a program-wide basis.\n");
+			printf("该命令用于阻止主机和服务的心跳监测。\n");
 			break;
 
 		case CMD_ENABLE_HOSTGROUP_SVC_NOTIFICATIONS:
-			printf("This command is used to enable notifications for all services in the specified hostgroup.  Notifications will only be sent out for the\n");
-			printf("service state types you defined in your service definitions.  This <i>does not</i> enable notifications for the hosts in this hostgroup unless you check the 'Enable for hosts too' option.\n");
+			printf("该命令用于打开指定主机组上全部服务的通知。通知仅仅是当你设置出的服务状态产生时才被发出。\n");
+			printf("该命令<b>并不</B>启用主机组的状态检查通知除非你选择了同时使能主机组通知。\n");
 			break;
 
 		case CMD_DISABLE_HOSTGROUP_SVC_NOTIFICATIONS:
-			printf("This command is used to prevent notifications from being sent out for all services in the specified hostgroup.  You will have to re-enable notifications for\n");
-			printf("all services in this hostgroup before any alerts can be sent out in the future.  This <i>does not</i> prevent notifications from being sent out about the hosts in this hostgroup unless you check the 'Disable for hosts too' option.\n");
+			printf("该命令用于阻止特定主机组所有服务的通知。当你的指定主机组相关的服务可以向外发出通知服务时，你不得不重新它。\n");
+			printf("该命令<i>并不</B>阻止对特定主机组的检查通知除非你选择了同时阻止主机组通知。\n");
 			break;
 
 		case CMD_ENABLE_HOSTGROUP_HOST_NOTIFICATIONS:
-			printf("This command is used to enable notifications for all hosts in the specified hostgroup.  Notifications will only be sent out for the\n");
-			printf("host state types you defined in your host definitions.\n");
+			printf("该命令用于打开指定主机组上全部主机的通知。通知仅仅是当你设置出的主机状态产生变化时才被发出。\n");
+			printf("该命令<b>并不</B>启用主机组的状态检查通知除非你选择了同时使能主机组通知。\n");
 			break;
 
 		case CMD_DISABLE_HOSTGROUP_HOST_NOTIFICATIONS:
-			printf("This command is used to prevent notifications from being sent out for all hosts in the specified hostgroup.  You will have to re-enable notifications for\n");
-			printf("all hosts in this hostgroup before any alerts can be sent out in the future.\n");
+			printf("该命令用于阻止特定主机组所有主机的通知。当你的指定主机组相关的主机可以向外发出通知服务时，你不得不重新它。\n");
+			printf("该命令<i>并不</B>阻止对特定主机组的检查通知除非你选择了同时阻止主机组通知。\n");
 			break;
 
 		case CMD_ENABLE_HOSTGROUP_SVC_CHECKS:
-			printf("This command is used to enable active checks of all services in the specified hostgroup.  This <i>does not</i> enable active checks of the hosts in the hostgroup unless you check the 'Enable for hosts too' option.\n");
+			printf("该命令用于启用特定主机组上的所有服务检查。\n");
+			printf("这个<B>将不会</B>对主机组进行检查除非你选择了‘主机检查’使能选项。\n");
 			break;
 
 		case CMD_DISABLE_HOSTGROUP_SVC_CHECKS:
-			printf("This command is used to disable active checks of all services in the specified hostgroup.  This <i>does not</i> disable checks of the hosts in the hostgroup unless you check the 'Disable for hosts too' option.\n");
+			printf("该命令用于禁止对特定主机组上的所有服务检查。服务禁止检查时将主要是对特定服务故障时，当该服务被禁用后将不再产生报警。这<i>不会</i>停止对主机组的检查除非你同时选择解除对主机组检查选项。\n");
 			break;
 
 		case CMD_DEL_HOST_DOWNTIME:
-			printf("This command is used to cancel active or pending scheduled downtime for the specified host.\n");
+			printf("该命令用于取消或放弃对指定主机的宕机时间的设置。\n");
 			break;
 
 		case CMD_DEL_SVC_DOWNTIME:
-			printf("This command is used to cancel active or pending scheduled downtime for the specified service.\n");
+			printf("该命令用于放弃或取消对指定服务的宕机时间设置。\n");
 			break;
 
 		case CMD_ENABLE_PERFORMANCE_DATA:
-			printf("This command is used to enable the processing of performance data for hosts and services on a program-wide basis.  Individual hosts and services may have performance data processing disabled.\n");
+			printf("该命令用于使能对主机与服务程序设置值的性能数据处理。\n");
+			printf("非法的主机和服务的性能数据处理将不被使能。\n");
 			break;
 
 		case CMD_DISABLE_PERFORMANCE_DATA:
-			printf("This command is used to disable the processing of performance data for hosts and services on a program-wide basis.\n");
+			printf("该命令用于阻止对主机与服务程序设置值的性能数据处理。\n");
 			break;
 
 		case CMD_SCHEDULE_HOSTGROUP_HOST_DOWNTIME:
-			printf("This command is used to schedule downtime for all hosts in a particular hostgroup.  During the specified downtime, Nagios will not send notifications out about the hosts.\n");
-			printf("When the scheduled downtime expires, Nagios will send out notifications for the hosts as it normally would.  Scheduled downtimes are preserved\n");
-			printf("across program shutdowns and restarts.  Both the start and end times should be specified in the following format:  <b>mm/dd/yyyy hh:mm:ss</b>.\n");
-			printf("If you select the <i>fixed</i> option, the downtime will be in effect between the start and end times you specify.  If you do not select the <i>fixed</i>\n");
-			printf("option, Nagios will treat this as \"flexible\" downtime.  Flexible downtime starts when a host goes down or becomes unreachable (sometime between the\n");
-			printf("start and end times you specified) and lasts as long as the duration of time you enter.  The duration fields do not apply for fixed downtime.\n");
+			printf("该命令将设置对指定主机组内的主机设置宕机计划时间段。在宕机时间段中，Nagios将不会发送主机问题通知。\n");
+			printf("在宕机计划时间段外，Nagios将按计划进行检查并发出问题通知。\n");
+			printf("宕机计划时间段设置的开始时间与结束时间格式应是<b>mm/dd/yyy hh:mm:ss</b>。\n");
+			printf("如果你选择了<B>固定</B>选项，宕机时间将在指定的设置的开始时间到结束时间内起作用。如果没有选择<B>固定</b>选项，Nagios将力图\"柔性\"地来处理宕机时间。\n");
+			printf("柔性的处理宕机时间将视主机宕机开始直接你设置的时间结束或是最后你发出阶段时间结束为止，这个阶段时间长度将不可控。\n");
+			//printf("start and end times you specified) and lasts as long as the duration of time you enter.  The duration fields do not apply for fixed downtime.\n");
 			break;
 
 		case CMD_SCHEDULE_HOSTGROUP_SVC_DOWNTIME:
-			printf("This command is used to schedule downtime for all services in a particular hostgroup.  During the specified downtime, Nagios will not send notifications out about the services.\n");
-			printf("When the scheduled downtime expires, Nagios will send out notifications for the services as it normally would.  Scheduled downtimes are preserved\n");
-			printf("across program shutdowns and restarts.  Both the start and end times should be specified in the following format:  <b>mm/dd/yyyy hh:mm:ss</b>.\n");
-			printf("If you select the <i>fixed</i> option, the downtime will be in effect between the start and end times you specify.  If you do not select the <i>fixed</i>\n");
-			printf("option, Nagios will treat this as \"flexible\" downtime.  Flexible downtime starts when a service enters a non-OK state (sometime between the\n");
-			printf("start and end times you specified) and lasts as long as the duration of time you enter.  The duration fields do not apply for fixed downtime.\n");
-			printf("Note that scheduling downtime for services does not automatically schedule downtime for the hosts those services are associated with.  If you want to also schedule downtime for all hosts in the hostgroup, check the 'Schedule downtime for hosts too' option.\n");
+			printf("该命令将设置对指定主机组内的全部服务设置宕机计划时间段。在宕机时间段中，Nagios将不会发送服务问题通知。\n");
+			printf("在宕机计划时间段外，Nagios将按计划进行检查并发出问题通知。\n");
+			printf("宕机计划时间段设置的开始时间与结束时间格式应是<b>mm/dd/yyy hh:mm:ss</b>。\n");
+			printf("如果你选择了<B>固定</B>选项，宕机时间将在指定的设置的开始时间到结束时间内起作用。如果没有选择<B>固定</b>选项，Nagios将力图\"柔性\"地来处理宕机时间。\n");
+			printf("柔性的处理宕机时间将视服务宕机开始直接你设置的时间结束或是最后你发出阶段时间结束为止，这个阶段时间长度将不可控。\n");
+			//printf("start and end times you specified) and lasts as long as the duration of time you enter.  The duration fields do not apply for fixed downtime.\n");
+			//printf("Note that scheduling downtime for services does not automatically schedule downtime for the hosts those services are associated with.  If you want to also schedule downtime for all hosts in the hostgroup, check the 'Schedule downtime for hosts too' option.\n");
 			break;
 
 		case CMD_START_EXECUTING_HOST_CHECKS:
-			printf("This command is used to enable active host checks on a program-wide basis.\n");
+			printf("该命令用于开始对主机用程序设置值进行检查。\n");
 			break;
 
 		case CMD_STOP_EXECUTING_HOST_CHECKS:
-			printf("This command is used to disable active host checks on a program-wide basis.\n");
+			printf("该命令用于中止对主机用程序设置值进行检查。\n");
 			break;
 
 		case CMD_START_ACCEPTING_PASSIVE_HOST_CHECKS:
-			printf("This command is used to have Nagios start obsessing over host checks.  Read the documentation on distributed monitoring for more information on this.\n");
+			printf("该命令用于开始使能Nagios的Obsessing over主机检查。需要阅读文档的分布式检测内容获得更多信息。\n");
 			break;
 
 		case CMD_STOP_ACCEPTING_PASSIVE_HOST_CHECKS:
-			printf("This command is used to stop Nagios from obsessing over host checks.\n");
+			printf("该命令用于中止Nagios的Obsessing over主机检查。\n");
 			break;
 
 		case CMD_ENABLE_PASSIVE_HOST_CHECKS:
-			printf("This command is used to allow Nagios to accept passive host check results that it finds in the external command file for a particular host.\n");
+			printf("该命令用于让Nagios接受对主机的强制检查结果，它保存于给指定主机外部命令文件之中。\n");
 			break;
 
 		case CMD_DISABLE_PASSIVE_HOST_CHECKS:
-			printf("This command is used to stop Nagios from accepting passive host check results that it finds in the external command file for a particular host.  All passive check results that are found for this host will be ignored.\n");
+			printf("该命令用于让Nagios放弃对主机的强制检查结果，它保存于给指定主机外部命令文件之中，全部的强制结果都将被忽略。\n");
 			break;
 
 		case CMD_START_OBSESSING_OVER_HOST_CHECKS:
-			printf("This command is used to have Nagios start obsessing over host checks.  Read the documentation on distributed monitoring for more information on this.\n");
+			printf("该命令用于开始使能Nagios的Obsessing over主机检查。需要阅读文档的分布式检测内容获得更多信息。\n");
 			break;
 
 		case CMD_STOP_OBSESSING_OVER_HOST_CHECKS:
-			printf("This command is used to stop Nagios from obsessing over host checks.\n");
+			printf("该命令用于中止Nagios的Obsessing over主机检查。\n");
 			break;
 
 		case CMD_SCHEDULE_HOST_CHECK:
-			printf("This command is used to schedule the next check of a particular host.  Nagios will re-queue the host to be checked at the time you specify.\n");
-			printf("If you select the <i>force check</i> option, Nagios will force a check of the host regardless of both what time the scheduled check occurs and whether or not checks are enabled for the host.\n");
+			printf("该命令是用于计划下次对主机的检查。Nagios在设置的特定时间内进行主机检查。\n");
+			printf("如果选择了<b>强制检查</b>选项，Nagios将强制将强制检查主机状态而无视按设置时间段来检查（无论你设置过检查时间段与否）。\n");
 			break;
 
 		case CMD_START_OBSESSING_OVER_SVC:
-			printf("This command is used to have Nagios start obsessing over a particular service.\n");
+			printf("该命令用于开始使能Nagios的Obsessing over服务检查。需要阅读文档的分布式检测内容获得更多信息。\n");
 			break;
 
 		case CMD_STOP_OBSESSING_OVER_SVC:
-			printf("This command is used to stop Nagios from obsessing over a particular service.\n");
+			printf("该命令用于中止Nagios的Obsessing over服务检查。\n");
 			break;
 
 		case CMD_START_OBSESSING_OVER_HOST:
-			printf("This command is used to have Nagios start obsessing over a particular host.\n");
+			printf("该命令用于开始使能Nagios的Obsessing over主机检查。\n");
 			break;
 
 		case CMD_STOP_OBSESSING_OVER_HOST:
-			printf("This command is used to stop Nagios from obsessing over a particular host.\n");
+			printf("该命令用于中止Nagios的Obsessing over主机检查。\n");
 			break;
 
 		case CMD_ENABLE_SERVICEGROUP_SVC_NOTIFICATIONS:
-			printf("This command is used to enable notifications for all services in the specified servicegroup.  Notifications will only be sent out for the\n");
-			printf("service state types you defined in your service definitions.  This <i>does not</i> enable notifications for the hosts in this servicegroup unless you check the 'Enable for hosts too' option.\n");
+			printf("该??令用于打开指定服务组上全部服务的通知。通知仅仅是当你设置出的服务状态产生时才被发出。\n");
+			printf("该命令<b>并不</B>启用服务组的状态检查通知除非你选择了同时使能服务组通知。\n");
 			break;
 
 		case CMD_DISABLE_SERVICEGROUP_SVC_NOTIFICATIONS:
-			printf("This command is used to prevent notifications from being sent out for all services in the specified servicegroup.  You will have to re-enable notifications for\n");
-			printf("all services in this servicegroup before any alerts can be sent out in the future.  This <i>does not</i> prevent notifications from being sent out about the hosts in this servicegroup unless you check the 'Disable for hosts too' option.\n");
+			printf("该命令用于阻止特定服务组所有服务的通知。当你的指定服务组相关的服务可以向外发出通知服务时，你不得不重新打开它。\n");
+			printf("该命令<i>并不</B>阻止对特定服务组的检查通知除非你选择了同时阻止主机组通知。\n");
 			break;
 
 		case CMD_ENABLE_SERVICEGROUP_HOST_NOTIFICATIONS:
-			printf("This command is used to enable notifications for all hosts in the specified servicegroup.  Notifications will only be sent out for the\n");
-			printf("host state types you defined in your host definitions.\n");
+			printf("该命令用于打开指定服务组上全部主机的通知。通知仅仅是当你设置出的主机状态产生变化时才被发出。\n");
+			printf("该命令<b>并不</B>启用服务组的状态检查通知除非你选择了同时使能服务组通知。\n");
 			break;
 
 		case CMD_DISABLE_SERVICEGROUP_HOST_NOTIFICATIONS:
-			printf("This command is used to prevent notifications from being sent out for all hosts in the specified servicegroup.  You will have to re-enable notifications for\n");
-			printf("all hosts in this servicegroup before any alerts can be sent out in the future.\n");
+			printf("该命令用于阻止特定服务组上所有主机的通知。当你的指定服务组相关的主机可以向外发出通知服务时，你不得不重新打开它。\n");
+			printf("该命令<i>并不</B>阻止对特定服务组的检查通知除非你选择了同时阻止服务组通知。\n");
 			break;
 
 		case CMD_ENABLE_SERVICEGROUP_SVC_CHECKS:
-			printf("This command is used to enable active checks of all services in the specified servicegroup.  This <i>does not</i> enable active checks of the hosts in the servicegroup unless you check the 'Enable for hosts too' option.\n");
+			printf("该命令用于启用特定服务组上的所有服务检查。这个<B>将不会</B>对服务组进行检查除非你选择了‘主机检查’使能选项。\n");
 			break;
 
 		case CMD_DISABLE_SERVICEGROUP_SVC_CHECKS:
-			printf("This command is used to disable active checks of all services in the specified servicegroup.  This <i>does not</i> disable checks of the hosts in the servicegroup unless you check the 'Disable for hosts too' option.\n");
+			printf("该命令用于禁止对特定服务组上的所有服务检查。服务禁止检查时将主要是对特定服务故障时，当该服务被禁用后将不再产生报警。这<i>不会</i>停止对服务组的检查除非你同时选择解除对服务组检查选项。\n");
 			break;
 
 		case CMD_SCHEDULE_SERVICEGROUP_HOST_DOWNTIME:
-			printf("This command is used to schedule downtime for all hosts in a particular servicegroup.  During the specified downtime, Nagios will not send notifications out about the hosts.\n");
-			printf("When the scheduled downtime expires, Nagios will send out notifications for the hosts as it normally would.  Scheduled downtimes are preserved\n");
-			printf("across program shutdowns and restarts.  Both the start and end times should be specified in the following format:  <b>mm/dd/yyyy hh:mm:ss</b>.\n");
-			printf("If you select the <i>fixed</i> option, the downtime will be in effect between the start and end times you specify.  If you do not select the <i>fixed</i>\n");
-			printf("option, Nagios will treat this as \"flexible\" downtime.  Flexible downtime starts when a host goes down or becomes unreachable (sometime between the\n");
-			printf("start and end times you specified) and lasts as long as the duration of time you enter.  The duration fields do not apply for fixed downtime.\n");
+			printf("该命令将设置对指定服务组内的主机设置宕机计划时间段。在宕机时间段中，Nagios将不会发送主机问题通知。\n");
+			printf("在宕机计划时间段外，Nagios将按计划进行检查并发出问题通知。\n");
+			printf("宕机计划时间段设置的开始时间与结束时间格式应是<b>mm/dd/yyy hh:mm:ss</b>。\n");
+			printf("如果你选择了<B>固定</B>选项，宕机时间将在指定的设置的开始时间到结束时间内起作用。如果没有选择<B>固定</b>选项，Nagios将力图\"柔性\"地来处理宕机时间。\n");
+			printf("柔性的处理宕机时间将视主机宕机开始直接你设置的时间结束或是最后你发出阶段时间结束为止，这个阶段时间长度将可控。\n");
+			//printf("start and end times you specified) and lasts as long as the duration of time you enter.  The duration fields do not apply for fixed downtime.\n");
 			break;
 
 		case CMD_SCHEDULE_SERVICEGROUP_SVC_DOWNTIME:
-			printf("This command is used to schedule downtime for all services in a particular servicegroup.  During the specified downtime, Nagios will not send notifications out about the services.\n");
-			printf("When the scheduled downtime expires, Nagios will send out notifications for the services as it normally would.  Scheduled downtimes are preserved\n");
-			printf("across program shutdowns and restarts.  Both the start and end times should be specified in the following format:  <b>mm/dd/yyyy hh:mm:ss</b>.\n");
-			printf("If you select the <i>fixed</i> option, the downtime will be in effect between the start and end times you specify.  If you do not select the <i>fixed</i>\n");
-			printf("option, Nagios will treat this as \"flexible\" downtime.  Flexible downtime starts when a service enters a non-OK state (sometime between the\n");
-			printf("start and end times you specified) and lasts as long as the duration of time you enter.  The duration fields do not apply for fixed downtime.\n");
-			printf("Note that scheduling downtime for services does not automatically schedule downtime for the hosts those services are associated with.  If you want to also schedule downtime for all hosts in the servicegroup, check the 'Schedule downtime for hosts too' option.\n");
+			printf("该命令将设置对指定服务组内的全部服务设置宕机计划时间段。在宕机时间段中，Nagios将不会发送服务问题通知。\n");
+			printf("在宕机计划时间段外，Nagios将按计划进行检查并发出问题通知。\n");
+			printf("宕机计划时间段设置的开始时间与结束时间格式应是<b>mm/dd/yyy hh:mm:ss</b>。\n");
+			printf("如果你选择了<B>固定</B>选项，宕机时间将在指定的设置的开始时间到结束时间内起作用。如果没有选择<B>固定</b>选项，Nagios将力图\"柔性\"地来处理宕机时间。\n");
+			printf("柔性的处理宕机时间将视服务宕机开始直接你设置的时间结束或是最后你发出阶段时间结束为止，这个阶段时间长度将不可控。\n");
+			//printf("option, Nagios will treat this as \"flexible\" downtime.  Flexible downtime starts when a service enters a non-OK state (sometime between the\n");
+			//printf("start and end times you specified) and lasts as long as the duration of time you enter.  The duration fields do not apply for fixed downtime.\n");
+			//printf("Note that scheduling downtime for services does not automatically schedule downtime for the hosts those services are associated with.  If you want to also schedule downtime for all hosts in the servicegroup, check the 'Schedule downtime for hosts too' option.\n");
 			break;
-
+			
 		case CMD_CLEAR_HOST_FLAPPING_STATE:
 		case CMD_CLEAR_SVC_FLAPPING_STATE:
-			printf("This command is used to reset the flapping state for the specified %s.\n",
-				(cmd == CMD_CLEAR_HOST_FLAPPING_STATE) ? "host" : "service");
-			printf("All state history for the specified %s will be cleared.\n",
-				(cmd == CMD_CLEAR_HOST_FLAPPING_STATE) ? "host" : "service");
+			printf("该命令被用来重置%s的抖动状态.\n",
+				(cmd == CMD_CLEAR_HOST_FLAPPING_STATE) ? "主机" : "服务");
+			printf("所有特定%s的历史状态都将被清理.\n",
+				(cmd == CMD_CLEAR_HOST_FLAPPING_STATE) ? "主机" : "服务");
 			break;
 
 		case CMD_SEND_CUSTOM_HOST_NOTIFICATION:
 		case CMD_SEND_CUSTOM_SVC_NOTIFICATION:
-			printf("This command is used to send a custom notification about the specified %s.  Useful in emergencies when you need to notify admins of an issue regarding a monitored system or service.\n", (cmd == CMD_SEND_CUSTOM_HOST_NOTIFICATION) ? "host" : "service");
-			printf("Custom notifications normally follow the regular notification logic in Nagios.  Selecting the <i>Forced</i> option will force the notification to be sent out, regardless of the time restrictions, whether or not notifications are enabled, etc.  Selecting the <i>Broadcast</i> option causes the notification to be sent out to all normal (non-escalated) and escalated contacts.  These options allow you to override the normal notification logic if you need to get an important message out.\n");
+			printf("该命令用于送出由客户定制的特定的%s告警。它可被用于在对一些特定的系统或服务的监视状态下，当发生紧急情况时将你所需要的信息通知给管理员。\n",(cmd==CMD_SEND_CUSTOM_HOST_NOTIFICATION)?"主机":"服务");
+			printf("Nagios一般是在告警通知逻辑中来处理客户定制告警。在对象定义里选择<i>强制地(Forced)</i>选项来强制送出定制的告警而不必顾及时间周期设置、通知告警是否使能等等的设置。t选择<i>广播式地(Broadcast)</i>选项可以在全部正常情况下(非异常处理)送出给联系人。这些选项通常可以覆盖你一般的报警逻辑里的设置而送出你所需要的重要信息。\n");
 			break;
 
 		default:
-			printf("Sorry, but no information is available for this command.");
+			printf("无该命令的相关信息。");
 		}
 
 	printf("</TD></TR>\n");
