@@ -205,7 +205,12 @@ char **getcgivars(void) {
 		printf("\"REMOTE_USER\" environment variable to be the name of the user you're\n");
 		printf("\"authenticated\" as.\n");
 		printf("\n");
-
+		printf("猜想你试图在命令行方式下运行这个cgi程序？如果真是这样，得设置环境变量\n");
+		printf("REQUEST_METHOD，可以是\"GET\"、\"HEAD\"或\"POST\"，如果是GET或HEAD时，还要\n");
+		printf("设置环境变量QUERY_STRING值，如果是\"PUT\"，数据块是从STDIN里读入的。如果\n");
+		printf("配置了CGI的授权，要在环境变量REMOTE_USER里设置授权人的名字。\n象这样：\n");
+		printf("\texport REQUEST_METHOD=\"GET\"\n\texport QUERY_STRING=\"host=all\"\n");
+		printf("\texport REMOTE_USER=nagiosadmin\n再执行一下程序就可以了。\n");
 		exit(1);
 		}
 

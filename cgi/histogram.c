@@ -323,11 +323,11 @@ int main(int argc, char **argv) {
 		printf("<td align=left valign=top width=33%%>\n");
 
 		if(display_type == DISPLAY_HOST_HISTOGRAM)
-			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "Host Alert Histogram");
+			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "主机的告警柱状图");
 		else if(display_type == DISPLAY_SERVICE_HISTOGRAM)
-			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "Service Alert Histogram");
+			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "服务的告警柱状图");
 		else
-			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "Host and Service Alert Histogram");
+			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "主机和服务的告警柱状图");
 		temp_buffer[sizeof(temp_buffer) - 1] = '\x0';
 		display_info_table(temp_buffer, FALSE, &current_authdata);
 
@@ -338,24 +338,24 @@ int main(int argc, char **argv) {
 
 			if(display_type == DISPLAY_HOST_HISTOGRAM) {
 #ifdef USE_TRENDS
-				printf("<a href='%s?host=%s&t1=%lu&t2=%lu&assumestateretention=%s'>View Trends For This Host</a><BR>\n", TRENDS_CGI, url_encode(host_name), t1, t2, (assume_state_retention == TRUE) ? "yes" : "no");
+				printf("<a href='%s?host=%s&t1=%lu&t2=%lu&assumestateretention=%s'>查看该主机趋势</a><BR>\n", TRENDS_CGI, url_encode(host_name), t1, t2, (assume_state_retention == TRUE) ? "yes" : "no");
 #endif
-				printf("<a href='%s?host=%s&t1=%lu&t2=%lu&assumestateretention=%s&show_log_entries'>View Availability Report For This Host</a><BR>\n", AVAIL_CGI, url_encode(host_name), t1, t2, (assume_state_retention == TRUE) ? "yes" : "no");
-				printf("<a href='%s?host=%s'>View Status Detail For This Host</a><BR>\n", STATUS_CGI, url_encode(host_name));
-				printf("<a href='%s?host=%s'>View History For This Host</a><BR>\n", HISTORY_CGI, url_encode(host_name));
-				printf("<a href='%s?host=%s'>View Notifications For This Host</a><BR>\n", NOTIFICATIONS_CGI, url_encode(host_name));
+				printf("<a href='%s?host=%s&t1=%lu&t2=%lu&assumestateretention=%s&show_log_entries'>查看该主机的可用性报告</a><BR>\n", AVAIL_CGI, url_encode(host_name), t1, t2, (assume_state_retention == TRUE) ? "yes" : "no");
+				printf("<a href='%s?host=%s'>查看该主机的详细状态</a><BR>\n", STATUS_CGI, url_encode(host_name));
+				printf("<a href='%s?host=%s'>查看该主机的历史</a><BR>\n", HISTORY_CGI, url_encode(host_name));
+				printf("<a href='%s?host=%s'>查看该主机的通知</a><BR>\n", NOTIFICATIONS_CGI, url_encode(host_name));
 				}
 			else {
 #ifdef USE_TRENDS
 				printf("<a href='%s?host=%s", TRENDS_CGI, url_encode(host_name));
 #endif
-				printf("&service=%s&t1=%lu&t2=%lu&assumestateretention=%s'>View Trends For This Service</a><BR>\n", url_encode(svc_description), t1, t2, (assume_state_retention == TRUE) ? "yes" : "no");
+				printf("&service=%s&t1=%lu&t2=%lu&assumestateretention=%s'>查看该服务趋势</a><BR>\n", url_encode(svc_description), t1, t2, (assume_state_retention == TRUE) ? "yes" : "no");
 				printf("<a href='%s?host=%s", AVAIL_CGI, url_encode(host_name));
-				printf("&service=%s&t1=%lu&t2=%lu&assumestateretention=%s&show_log_entries'>View Availability Report For This Service</a><BR>\n", url_encode(svc_description), t1, t2, (assume_state_retention == TRUE) ? "yes" : "no");
+				printf("&service=%s&t1=%lu&t2=%lu&assumestateretention=%s&show_log_entries'>查看该服务的可用性报告</a><BR>\n", url_encode(svc_description), t1, t2, (assume_state_retention == TRUE) ? "yes" : "no");
 				printf("<A HREF='%s?host=%s&", HISTORY_CGI, url_encode(host_name));
-				printf("service=%s'>View History For This Service</A><BR>\n", url_encode(svc_description));
+				printf("service=%s'>查看该服务的历史</A><BR>\n", url_encode(svc_description));
 				printf("<A HREF='%s?host=%s&", NOTIFICATIONS_CGI, url_encode(host_name));
-				printf("service=%s'>View Notifications For This Service</A><BR>\n", url_encode(svc_description));
+				printf("service=%s'>查看该服务的通知</A><BR>\n", url_encode(svc_description));
 				}
 
 			printf("</TD></TR>\n");
@@ -371,23 +371,23 @@ int main(int argc, char **argv) {
 
 			printf("<DIV ALIGN=CENTER CLASS='dataTitle'>\n");
 			if(display_type == DISPLAY_HOST_HISTOGRAM)
-				printf("Host '%s'", host_name);
+				printf("主机 '%s'", host_name);
 			else if(display_type == DISPLAY_SERVICE_HISTOGRAM)
-				printf("Service '%s' On Host '%s'", svc_description, host_name);
+				printf("主机 '%s' 上的 '%s' 服务",host_name,svc_description);
 			printf("</DIV>\n");
 
 			printf("<BR>\n");
 
-			printf("<IMG SRC='%s%s' BORDER=0 ALT='%s Event Histogram' TITLE='%s Event Histogram'>\n", url_images_path, TRENDS_ICON, (display_type == DISPLAY_HOST_HISTOGRAM) ? "Host" : "Service", (display_type == DISPLAY_HOST_HISTOGRAM) ? "Host" : "Service");
+			printf("<IMG SRC='%s%s' BORDER=0 ALT='%s 事件柱状图' TITLE='%s 事件柱状图'>\n", url_images_path, TRENDS_ICON, (display_type == DISPLAY_HOST_HISTOGRAM) ? "Host" : "Service", (display_type == DISPLAY_HOST_HISTOGRAM) ? "Host" : "Service");
 
 			printf("<BR CLEAR=ALL>\n");
 
 			get_time_string(&t1, start_timestring, sizeof(start_timestring) - 1, SHORT_DATE_TIME);
 			get_time_string(&t2, end_timestring, sizeof(end_timestring) - 1, SHORT_DATE_TIME);
-			printf("<div align=center class='reportRange'>%s to %s</div>\n", start_timestring, end_timestring);
+			printf("<div align=center class='reportRange'>%s 到 %s</div>\n", start_timestring, end_timestring);
 
 			get_time_breakdown((time_t)(t2 - t1), &days, &hours, &minutes, &seconds);
-			printf("<div align=center class='reportDuration'>Duration: %dd %dh %dm %ds</div>\n", days, hours, minutes, seconds);
+			printf("<div align=center class='reportDuration'>持续时间: %d日 %d时 %d分 %d秒</div>\n", days, hours, minutes, seconds);
 			}
 
 		printf("</td>\n");
@@ -404,7 +404,7 @@ int main(int argc, char **argv) {
 
 		if(display_type != DISPLAY_NO_HISTOGRAM && input_type == GET_INPUT_NONE) {
 
-			printf("<tr><td CLASS='optBoxItem' valign=top align=left>Report period:</td><td CLASS='optBoxItem' valign=top align=left>Assume state retention:</td></tr>\n");
+			printf("<tr><td CLASS='optBoxItem' valign=top align=left>报告周期:</td><td CLASS='optBoxItem' valign=top align=left>假定状态保持:</td></tr>\n");
 			printf("<tr><td CLASS='optBoxItem' valign=top align=left>\n");
 
 			printf("<input type='hidden' name='t1' value='%lu'>\n", (unsigned long)t1);
@@ -414,76 +414,76 @@ int main(int argc, char **argv) {
 				printf("<input type='hidden' name='service' value='%s'>\n", escape_string(svc_description));
 
 			printf("<select name='timeperiod'>\n");
-			printf("<option value=custom>[ Current time range ]\n");
-			printf("<option value=today %s>Today\n", (timeperiod_type == TIMEPERIOD_TODAY) ? "SELECTED" : "");
-			printf("<option value=last24hours %s>Last 24 Hours\n", (timeperiod_type == TIMEPERIOD_LAST24HOURS) ? "SELECTED" : "");
-			printf("<option value=yesterday %s>Yesterday\n", (timeperiod_type == TIMEPERIOD_YESTERDAY) ? "SELECTED" : "");
-			printf("<option value=thisweek %s>This Week\n", (timeperiod_type == TIMEPERIOD_THISWEEK) ? "SELECTED" : "");
-			printf("<option value=last7days %s>Last 7 Days\n", (timeperiod_type == TIMEPERIOD_LAST7DAYS) ? "SELECTED" : "");
-			printf("<option value=lastweek %s>Last Week\n", (timeperiod_type == TIMEPERIOD_LASTWEEK) ? "SELECTED" : "");
-			printf("<option value=thismonth %s>This Month\n", (timeperiod_type == TIMEPERIOD_THISMONTH) ? "SELECTED" : "");
-			printf("<option value=last31days %s>Last 31 Days\n", (timeperiod_type == TIMEPERIOD_LAST31DAYS) ? "SELECTED" : "");
-			printf("<option value=lastmonth %s>Last Month\n", (timeperiod_type == TIMEPERIOD_LASTMONTH) ? "SELECTED" : "");
-			printf("<option value=thisyear %s>This Year\n", (timeperiod_type == TIMEPERIOD_THISYEAR) ? "SELECTED" : "");
-			printf("<option value=lastyear %s>Last Year\n", (timeperiod_type == TIMEPERIOD_LASTYEAR) ? "SELECTED" : "");
+			printf("<option value=custom>[ 当前时间范围 ]\n");
+			printf("<option value=today %s>今天\n", (timeperiod_type == TIMEPERIOD_TODAY) ? "SELECTED" : "");
+			printf("<option value=last24hours %s>过去的24小时\n", (timeperiod_type == TIMEPERIOD_LAST24HOURS) ? "SELECTED" : "");
+			printf("<option value=yesterday %s>昨天\n", (timeperiod_type == TIMEPERIOD_YESTERDAY) ? "SELECTED" : "");
+			printf("<option value=thisweek %s>本周\n", (timeperiod_type == TIMEPERIOD_THISWEEK) ? "SELECTED" : "");
+			printf("<option value=last7days %s>过去的7天\n", (timeperiod_type == TIMEPERIOD_LAST7DAYS) ? "SELECTED" : "");
+			printf("<option value=lastweek %s>上周\n", (timeperiod_type == TIMEPERIOD_LASTWEEK) ? "SELECTED" : "");
+			printf("<option value=thismonth %s>本月\n", (timeperiod_type == TIMEPERIOD_THISMONTH) ? "SELECTED" : "");
+			printf("<option value=last31days %s>过去的31天\n", (timeperiod_type == TIMEPERIOD_LAST31DAYS) ? "SELECTED" : "");
+			printf("<option value=lastmonth %s>上月\n", (timeperiod_type == TIMEPERIOD_LASTMONTH) ? "SELECTED" : "");
+			printf("<option value=thisyear %s>今年\n", (timeperiod_type == TIMEPERIOD_THISYEAR) ? "SELECTED" : "");
+			printf("<option value=lastyear %s>去年\n", (timeperiod_type == TIMEPERIOD_LASTYEAR) ? "SELECTED" : "");
 			printf("</select>\n");
 			printf("</td><td CLASS='optBoxItem' valign=top align=left>\n");
 			printf("<select name='assumestateretention'>\n");
-			printf("<option value=yes %s>yes\n", (assume_state_retention == TRUE) ? "SELECTED" : "");
-			printf("<option value=no %s>no\n", (assume_state_retention == TRUE) ? "" : "SELECTED");
+			printf("<option value=yes %s>是\n", (assume_state_retention == TRUE) ? "SELECTED" : "");
+			printf("<option value=no %s>否\n", (assume_state_retention == TRUE) ? "" : "SELECTED");
 			printf("</select>\n");
 			printf("</td></tr>\n");
 
-			printf("<tr><td CLASS='optBoxItem' valign=top align=left>Breakdown type:</td><td CLASS='optBoxItem' valign=top align=left>Initial states logged:</td></tr>\n");
+			printf("<tr><td CLASS='optBoxItem' valign=top align=left>细分类型:</td><td CLASS='optBoxItem' valign=top align=left>Initial states logged:</td></tr>\n");
 			printf("<tr><td CLASS='optBoxItem' valign=top align=left>\n");
 			printf("<select name='breakdown'>\n");
-			printf("<option value=monthly %s>Month\n", (breakdown_type == BREAKDOWN_MONTHLY) ? "SELECTED" : "");
-			printf("<option value=dayofmonth %s>Day of the Month\n", (breakdown_type == BREAKDOWN_DAY_OF_MONTH) ? "SELECTED" : "");
-			printf("<option value=dayofweek %s>Day of the Week\n", (breakdown_type == BREAKDOWN_DAY_OF_WEEK) ? "SELECTED" : "");
-			printf("<option value=hourly %s>Hour of the Day\n", (breakdown_type == BREAKDOWN_HOURLY) ? "SELECTED" : "");
+			printf("<option value=monthly %s>按每月\n", (breakdown_type == BREAKDOWN_MONTHLY) ? "SELECTED" : "");
+			printf("<option value=dayofmonth %s>按月\n", (breakdown_type == BREAKDOWN_DAY_OF_MONTH) ? "SELECTED" : "");
+			printf("<option value=dayofweek %s>按周\n", (breakdown_type == BREAKDOWN_DAY_OF_WEEK) ? "SELECTED" : "");
+			printf("<option value=hourly %s>按小时\n", (breakdown_type == BREAKDOWN_HOURLY) ? "SELECTED" : "");
 			printf("</select>\n");
 			printf("</td><td CLASS='optBoxItem' valign=top align=left>\n");
 			printf("<select name='initialstateslogged'>\n");
-			printf("<option value=yes %s>yes\n", (initial_states_logged == TRUE) ? "SELECTED" : "");
-			printf("<option value=no %s>no\n", (initial_states_logged == TRUE) ? "" : "SELECTED");
+			printf("<option value=yes %s>是\n", (initial_states_logged == TRUE) ? "SELECTED" : "");
+			printf("<option value=no %s>否\n", (initial_states_logged == TRUE) ? "" : "SELECTED");
 			printf("</select>\n");
 			printf("</td></tr>\n");
 
-			printf("<tr><td CLASS='optBoxItem' valign=top align=left>Events to graph:</td><td CLASS='optBoxItem' valign=top align=left>Ignore repeated states:</td></tr>\n");
+			printf("<tr><td CLASS='optBoxItem' valign=top align=left>事件到图:</td><td CLASS='optBoxItem' valign=top align=left>Ignore repeated states:</td></tr>\n");
 			printf("<tr><td CLASS='optBoxItem' valign=top align=left>\n");
 			printf("<select name='graphevents'>\n");
 			if(display_type == DISPLAY_HOST_HISTOGRAM) {
-				printf("<option value=%d %s>All host events\n", GRAPH_HOST_ALL, (graph_events == GRAPH_HOST_ALL) ? "SELECTED" : "");
-				printf("<option value=%d %s>Host problem events\n", GRAPH_HOST_PROBLEMS, (graph_events == GRAPH_HOST_PROBLEMS) ? "SELECTED" : "");
-				printf("<option value=%d %s>Host up events\n", GRAPH_HOST_UP, (graph_events == GRAPH_HOST_UP) ? "SELECTED" : "");
-				printf("<option value=%d %s>Host down events\n", GRAPH_HOST_DOWN, (graph_events == GRAPH_HOST_DOWN) ? "SELECTED" : "");
-				printf("<option value=%d %s>Host unreachable events\n", GRAPH_HOST_UNREACHABLE, (graph_events == GRAPH_HOST_UNREACHABLE) ? "SELECTED" : "");
+				printf("<option value=%d %s>主机的所有的事件\n", GRAPH_HOST_ALL, (graph_events == GRAPH_HOST_ALL) ? "SELECTED" : "");
+				printf("<option value=%d %s>主机的故障状态\n", GRAPH_HOST_PROBLEMS, (graph_events == GRAPH_HOST_PROBLEMS) ? "SELECTED" : "");
+				printf("<option value=%d %s>主机的运行状态\n", GRAPH_HOST_UP, (graph_events == GRAPH_HOST_UP) ? "SELECTED" : "");
+				printf("<option value=%d %s>主机的宕机状态\n", GRAPH_HOST_DOWN, (graph_events == GRAPH_HOST_DOWN) ? "SELECTED" : "");
+				printf("<option value=%d %s>主机的不可达状态\n", GRAPH_HOST_UNREACHABLE, (graph_events == GRAPH_HOST_UNREACHABLE) ? "SELECTED" : "");
 				}
 			else {
-				printf("<option value=%d %s>All service events\n", GRAPH_SERVICE_ALL, (graph_events == GRAPH_SERVICE_ALL) ? "SELECTED" : "");
-				printf("<option value=%d %s>Service problem events\n", GRAPH_SERVICE_PROBLEMS, (graph_events == GRAPH_SERVICE_PROBLEMS) ? "SELECTED" : "");
-				printf("<option value=%d %s>Service ok events\n", GRAPH_SERVICE_OK, (graph_events == GRAPH_SERVICE_OK) ? "SELECTED" : "");
-				printf("<option value=%d %s>Service warning events\n", GRAPH_SERVICE_WARNING, (graph_events == GRAPH_SERVICE_WARNING) ? "SELECTED" : "");
-				printf("<option value=%d %s>Service unknown events\n", GRAPH_SERVICE_UNKNOWN, (graph_events == GRAPH_SERVICE_UNKNOWN) ? "SELECTED" : "");
-				printf("<option value=%d %s>Service critical events\n", GRAPH_SERVICE_CRITICAL, (graph_events == GRAPH_SERVICE_CRITICAL) ? "SELECTED" : "");
+				printf("<option value=%d %s>服务的所有的事件\n", GRAPH_SERVICE_ALL, (graph_events == GRAPH_SERVICE_ALL) ? "SELECTED" : "");
+				printf("<option value=%d %s>服务的故障状态\n", GRAPH_SERVICE_PROBLEMS, (graph_events == GRAPH_SERVICE_PROBLEMS) ? "SELECTED" : "");
+				printf("<option value=%d %s>服务的正常状态\n", GRAPH_SERVICE_OK, (graph_events == GRAPH_SERVICE_OK) ? "SELECTED" : "");
+				printf("<option value=%d %s>服务的告警状态\n", GRAPH_SERVICE_WARNING, (graph_events == GRAPH_SERVICE_WARNING) ? "SELECTED" : "");
+				printf("<option value=%d %s>服务的未知状态\n", GRAPH_SERVICE_UNKNOWN, (graph_events == GRAPH_SERVICE_UNKNOWN) ? "SELECTED" : "");
+				printf("<option value=%d %s>服务的紧急状态\n", GRAPH_SERVICE_CRITICAL, (graph_events == GRAPH_SERVICE_CRITICAL) ? "SELECTED" : "");
 				}
 			printf("</select>\n");
 			printf("</td><td CLASS='optBoxItem' valign=top align=left>\n");
 			printf("<select name='newstatesonly'>\n");
-			printf("<option value=yes %s>yes\n", (new_states_only == TRUE) ? "SELECTED" : "");
-			printf("<option value=no %s>no\n", (new_states_only == TRUE) ? "" : "SELECTED");
+			printf("<option value=yes %s>是\n", (new_states_only == TRUE) ? "SELECTED" : "");
+			printf("<option value=no %s>否\n", (new_states_only == TRUE) ? "" : "SELECTED");
 			printf("</select>\n");
 			printf("</td></tr>\n");
 
-			printf("<tr><td CLASS='optBoxItem' valign=top align=left>State types to graph:</td><td CLASS='optBoxItem' valign=top align=left></td></tr>\n");
+			printf("<tr><td CLASS='optBoxItem' valign=top align=left>状态类型到图:</td><td CLASS='optBoxItem' valign=top align=left></td></tr>\n");
 			printf("<tr><td CLASS='optBoxItem' valign=top align=left>\n");
 			printf("<select name='graphstatetypes'>\n");
-			printf("<option value=%d %s>Hard states\n", GRAPH_HARD_STATETYPES, (graph_statetypes == GRAPH_HARD_STATETYPES) ? "SELECTED" : "");
-			printf("<option value=%d %s>Soft states\n", GRAPH_SOFT_STATETYPES, (graph_statetypes == GRAPH_SOFT_STATETYPES) ? "SELECTED" : "");
-			printf("<option value=%d %s>Hard and soft states\n", GRAPH_ALL_STATETYPES, (graph_statetypes == GRAPH_ALL_STATETYPES) ? "SELECTED" : "");
+			printf("<option value=%d %s>硬(Hard)状态\n", GRAPH_HARD_STATETYPES, (graph_statetypes == GRAPH_HARD_STATETYPES) ? "SELECTED" : "");
+			printf("<option value=%d %s>软(Soft)状态\n", GRAPH_SOFT_STATETYPES, (graph_statetypes == GRAPH_SOFT_STATETYPES) ? "SELECTED" : "");
+			printf("<option value=%d %s>硬和软(Hard and Soft)状态\n", GRAPH_ALL_STATETYPES, (graph_statetypes == GRAPH_ALL_STATETYPES) ? "SELECTED" : "");
 			printf("</select>\n");
 			printf("</td><td CLASS='optBoxItem' valign=top align=left>\n");
-			printf("<input type='submit' value='Update'>\n");
+			printf("<input type='submit' value='更新'>\n");
 			printf("</td></tr>\n");
 			}
 
@@ -533,7 +533,7 @@ int main(int argc, char **argv) {
 	if(is_authorized == FALSE) {
 
 		if(mode == CREATE_HTML)
-			printf("<P><DIV ALIGN=CENTER CLASS='errorMessage'>It appears as though you are not authorized to view information for the specified %s...</DIV></P>\n", (display_type == DISPLAY_HOST_HISTOGRAM) ? "host" : "service");
+			printf("<P><DIV ALIGN=CENTER CLASS='errorMessage'>无权获取%s的信息。</DIV></P>\n", (display_type == DISPLAY_HOST_HISTOGRAM) ? "主机" : "服务");
 
 		document_footer();
 		free_memory();
@@ -605,7 +605,7 @@ int main(int argc, char **argv) {
 			read_archived_state_data();
 
 #ifdef DEBUG
-			printf("Done reading archived state data.\n");
+			printf("获取归档状态数据完成。\n");
 #endif
 
 			/* location of image template */
@@ -622,7 +622,7 @@ int main(int argc, char **argv) {
 				histogram_image = gdImageCreate(image_width, image_height);
 			if(histogram_image == NULL) {
 #ifdef DEBUG
-				printf("Error: Could not allocate memory for image\n");
+				printf("错误: 无法为图像分配内存。\n");
 #endif
 				return ERROR;
 				}
@@ -644,14 +644,14 @@ int main(int argc, char **argv) {
 			gdImageInterlace(histogram_image, 1);
 
 #ifdef DEBUG
-			printf("Starting to graph data...\n");
+			printf("开始图像数据...\n");
 #endif
 
 			/* graph archived state histogram data */
 			graph_all_histogram_data();
 
 #ifdef DEBUG
-			printf("Done graphing data.\n");
+			printf("完成图像数据。\n");
 #endif
 
 			/* use STDOUT for writing the image data... */
@@ -684,7 +684,7 @@ int main(int argc, char **argv) {
 		if(input_type == GET_INPUT_HOST_TARGET) {
 
 			printf("<P><DIV ALIGN=CENTER>\n");
-			printf("<DIV CLASS='reportSelectTitle'>Step 2: Select Host</DIV>\n");
+			printf("<DIV CLASS='reportSelectTitle'>步骤２: 主机的选择</DIV>\n");
 			printf("</DIV></P>\n");
 
 			printf("<P><DIV ALIGN=CENTER>\n");
@@ -697,7 +697,7 @@ int main(int argc, char **argv) {
 			printf("<input type='hidden' name='input' value='getoptions'>\n");
 
 			printf("<TABLE BORDER=0 cellspacing=0 cellpadding=10>\n");
-			printf("<tr><td class='reportSelectSubTitle' valign=center>Host:</td>\n");
+			printf("<tr><td class='reportSelectSubTitle' valign=center>主机:</td>\n");
 			printf("<td class='reportSelectItem' valign=center>\n");
 			printf("<select name='host'>\n");
 
@@ -710,7 +710,7 @@ int main(int argc, char **argv) {
 			printf("</td></tr>\n");
 
 			printf("<tr><td></td><td class='reportSelectItem'>\n");
-			printf("<input type='submit' value='Continue to Step 3'>\n");
+			printf("<input type='submit' value='步骤３续'>\n");
 			printf("</td></tr>\n");
 
 			printf("</TABLE>\n");
@@ -744,7 +744,7 @@ int main(int argc, char **argv) {
 
 
 			printf("<P><DIV ALIGN=CENTER>\n");
-			printf("<DIV CLASS='reportSelectTitle'>Step 2: Select Service</DIV>\n");
+			printf("<DIV CLASS='reportSelectTitle'>步骤２: 服务的选择</DIV>\n");
 			printf("</DIV></P>\n");
 
 			printf("<P><DIV ALIGN=CENTER>\n");
@@ -758,7 +758,7 @@ int main(int argc, char **argv) {
 			printf("<input type='hidden' name='host' value='%s'>\n", (first_service == NULL) ? "unknown" : (char *)escape_string(first_service));
 
 			printf("<TABLE BORDER=0 cellpadding=5>\n");
-			printf("<tr><td class='reportSelectSubTitle'>Service:</td>\n");
+			printf("<tr><td class='reportSelectSubTitle'>服务:</td>\n");
 			printf("<td class='reportSelectItem'>\n");
 			printf("<select name='service' onFocus='document.serviceform.host.value=gethostname(this.selectedIndex);' onChange='document.serviceform.host.value=gethostname(this.selectedIndex);'>\n");
 
@@ -771,7 +771,7 @@ int main(int argc, char **argv) {
 			printf("</td></tr>\n");
 
 			printf("<tr><td></td><td class='reportSelectItem'>\n");
-			printf("<input type='submit' value='Continue to Step 3'>\n");
+			printf("<input type='submit' value='步骤３续'>\n");
 			printf("</td></tr>\n");
 
 			printf("</TABLE>\n");
@@ -792,7 +792,7 @@ int main(int argc, char **argv) {
 			end_year = t->tm_year + 1900;
 
 			printf("<P><DIV ALIGN=CENTER>\n");
-			printf("<DIV CLASS='reportSelectTitle'>Step 3: Select Report Options</DIV>\n");
+			printf("<DIV CLASS='reportSelectTitle'>步骤３: 选择报告选项</DIV>\n");
 			printf("</DIV></P>\n");
 
 			printf("<P><DIV ALIGN=CENTER>\n");
@@ -807,42 +807,42 @@ int main(int argc, char **argv) {
 				printf("<input type='hidden' name='service' value='%s'>\n", escape_string(svc_description));
 
 			printf("<TABLE BORDER=0 cellpadding=5>\n");
-			printf("<tr><td class='reportSelectSubTitle' align=right>Report Period:</td>\n");
+			printf("<tr><td class='reportSelectSubTitle' align=right>报告周期:</td>\n");
 			printf("<td class='reportSelectItem'>\n");
 			printf("<select name='timeperiod'>\n");
-			printf("<option value=today>Today\n");
-			printf("<option value=last24hours>Last 24 Hours\n");
-			printf("<option value=yesterday>Yesterday\n");
-			printf("<option value=thisweek>This Week\n");
-			printf("<option value=last7days SELECTED>Last 7 Days\n");
-			printf("<option value=lastweek>Last Week\n");
-			printf("<option value=thismonth>This Month\n");
-			printf("<option value=last31days>Last 31 Days\n");
-			printf("<option value=lastmonth>Last Month\n");
-			printf("<option value=thisyear>This Year\n");
-			printf("<option value=lastyear>Last Year\n");
-			printf("<option value=custom>* CUSTOM REPORT PERIOD *\n");
+			printf("<option value=today>今天\n");
+			printf("<option value=last24hours>过去的24小时\n");
+			printf("<option value=yesterday>昨天\n");
+			printf("<option value=thisweek>本周\n");
+			printf("<option value=last7days SELECTED>过去的7天\n");
+			printf("<option value=lastweek>上周\n");
+			printf("<option value=thismonth>本月\n");
+			printf("<option value=last31days>过去的31天\n");
+			printf("<option value=lastmonth>上月\n");
+			printf("<option value=thisyear>今年\n");
+			printf("<option value=lastyear>去年\n");
+			printf("<option value=custom>* 自定义的报告周期 *\n");
 			printf("</select>\n");
 			printf("</td></tr>\n");
 
-			printf("<tr><td valign=top class='reportSelectSubTitle'>If Custom Report Period...</td></tr>\n");
+			printf("<tr><td valign=top class='reportSelectSubTitle'>如果自定义报告周期...</td></tr>\n");
 
 			printf("<tr>");
-			printf("<td valign=top class='reportSelectSubTitle'>Start Date (Inclusive):</td>\n");
+			printf("<td valign=top class='reportSelectSubTitle'>开始时间(含):</td>\n");
 			printf("<td align=left valign=top class='reportSelectItem'>");
 			printf("<select name='smon'>\n");
-			printf("<option value='1' %s>January\n", (t->tm_mon == 0) ? "SELECTED" : "");
-			printf("<option value='2' %s>February\n", (t->tm_mon == 1) ? "SELECTED" : "");
-			printf("<option value='3' %s>March\n", (t->tm_mon == 2) ? "SELECTED" : "");
-			printf("<option value='4' %s>April\n", (t->tm_mon == 3) ? "SELECTED" : "");
-			printf("<option value='5' %s>May\n", (t->tm_mon == 4) ? "SELECTED" : "");
-			printf("<option value='6' %s>June\n", (t->tm_mon == 5) ? "SELECTED" : "");
-			printf("<option value='7' %s>July\n", (t->tm_mon == 6) ? "SELECTED" : "");
-			printf("<option value='8' %s>August\n", (t->tm_mon == 7) ? "SELECTED" : "");
-			printf("<option value='9' %s>September\n", (t->tm_mon == 8) ? "SELECTED" : "");
-			printf("<option value='10' %s>October\n", (t->tm_mon == 9) ? "SELECTED" : "");
-			printf("<option value='11' %s>November\n", (t->tm_mon == 10) ? "SELECTED" : "");
-			printf("<option value='12' %s>December\n", (t->tm_mon == 11) ? "SELECTED" : "");
+			printf("<option value='1' %s>1\n", (t->tm_mon == 0) ? "SELECTED" : "");
+			printf("<option value='2' %s>2\n", (t->tm_mon == 1) ? "SELECTED" : "");
+			printf("<option value='3' %s>3\n", (t->tm_mon == 2) ? "SELECTED" : "");
+			printf("<option value='4' %s>4\n", (t->tm_mon == 3) ? "SELECTED" : "");
+			printf("<option value='5' %s>5\n", (t->tm_mon == 4) ? "SELECTED" : "");
+			printf("<option value='6' %s>6\n", (t->tm_mon == 5) ? "SELECTED" : "");
+			printf("<option value='7' %s>7\n", (t->tm_mon == 6) ? "SELECTED" : "");
+			printf("<option value='8' %s>8\n", (t->tm_mon == 7) ? "SELECTED" : "");
+			printf("<option value='9' %s>9\n", (t->tm_mon == 8) ? "SELECTED" : "");
+			printf("<option value='10' %s>10\n", (t->tm_mon == 9) ? "SELECTED" : "");
+			printf("<option value='11' %s>11\n", (t->tm_mon == 10) ? "SELECTED" : "");
+			printf("<option value='12' %s>12\n", (t->tm_mon == 11) ? "SELECTED" : "");
 			printf("</select>\n ");
 			printf("<input type='text' size='2' maxlength='2' name='sday' value='%d'> ", start_day);
 			printf("<input type='text' size='4' maxlength='4' name='syear' value='%d'>", start_year);
@@ -853,21 +853,21 @@ int main(int argc, char **argv) {
 			printf("</tr>\n");
 
 			printf("<tr>");
-			printf("<td valign=top class='reportSelectSubTitle'>End Date (Inclusive):</td>\n");
+			printf("<td valign=top class='reportSelectSubTitle'>结束时间(含):</td>\n");
 			printf("<td align=left valign=top class='reportSelectItem'>");
 			printf("<select name='emon'>\n");
-			printf("<option value='1' %s>January\n", (t->tm_mon == 0) ? "SELECTED" : "");
-			printf("<option value='2' %s>February\n", (t->tm_mon == 1) ? "SELECTED" : "");
-			printf("<option value='3' %s>March\n", (t->tm_mon == 2) ? "SELECTED" : "");
-			printf("<option value='4' %s>April\n", (t->tm_mon == 3) ? "SELECTED" : "");
-			printf("<option value='5' %s>May\n", (t->tm_mon == 4) ? "SELECTED" : "");
-			printf("<option value='6' %s>June\n", (t->tm_mon == 5) ? "SELECTED" : "");
-			printf("<option value='7' %s>July\n", (t->tm_mon == 6) ? "SELECTED" : "");
-			printf("<option value='8' %s>August\n", (t->tm_mon == 7) ? "SELECTED" : "");
-			printf("<option value='9' %s>September\n", (t->tm_mon == 8) ? "SELECTED" : "");
-			printf("<option value='10' %s>October\n", (t->tm_mon == 9) ? "SELECTED" : "");
-			printf("<option value='11' %s>November\n", (t->tm_mon == 10) ? "SELECTED" : "");
-			printf("<option value='12' %s>December\n", (t->tm_mon == 11) ? "SELECTED" : "");
+			printf("<option value='1' %s>1\n", (t->tm_mon == 0) ? "SELECTED" : "");
+			printf("<option value='2' %s>2\n", (t->tm_mon == 1) ? "SELECTED" : "");
+			printf("<option value='3' %s>3\n", (t->tm_mon == 2) ? "SELECTED" : "");
+			printf("<option value='4' %s>4\n", (t->tm_mon == 3) ? "SELECTED" : "");
+			printf("<option value='5' %s>5\n", (t->tm_mon == 4) ? "SELECTED" : "");
+			printf("<option value='6' %s>6\n", (t->tm_mon == 5) ? "SELECTED" : "");
+			printf("<option value='7' %s>7\n", (t->tm_mon == 6) ? "SELECTED" : "");
+			printf("<option value='8' %s>8\n", (t->tm_mon == 7) ? "SELECTED" : "");
+			printf("<option value='9' %s>9\n", (t->tm_mon == 8) ? "SELECTED" : "");
+			printf("<option value='10' %s>10\n", (t->tm_mon == 9) ? "SELECTED" : "");
+			printf("<option value='11' %s>11\n", (t->tm_mon == 10) ? "SELECTED" : "");
+			printf("<option value='12' %s>12\n", (t->tm_mon == 11) ? "SELECTED" : "");
 			printf("</select>\n ");
 			printf("<input type='text' size='2' maxlength='2' name='eday' value='%d'> ", end_day);
 			printf("<input type='text' size='4' maxlength='4' name='eyear' value='%d'>", end_year);
@@ -879,71 +879,71 @@ int main(int argc, char **argv) {
 
 			printf("<tr><td colspan=2><br></td></tr>\n");
 
-			printf("<tr><td class='reportSelectSubTitle' align=right>Statistics Breakdown:</td>\n");
+			printf("<tr><td class='reportSelectSubTitle' align=right>细分类型:</td>\n");
 			printf("<td class='reportSelectItem'>\n");
 			printf("<select name='breakdown'>\n");
-			printf("<option value=monthly>Month\n");
-			printf("<option value=dayofmonth SELECTED>Day of the Month\n");
-			printf("<option value=dayofweek>Day of the Week\n");
-			printf("<option value=hourly>Hour of the Day\n");
+			printf("<option value=monthly>每月\n");
+			printf("<option value=dayofmonth SELECTED>按日\n");
+			printf("<option value=dayofweek>按周\n");
+			printf("<option value=hourly>按小时\n");
 			printf("</select>\n");
 			printf("</td></tr>\n");
 
-			printf("<tr><td class='reportSelectSubTitle' align=right>Events To Graph:</td>\n");
+			printf("<tr><td class='reportSelectSubTitle' align=right>事件到图:</td>\n");
 			printf("<td class='reportSelectItem'>\n");
 			printf("<select name='graphevents'>\n");
 			if(display_type == DISPLAY_HOST_HISTOGRAM) {
-				printf("<option value=%d %s>All host events\n", GRAPH_HOST_ALL, (graph_events == GRAPH_HOST_ALL) ? "SELECTED" : "");
-				printf("<option value=%d %s>Host problem events\n", GRAPH_HOST_PROBLEMS, (graph_events == GRAPH_HOST_PROBLEMS) ? "SELECTED" : "");
-				printf("<option value=%d %s>Host up events\n", GRAPH_HOST_UP, (graph_events == GRAPH_HOST_UP) ? "SELECTED" : "");
-				printf("<option value=%d %s>Host down events\n", GRAPH_HOST_DOWN, (graph_events == GRAPH_HOST_DOWN) ? "SELECTED" : "");
-				printf("<option value=%d %s>Host unreachable events\n", GRAPH_HOST_UNREACHABLE, (graph_events == GRAPH_HOST_UNREACHABLE) ? "SELECTED" : "");
+				printf("<option value=%d %s>主机的所有的事件\n", GRAPH_HOST_ALL, (graph_events == GRAPH_HOST_ALL) ? "SELECTED" : "");
+				printf("<option value=%d %s>主机的故障状态\n", GRAPH_HOST_PROBLEMS, (graph_events == GRAPH_HOST_PROBLEMS) ? "SELECTED" : "");
+				printf("<option value=%d %s>主机的运行状态\n", GRAPH_HOST_UP, (graph_events == GRAPH_HOST_UP) ? "SELECTED" : "");
+				printf("<option value=%d %s>主机的宕机状态\n", GRAPH_HOST_DOWN, (graph_events == GRAPH_HOST_DOWN) ? "SELECTED" : "");
+				printf("<option value=%d %s>主机的不可达状态\n", GRAPH_HOST_UNREACHABLE, (graph_events == GRAPH_HOST_UNREACHABLE) ? "SELECTED" : "");
 				}
 			else {
-				printf("<option value=%d %s>All service events\n", GRAPH_SERVICE_ALL, (graph_events == GRAPH_SERVICE_ALL) ? "SELECTED" : "");
-				printf("<option value=%d %s>Service problem events\n", GRAPH_SERVICE_PROBLEMS, (graph_events == GRAPH_SERVICE_PROBLEMS) ? "SELECTED" : "");
-				printf("<option value=%d %s>Service ok events\n", GRAPH_SERVICE_OK, (graph_events == GRAPH_SERVICE_OK) ? "SELECTED" : "");
-				printf("<option value=%d %s>Service warning events\n", GRAPH_SERVICE_WARNING, (graph_events == GRAPH_SERVICE_WARNING) ? "SELECTED" : "");
-				printf("<option value=%d %s>Service unknown events\n", GRAPH_SERVICE_UNKNOWN, (graph_events == GRAPH_SERVICE_UNKNOWN) ? "SELECTED" : "");
-				printf("<option value=%d %s>Service critical events\n", GRAPH_SERVICE_CRITICAL, (graph_events == GRAPH_SERVICE_CRITICAL) ? "SELECTED" : "");
+				printf("<option value=%d %s>服务的所有的事件\n", GRAPH_SERVICE_ALL, (graph_events == GRAPH_SERVICE_ALL) ? "SELECTED" : "");
+				printf("<option value=%d %s>服务的故障状态\n", GRAPH_SERVICE_PROBLEMS, (graph_events == GRAPH_SERVICE_PROBLEMS) ? "SELECTED" : "");
+				printf("<option value=%d %s>服务的正常状态\n", GRAPH_SERVICE_OK, (graph_events == GRAPH_SERVICE_OK) ? "SELECTED" : "");
+				printf("<option value=%d %s>服务的告警状态\n", GRAPH_SERVICE_WARNING, (graph_events == GRAPH_SERVICE_WARNING) ? "SELECTED" : "");
+				printf("<option value=%d %s>服务的未知状态\n", GRAPH_SERVICE_UNKNOWN, (graph_events == GRAPH_SERVICE_UNKNOWN) ? "SELECTED" : "");
+				printf("<option value=%d %s>服务的紧急状态\n", GRAPH_SERVICE_CRITICAL, (graph_events == GRAPH_SERVICE_CRITICAL) ? "SELECTED" : "");
 				}
 			printf("</select>\n");
 			printf("</td></tr>\n");
 
-			printf("<tr><td class='reportSelectSubTitle' align=right>State Types To Graph:</td>\n");
+			printf("<tr><td class='reportSelectSubTitle' align=right>状态类型到图:</td>\n");
 			printf("<td class='reportSelectItem'>\n");
 			printf("<select name='graphstatetypes'>\n");
-			printf("<option value=%d>Hard states\n", GRAPH_HARD_STATETYPES);
-			printf("<option value=%d>Soft states\n", GRAPH_SOFT_STATETYPES);
-			printf("<option value=%d SELECTED>Hard and soft states\n", GRAPH_ALL_STATETYPES);
+			printf("<option value=%d>硬(Hard)状态\n", GRAPH_HARD_STATETYPES);
+			printf("<option value=%d>软(Soft)状态\n", GRAPH_SOFT_STATETYPES);
+			printf("<option value=%d SELECTED>硬(Hard)和软(Soft)状态\n", GRAPH_ALL_STATETYPES);
 			printf("</select>\n");
 			printf("</td></tr>\n");
 
-			printf("<tr><td class='reportSelectSubTitle' align=right>Assume State Retention:</td>\n");
+			printf("<tr><td class='reportSelectSubTitle' align=right>假定状态保持:</td>\n");
 			printf("<td class='reportSelectItem'>\n");
 			printf("<select name='assumestateretention'>\n");
-			printf("<option value='yes'>Yes\n");
-			printf("<option value='no'>No\n");
+			printf("<option value='yes'>是\n");
+			printf("<option value='no'>否\n");
 			printf("</select>\n");
 			printf("</td></tr>\n");
 
-			printf("<tr><td class='reportSelectSubTitle' align=right>Initial States Logged:</td>\n");
+			printf("<tr><td class='reportSelectSubTitle' align=right>初始状态记录:</td>\n");
 			printf("<td class='reportSelectItem'>\n");
 			printf("<select name='initialstateslogged'>\n");
-			printf("<option value='yes'>Yes\n");
-			printf("<option value='no' SELECTED>No\n");
+			printf("<option value='yes'>是\n");
+			printf("<option value='no' SELECTED>否\n");
 			printf("</select>\n");
 			printf("</td></tr>\n");
 
-			printf("<tr><td class='reportSelectSubTitle' align=right>Ignore Repeated States:</td>\n");
+			printf("<tr><td class='reportSelectSubTitle' align=right>忽略重复状态:</td>\n");
 			printf("<td class='reportSelectItem'>\n");
 			printf("<select name='newstatesonly'>\n");
-			printf("<option value='yes'>Yes\n");
-			printf("<option value='no' SELECTED>No\n");
+			printf("<option value='yes'>是\n");
+			printf("<option value='no' SELECTED>否\n");
 			printf("</select>\n");
 			printf("</td></tr>\n");
 
-			printf("<tr><td></td><td class='reportSelectItem'><input type='submit' value='Create Report'></td></tr>\n");
+			printf("<tr><td></td><td class='reportSelectItem'><input type='submit' value='生成报告'></td></tr>\n");
 
 			printf("</TABLE>\n");
 			printf("</form>\n");
@@ -954,7 +954,7 @@ int main(int argc, char **argv) {
 		/* as the user whether they want a graph for a host or service */
 		else {
 			printf("<P><DIV ALIGN=CENTER>\n");
-			printf("<DIV CLASS='reportSelectTitle'>Step 1: Select Report Type</DIV>\n");
+			printf("<DIV CLASS='reportSelectTitle'>步骤１: 选择报告类型</DIV>\n");
 			printf("</DIV></P>\n");
 
 			printf("<P><DIV ALIGN=CENTER>\n");
@@ -965,16 +965,16 @@ int main(int argc, char **argv) {
 			printf("<form method=\"GET\" action=\"%s\">\n", LEGACY_HISTOGRAM_CGI);
 #endif
 			printf("<TABLE BORDER=0 cellpadding=5>\n");
-			printf("<tr><td class='reportSelectSubTitle' align=right>Type:</td>\n");
+			printf("<tr><td class='reportSelectSubTitle' align=right>类型:</td>\n");
 			printf("<td class='reportSelectItem'>\n");
 			printf("<select name='input'>\n");
-			printf("<option value=gethost>Host\n");
-			printf("<option value=getservice>Service\n");
+			printf("<option value=gethost>主机\n");
+			printf("<option value=getservice>服务\n");
 			printf("</select>\n");
 			printf("</td></tr>\n");
 
 			printf("<tr><td></td><td class='reportSelectItem'>\n");
-			printf("<input type='submit' value='Continue to Step 2'>\n");
+			printf("<input type='submit' value='步骤２续'>\n");
 			printf("</td></tr>\n");
 
 			printf("</TABLE>\n");
@@ -1020,7 +1020,7 @@ void document_header(int use_stylesheet) {
 		printf("<head>\n");
 		printf("<link rel=\"shortcut icon\" href=\"%sfavicon.ico\" type=\"image/ico\">\n", url_images_path);
 		printf("<title>\n");
-		printf("Nagios Histogram\n");
+		printf("报告图\n");
 		printf("</title>\n");
 
 		if(use_stylesheet == TRUE) {
@@ -1643,7 +1643,7 @@ void graph_all_histogram_data(void) {
 	string_height = gdFontSmall->h;
 
 #ifdef DEBUG
-	printf("Starting to draw Y grid lines...\n");
+	printf("开始画Y坐标轴...\n");
 #endif
 
 	/* draw y grid lines */
@@ -1657,7 +1657,7 @@ void graph_all_histogram_data(void) {
 		}
 
 #ifdef DEBUG
-	printf("Starting to draw X grid lines...\n");
+	printf("开始画X坐标轴...\n");
 #endif
 
 	/* draw x grid lines */
@@ -1665,7 +1665,7 @@ void graph_all_histogram_data(void) {
 		draw_dashed_line(DRAWING_X_OFFSET + (int)(current_unit * x_units), DRAWING_Y_OFFSET, DRAWING_X_OFFSET + (int)(current_unit * x_units), DRAWING_Y_OFFSET - DRAWING_HEIGHT, color_lightgray);
 
 #ifdef DEBUG
-	printf("Starting to draw grid units...\n");
+	printf("开始画网格单元...\n");
 #endif
 
 	/* draw y units */
@@ -1741,7 +1741,7 @@ void graph_all_histogram_data(void) {
 
 
 #ifdef DEBUG
-	printf("About to starting graphing (total_buckets=%d)...\n", total_buckets);
+	printf("准备开始画图 (total_buckets=%d)...\n", total_buckets);
 #endif
 
 
@@ -1779,7 +1779,7 @@ void graph_all_histogram_data(void) {
 			}
 
 #ifdef DEBUG
-		printf("Done graphing HOST UP states...\n");
+		printf("主机运行状态图画完。\n");
 #endif
 
 		/* graph host down states */
@@ -1813,7 +1813,7 @@ void graph_all_histogram_data(void) {
 			}
 
 #ifdef DEBUG
-		printf("Done graphing HOST DOWN states...\n");
+		printf("主机宕机状态图画完。\n");
 #endif
 
 		/* graph host unreachable states */
@@ -1847,7 +1847,7 @@ void graph_all_histogram_data(void) {
 			}
 
 #ifdef DEBUG
-		printf("Done graphing HOST UNREACHABLE states...\n");
+		printf("主机不可达状态图画完。\n");
 #endif
 
 		}
@@ -1977,7 +1977,7 @@ void graph_all_histogram_data(void) {
 		}
 
 #ifdef DEBUG
-	printf("Done graphing states...\n");
+	printf("状态图画完。\n");
 #endif
 
 	/* draw graph boundaries */
@@ -2057,13 +2057,13 @@ void add_archived_state(int state_type, time_t time_stamp) {
 	int skip_state = FALSE;
 
 #ifdef DEBUG2
-	printf("NEW ENTRY: last=%d this=%d\n", last_state, state_type);
+	printf("新项目：最后状态=%d ,当前状态=%d\n", last_state, state_type);
 #endif
 
 	/* don't record program starts/stops, just make a note that one occurred */
 	if(state_type == AS_PROGRAM_START || state_type == AS_PROGRAM_END) {
 #ifdef DEBUG2
-		printf("Recording a program start: %d\n", state_type);
+		printf("记录程序开始于: %d\n", state_type);
 #endif
 		program_restart_has_occurred = TRUE;
 		return;
@@ -2099,7 +2099,7 @@ void add_archived_state(int state_type, time_t time_stamp) {
 		if(skip_state == TRUE) {
 			program_restart_has_occurred = FALSE;
 #ifdef DEBUG2
-			printf("Skipping state...\n");
+			printf("跳过状态...\n");
 #endif
 			return;
 			}
@@ -2111,13 +2111,13 @@ void add_archived_state(int state_type, time_t time_stamp) {
 	/* are we only processing new states */
 	if(new_states_only == TRUE && state_type == last_state) {
 #ifdef DEBUG2
-		printf("Skipping state (not a new state)...\n");
+		printf("跳过状态(不是新状态)...\n");
 #endif
 		return;
 		}
 
 #ifdef DEBUG2
-	printf("GOODSTATE: %d @ %lu\n", state_type, (unsigned long)time_stamp);
+	printf("正常状态: %d @ %lu\n", state_type, (unsigned long)time_stamp);
 #endif
 
 
@@ -2173,7 +2173,7 @@ void read_archived_state_data(void) {
 	int current_archive;
 
 #ifdef DEBUG2
-	printf("Determining archives to use...\n");
+	printf("判断当前使用的文档...\n");
 #endif
 
 	/* determine earliest archive to use */
@@ -2188,8 +2188,8 @@ void read_archived_state_data(void) {
 		oldest_archive = newest_archive;
 
 #ifdef DEBUG2
-	printf("Oldest archive: %d\n", oldest_archive);
-	printf("Newest archive: %d\n", newest_archive);
+	printf("最旧的文档: %d\n", oldest_archive);
+	printf("最新的文档: %d\n", newest_archive);
 #endif
 
 	/* read in all the necessary archived logs */
@@ -2199,7 +2199,7 @@ void read_archived_state_data(void) {
 		get_log_archive_to_use(current_archive, filename, sizeof(filename) - 1);
 
 #ifdef DEBUG2
-		printf("\tCurrent archive: %d (%s)\n", current_archive, filename);
+		printf("\t当前文档: %d (%s)\n", current_archive, filename);
 #endif
 
 		/* scan the log file for archived state data */
@@ -2229,13 +2229,13 @@ void scan_log_file_for_archived_state_data(char *filename) {
 
 	if((thefile = mmap_fopen(filename)) == NULL) {
 #ifdef DEBUG2
-		printf("Could not open file '%s' for reading.\n", filename);
+		printf("无法以读方式打开文件 '%s' 。\n", filename);
 #endif
 		return;
 		}
 
 #ifdef DEBUG2
-	printf("Scanning log file '%s' for archived state data...\n", filename);
+	printf("扫描日志文件'%s'以打包状态数据...\n", filename);
 #endif
 
 	while(1) {

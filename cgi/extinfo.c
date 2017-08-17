@@ -147,23 +147,23 @@ int main(void) {
 		printf("<td align=left valign=top width=33%%>\n");
 
 		if(display_type == DISPLAY_HOST_INFO)
-			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "Ö÷»úĞÅÏ¢");
+			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "ä¸»æœºä¿¡æ¯");
 		else if(display_type == DISPLAY_SERVICE_INFO)
-			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "·şÎñĞÅÏ¢");
+			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "æœåŠ¡ä¿¡æ¯");
 		else if(display_type == DISPLAY_COMMENTS)
-			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "ËùÓĞµÄÖ÷»úºÍ·şÎñµÄ×¢ÊÍ");
+			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "æ‰€æœ‰çš„ä¸»æœºå’ŒæœåŠ¡çš„æ³¨é‡Š");
 		else if(display_type == DISPLAY_PERFORMANCE)
-			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "ĞÔÄÜĞÅÏ¢");
+			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "æ€§èƒ½ä¿¡æ¯");
 		else if(display_type == DISPLAY_HOSTGROUP_INFO)
-			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "Ö÷»ú×éĞÅÏ¢");
+			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "ä¸»æœºç»„ä¿¡æ¯");
 		else if(display_type == DISPLAY_SERVICEGROUP_INFO)
-			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "·şÎñ×éĞÅÏ¢");
+			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "æœåŠ¡ç»„ä¿¡æ¯");
 		else if(display_type == DISPLAY_DOWNTIME)
-			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "ËùÓĞµÄÖ÷»ú·şÎñµÄµ÷¶Èå´»úÊ±¼ä");
+			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "æ‰€æœ‰çš„ä¸»æœºæœåŠ¡çš„è°ƒåº¦å®•æœºæ—¶é—´");
 		else if(display_type == DISPLAY_SCHEDULING_QUEUE)
-			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "¼ì²éµ÷¶È¶ÓÁĞ");
+			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "æ£€æŸ¥è°ƒåº¦é˜Ÿåˆ—");
 		else
-			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "Nagios½ø³ÌĞÅÏ¢");
+			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "Nagiosè¿›ç¨‹ä¿¡æ¯");
 		temp_buffer[sizeof(temp_buffer) - 1] = '\x0';
 		display_info_table(temp_buffer, TRUE, &current_authdata);
 
@@ -212,47 +212,47 @@ int main(void) {
 			printf("<TABLE BORDER=1 CELLPADDING=0 CELLSPACING=0 CLASS='linkBox'>\n");
 			printf("<TR><TD CLASS='linkBox'>\n");
 			if(display_type == DISPLAY_SERVICE_INFO)
-				printf("<A HREF='%s?type=%d&host=%s'>²é¿´Ö÷»úµÄĞÅÏ¢</A><br>\n", EXTINFO_CGI, DISPLAY_HOST_INFO, url_encode(host_name));
+				printf("<A HREF='%s?type=%d&host=%s'>æŸ¥çœ‹ä¸»æœºçš„ä¿¡æ¯</A><br>\n", EXTINFO_CGI, DISPLAY_HOST_INFO, url_encode(host_name));
 			if(display_type == DISPLAY_SERVICE_INFO || display_type == DISPLAY_HOST_INFO)
-				printf("<A HREF='%s?host=%s'>²é¿´Ö÷»úµÄÏêÏ¸×´Ì¬</A><BR>\n", STATUS_CGI, url_encode(host_name));
+				printf("<A HREF='%s?host=%s'>æŸ¥çœ‹ä¸»æœºçš„è¯¦ç»†çŠ¶æ€</A><BR>\n", STATUS_CGI, url_encode(host_name));
 			if(display_type == DISPLAY_HOST_INFO) {
-				printf("<A HREF='%s?host=%s'>²é¿´Ö÷»úµÄ¸æ¾¯ÀúÊ·</A><BR>\n", HISTORY_CGI, url_encode(host_name));
+				printf("<A HREF='%s?host=%s'>æŸ¥çœ‹ä¸»æœºçš„å‘Šè­¦å†å²</A><BR>\n", HISTORY_CGI, url_encode(host_name));
 #ifdef USE_TRENDS
-				printf("<A HREF='%s?host=%s'>²é¿´Ö÷»úµÄÇ÷ÊÆ</A><BR>\n", TRENDS_CGI, url_encode(host_name));
+				printf("<A HREF='%s?host=%s'>æŸ¥çœ‹ä¸»æœºçš„è¶‹åŠ¿</A><BR>\n", TRENDS_CGI, url_encode(host_name));
 #endif
 #ifdef USE_HISTOGRAM
-				printf("<A HREF='%s?host=%s'>²é¿´Ö÷»úµÄ¸æ¾¯Öù×´Í¼</A><BR>\n", HISTOGRAM_CGI, url_encode(host_name));
+				printf("<A HREF='%s?host=%s'>æŸ¥çœ‹ä¸»æœºçš„å‘Šè­¦æŸ±çŠ¶å›¾</A><BR>\n", HISTOGRAM_CGI, url_encode(host_name));
 #endif
-				printf("<A HREF='%s?host=%s&show_log_entries'>²é¿´Ö÷»úµÄ¿ÉÓÃĞÔ±¨¸æ</A><BR>\n", AVAIL_CGI, url_encode(host_name));
-				printf("<A HREF='%s?host=%s'>²é¿´Ö÷»úµÄÍ¨ÖªĞÅÏ¢</A>\n", NOTIFICATIONS_CGI, url_encode(host_name));
+				printf("<A HREF='%s?host=%s&show_log_entries'>æŸ¥çœ‹ä¸»æœºçš„å¯ç”¨æ€§æŠ¥å‘Š</A><BR>\n", AVAIL_CGI, url_encode(host_name));
+				printf("<A HREF='%s?host=%s'>æŸ¥çœ‹ä¸»æœºçš„é€šçŸ¥ä¿¡æ¯</A>\n", NOTIFICATIONS_CGI, url_encode(host_name));
 				}
 			else if(display_type == DISPLAY_SERVICE_INFO) {
 				printf("<A HREF='%s?host=%s&", HISTORY_CGI, url_encode(host_name));
-				printf("service=%s'>²é¿´·şÎñµÄ¸æ¾¯ÀúÊ·</A><BR>\n", url_encode(service_desc));
+				printf("service=%s'>æŸ¥çœ‹æœåŠ¡çš„å‘Šè­¦å†å²</A><BR>\n", url_encode(service_desc));
 #ifdef USE_TRENDS
 				printf("<A HREF='%s?host=%s&", TRENDS_CGI, url_encode(host_name));
-				printf("service=%s'>²é¿´·şÎñµÄÇ÷ÊÆ</A><BR>\n", url_encode(service_desc));
+				printf("service=%s'>æŸ¥çœ‹æœåŠ¡çš„è¶‹åŠ¿</A><BR>\n", url_encode(service_desc));
 #endif
 #ifdef USE_HISTOGRAM
 				printf("<A HREF='%s?host=%s&", HISTOGRAM_CGI, url_encode(host_name));
-				printf("service=%s'>²é¿´·şÎñµÄ¸æ¾¯Öù×´Í¼</A><BR>\n", url_encode(service_desc));
+				printf("service=%s'>æŸ¥çœ‹æœåŠ¡çš„å‘Šè­¦æŸ±çŠ¶å›¾</A><BR>\n", url_encode(service_desc));
 #endif
 				printf("<A HREF='%s?host=%s&", AVAIL_CGI, url_encode(host_name));
-				printf("service=%s&show_log_entries'>²é¿´·şÎñµÄ¿ÉÓÃĞÔ±¨¸æ</A><BR>\n", url_encode(service_desc));
+				printf("service=%s&show_log_entries'>æŸ¥çœ‹æœåŠ¡çš„å¯ç”¨æ€§æŠ¥å‘Š</A><BR>\n", url_encode(service_desc));
 				printf("<A HREF='%s?host=%s&", NOTIFICATIONS_CGI, url_encode(host_name));
-				printf("service=%s'>²é¿´·şÎñµÄÍ¨ÖªĞÅÏ¢</A>\n", url_encode(service_desc));
+				printf("service=%s'>æŸ¥çœ‹æœåŠ¡çš„é€šçŸ¥ä¿¡æ¯</A>\n", url_encode(service_desc));
 				}
 			else if(display_type == DISPLAY_HOSTGROUP_INFO) {
-				printf("<A HREF='%s?hostgroup=%s&style=detail'>²é¿´Ö÷»ú×éµÄÏêÏ¸×´Ì¬</A><BR>\n", STATUS_CGI, url_encode(hostgroup_name));
-				printf("<A HREF='%s?hostgroup=%s&style=overview'>²é¿´Ö÷»ú×éµÄ¼òÒª×´Ì¬</A><BR>\n", STATUS_CGI, url_encode(hostgroup_name));
-				printf("<A HREF='%s?hostgroup=%s&style=grid'>²é¿´Ö÷»ú×éµÄ×´Ì¬Íø¸ñ</A><BR>\n", STATUS_CGI, url_encode(hostgroup_name));
-				printf("<A HREF='%s?hostgroup=%s'>²é¿´Ö÷»ú×éµÄ¿ÉÓÃĞÔ±¨¸æ</A><BR>\n", AVAIL_CGI, url_encode(hostgroup_name));
+				printf("<A HREF='%s?hostgroup=%s&style=detail'>æŸ¥çœ‹ä¸»æœºç»„çš„è¯¦ç»†çŠ¶æ€</A><BR>\n", STATUS_CGI, url_encode(hostgroup_name));
+				printf("<A HREF='%s?hostgroup=%s&style=overview'>æŸ¥çœ‹ä¸»æœºç»„çš„ç®€è¦çŠ¶æ€</A><BR>\n", STATUS_CGI, url_encode(hostgroup_name));
+				printf("<A HREF='%s?hostgroup=%s&style=grid'>æŸ¥çœ‹ä¸»æœºç»„çš„çŠ¶æ€ç½‘æ ¼</A><BR>\n", STATUS_CGI, url_encode(hostgroup_name));
+				printf("<A HREF='%s?hostgroup=%s'>æŸ¥çœ‹ä¸»æœºç»„çš„å¯ç”¨æ€§æŠ¥å‘Š</A><BR>\n", AVAIL_CGI, url_encode(hostgroup_name));
 				}
 			else if(display_type == DISPLAY_SERVICEGROUP_INFO) {
-				printf("<A HREF='%s?servicegroup=%s&style=detail'>²é¿´·şÎñ×éµÄÏêÏ¸×´Ì¬</A><BR>\n", STATUS_CGI, url_encode(servicegroup_name));
-				printf("<A HREF='%s?servicegroup=%s&style=overview'>²é¿´·şÎñ×éµÄ¼òÒª×´Ì¬</A><BR>\n", STATUS_CGI, url_encode(servicegroup_name));
-				printf("<A HREF='%s?servicegroup=%s&style=grid'>²é¿´·şÎñ×éµÄ×´Ì¬Íø¸ñ</A><BR>\n", STATUS_CGI, url_encode(servicegroup_name));
-				printf("<A HREF='%s?servicegroup=%s'>²é¿´·şÎñ×éµÄ¿ÉÓÃĞÔ±¨¸æ</A><BR>\n", AVAIL_CGI, url_encode(servicegroup_name));
+				printf("<A HREF='%s?servicegroup=%s&style=detail'>æŸ¥çœ‹æœåŠ¡ç»„çš„è¯¦ç»†çŠ¶æ€</A><BR>\n", STATUS_CGI, url_encode(servicegroup_name));
+				printf("<A HREF='%s?servicegroup=%s&style=overview'>æŸ¥çœ‹æœåŠ¡ç»„çš„ç®€è¦çŠ¶æ€</A><BR>\n", STATUS_CGI, url_encode(servicegroup_name));
+				printf("<A HREF='%s?servicegroup=%s&style=grid'>æŸ¥çœ‹æœåŠ¡ç»„çš„çŠ¶æ€ç½‘æ ¼</A><BR>\n", STATUS_CGI, url_encode(servicegroup_name));
+				printf("<A HREF='%s?servicegroup=%s'>æŸ¥çœ‹æœåŠ¡ç»„çš„å¯ç”¨æ€§æŠ¥å‘Š</A><BR>\n", AVAIL_CGI, url_encode(servicegroup_name));
 				}
 			printf("</TD></TR>\n");
 			printf("</TABLE>\n");
@@ -266,7 +266,7 @@ int main(void) {
 		if((display_type == DISPLAY_HOST_INFO && temp_host != NULL) || (display_type == DISPLAY_SERVICE_INFO && temp_host != NULL && temp_service != NULL) || (display_type == DISPLAY_HOSTGROUP_INFO && temp_hostgroup != NULL) || (display_type == DISPLAY_SERVICEGROUP_INFO && temp_servicegroup != NULL)) {
 
 			if(display_type == DISPLAY_HOST_INFO) {
-				printf("<DIV CLASS='data'>Ö÷»ú</DIV>\n");
+				printf("<DIV CLASS='data'>ä¸»æœº</DIV>\n");
 				printf("<DIV CLASS='dataTitle'>%s</DIV>\n", temp_host->alias);
 				printf("<DIV CLASS='dataTitle'>(%s)</DIV><BR>\n", temp_host->name);
 
@@ -278,7 +278,7 @@ int main(void) {
 					printf("<BR>");
 					}
 
-				printf("<DIV CLASS='data'>ÊôÓÚ</DIV><DIV CLASS='dataTitle'>");
+				printf("<DIV CLASS='data'>å±äº</DIV><DIV CLASS='dataTitle'>");
 				for(temp_hostgroup = hostgroup_list; temp_hostgroup != NULL; temp_hostgroup = temp_hostgroup->next) {
 					if(is_host_member_of_hostgroup(temp_hostgroup, temp_host) == TRUE) {
 						if(found == TRUE)
@@ -294,10 +294,10 @@ int main(void) {
 				printf("<DIV CLASS='data'>%s</DIV>\n", temp_host->address);
 				}
 			if(display_type == DISPLAY_SERVICE_INFO) {
-				printf("<DIV CLASS='data'>·şÎñ</DIV><DIV CLASS='dataTitle'>%s</DIV><DIV CLASS='data'>Î»ÓÚÖ÷»ú</DIV>\n", service_desc);
+				printf("<DIV CLASS='data'>æœåŠ¡</DIV><DIV CLASS='dataTitle'>%s</DIV><DIV CLASS='data'>ä½äºä¸»æœº</DIV>\n", service_desc);
 				printf("<DIV CLASS='dataTitle'>%s</DIV>\n", temp_host->alias);
 				printf("<DIV CLASS='dataTitle'>(<A HREF='%s?type=%d&host=%s'>%s</a>)</DIV><BR>\n", EXTINFO_CGI, DISPLAY_HOST_INFO, url_encode(temp_host->name), temp_host->name);
-				printf("<DIV CLASS='data'>ÊôÓÚ</DIV><DIV CLASS='dataTitle'>");
+				printf("<DIV CLASS='data'>å±äº</DIV><DIV CLASS='dataTitle'>");
 				for(temp_servicegroup = servicegroup_list; temp_servicegroup != NULL; temp_servicegroup = temp_servicegroup->next) {
 					if(is_service_member_of_servicegroup(temp_servicegroup, temp_service) == TRUE) {
 						if(found == TRUE)
@@ -308,13 +308,13 @@ int main(void) {
 					}
 
 				if(found == FALSE)
-					printf("ÎŞ¸Ã·şÎñ×é.");
+					printf("æ— è¯¥æœåŠ¡ç»„.");
 				printf("</DIV><BR>\n");
 
 				printf("<DIV CLASS='data'>%s</DIV>\n", temp_host->address);
 				}
 			if(display_type == DISPLAY_HOSTGROUP_INFO) {
-				printf("<DIV CLASS='data'>Ö÷»ú×é</DIV>\n");
+				printf("<DIV CLASS='data'>ä¸»æœºç»„</DIV>\n");
 				printf("<DIV CLASS='dataTitle'>%s</DIV>\n", temp_hostgroup->alias);
 				printf("<DIV CLASS='dataTitle'>(%s)</DIV>\n", temp_hostgroup->group_name);
 				if(temp_hostgroup->notes != NULL) {
@@ -324,7 +324,7 @@ int main(void) {
 					}
 				}
 			if(display_type == DISPLAY_SERVICEGROUP_INFO) {
-				printf("<DIV CLASS='data'>·şÎñ×é</DIV>\n");
+				printf("<DIV CLASS='data'>æœåŠ¡ç»„</DIV>\n");
 				printf("<DIV CLASS='dataTitle'>%s</DIV>\n", temp_servicegroup->alias);
 				printf("<DIV CLASS='dataTitle'>(%s)</DIV>\n", temp_servicegroup->group_name);
 				if(temp_servicegroup->notes != NULL) {
@@ -382,8 +382,8 @@ int main(void) {
 				process_macros_r(mac, temp_host->action_url, &processed_string, 0);
 				printf("%s", processed_string);
 				free(processed_string);
-				printf("' TARGET='%s'><img src='%s%s' border=0 alt='¶Ô¸ÃÖ÷»úµÄ²ÉÈ¡¸ü¶àµÄ¼ì²â¶¯×÷' title='¶Ô¸ÃÖ÷»úµÄ²ÉÈ¡¸ü¶àµÄ¼ì²â¶¯×÷'></A>\n", (action_url_target == NULL) ? "_blank" : action_url_target, url_images_path, ACTION_ICON);
-				printf("<BR CLEAR=ALL><FONT SIZE=-1><I>¶îÍâµÄÖ÷»ú¶¯×÷</I></FONT><BR CLEAR=ALL><BR CLEAR=ALL>\n");
+				printf("' TARGET='%s'><img src='%s%s' border=0 alt='å¯¹è¯¥ä¸»æœºçš„é‡‡å–æ›´å¤šçš„æ£€æµ‹åŠ¨ä½œ' title='å¯¹è¯¥ä¸»æœºçš„é‡‡å–æ›´å¤šçš„æ£€æµ‹åŠ¨ä½œ'></A>\n", (action_url_target == NULL) ? "_blank" : action_url_target, url_images_path, ACTION_ICON);
+				printf("<BR CLEAR=ALL><FONT SIZE=-1><I>é¢å¤–çš„ä¸»æœºåŠ¨ä½œ</I></FONT><BR CLEAR=ALL><BR CLEAR=ALL>\n");
 				printf("</TD></TR>\n");
 				}
 			if(temp_host->notes_url != NULL && strcmp(temp_host->notes_url, "")) {
@@ -393,8 +393,8 @@ int main(void) {
 				printf("%s", processed_string);
 				free(processed_string);
 				/*print_extra_host_url(temp_host->name,temp_host->notes_url);*/
-				printf("' TARGET='%s'><img src='%s%s' border=0 alt='²é¿´¸ÃÖ÷»ú¸ü¶àµÄ×¢ÊÍ' title='²é¿´¸ÃÖ÷»ú¸ü¶àµÄ×¢ÊÍ'></A>\n", (notes_url_target == NULL) ? "_blank" : notes_url_target, url_images_path, NOTES_ICON);
-				printf("<BR CLEAR=ALL><FONT SIZE=-1><I>¶îÍâµÄ×¢ÊÍĞÅÏ¢</I></FONT><BR CLEAR=ALL><BR CLEAR=ALL>\n");
+				printf("' TARGET='%s'><img src='%s%s' border=0 alt='æŸ¥çœ‹è¯¥ä¸»æœºæ›´å¤šçš„æ³¨é‡Š' title='æŸ¥çœ‹è¯¥ä¸»æœºæ›´å¤šçš„æ³¨é‡Š'></A>\n", (notes_url_target == NULL) ? "_blank" : notes_url_target, url_images_path, NOTES_ICON);
+				printf("<BR CLEAR=ALL><FONT SIZE=-1><I>é¢å¤–çš„æ³¨é‡Šä¿¡æ¯</I></FONT><BR CLEAR=ALL><BR CLEAR=ALL>\n");
 				printf("</TD></TR>\n");
 				}
 			printf("</TABLE>\n");
@@ -407,16 +407,16 @@ int main(void) {
 				process_macros_r(mac, temp_service->action_url, &processed_string, 0);
 				printf("%s", processed_string);
 				free(processed_string);
-				printf("' TARGET='%s'><img src='%s%s' border=0 alt='¶Ô¸Ã·şÎñµÄ²ÉÈ¡¸ü¶àµÄ¼ì²â¶¯×÷' title='¶Ô¸Ã·şÎñµÄ²ÉÈ¡¸ü¶àµÄ¼ì²â¶¯×÷'></A>\n", (action_url_target == NULL) ? "_blank" : action_url_target, url_images_path, ACTION_ICON);
-				printf("<BR CLEAR=ALL><FONT SIZE=-1><I>¶îÍâµÄ·şÎñ¶¯×÷</I></FONT><BR CLEAR=ALL><BR CLEAR=ALL>\n");
+				printf("' TARGET='%s'><img src='%s%s' border=0 alt='å¯¹è¯¥æœåŠ¡çš„é‡‡å–æ›´å¤šçš„æ£€æµ‹åŠ¨ä½œ' title='å¯¹è¯¥æœåŠ¡çš„é‡‡å–æ›´å¤šçš„æ£€æµ‹åŠ¨ä½œ'></A>\n", (action_url_target == NULL) ? "_blank" : action_url_target, url_images_path, ACTION_ICON);
+				printf("<BR CLEAR=ALL><FONT SIZE=-1><I>é¢å¤–çš„æœåŠ¡åŠ¨ä½œ</I></FONT><BR CLEAR=ALL><BR CLEAR=ALL>\n");
 				}
 			if(temp_service->notes_url != NULL && strcmp(temp_service->notes_url, "")) {
 				printf("<A HREF='");
 				process_macros_r(mac, temp_service->notes_url, &processed_string, 0);
 				printf("%s", processed_string);
 				free(processed_string);
-				printf("' TARGET='%s'><img src='%s%s' border=0 alt='²é¿´¸Ã·şÎñ¸ü¶àµÄ×¢ÊÍ' title='²é¿´¸Ã·şÎñ¸ü¶àµÄ×¢ÊÍ'></A>\n", (notes_url_target == NULL) ? "_blank" : notes_url_target, url_images_path, NOTES_ICON);
-				printf("<BR CLEAR=ALL><FONT SIZE=-1><I>¶îÍâµÄ×¢ÊÍĞÅÏ¢</I></FONT><BR CLEAR=ALL><BR CLEAR=ALL>\n");
+				printf("' TARGET='%s'><img src='%s%s' border=0 alt='æŸ¥çœ‹è¯¥æœåŠ¡æ›´å¤šçš„æ³¨é‡Š' title='æŸ¥çœ‹è¯¥æœåŠ¡æ›´å¤šçš„æ³¨é‡Š'></A>\n", (notes_url_target == NULL) ? "_blank" : notes_url_target, url_images_path, NOTES_ICON);
+				printf("<BR CLEAR=ALL><FONT SIZE=-1><I>é¢å¤–çš„æ³¨é‡Šä¿¡æ¯</I></FONT><BR CLEAR=ALL><BR CLEAR=ALL>\n");
 				}
 			printf("</TD></TR></TABLE>\n");
 			}
@@ -427,16 +427,16 @@ int main(void) {
 				printf("<TR><TD ALIGN='right'>\n");
 				printf("<A HREF='");
 				print_extra_hostgroup_url(temp_hostgroup->group_name, temp_hostgroup->action_url);
-				printf("' TARGET='%s'><img src='%s%s' border=0 alt='¶ÔÖ÷»ú×é×·¼ÓÆäËû¶îÍâ¶¯×÷' title='¶ÔÖ÷»ú×é×·¼Ó¶îÍâ¶¯×÷'></A>\n", (action_url_target == NULL) ? "_blank" : action_url_target, url_images_path, ACTION_ICON);
-				printf("<BR CLEAR=ALL><FONT SIZE=-1><I>×·¼Ó¶¯×÷</I></FONT><BR CLEAR=ALL><BR CLEAR=ALL>\n");
+				printf("' TARGET='%s'><img src='%s%s' border=0 alt='å¯¹ä¸»æœºç»„è¿½åŠ å…¶ä»–é¢å¤–åŠ¨ä½œ' title='å¯¹ä¸»æœºç»„è¿½åŠ é¢å¤–åŠ¨ä½œ'></A>\n", (action_url_target == NULL) ? "_blank" : action_url_target, url_images_path, ACTION_ICON);
+				printf("<BR CLEAR=ALL><FONT SIZE=-1><I>è¿½åŠ åŠ¨ä½œ</I></FONT><BR CLEAR=ALL><BR CLEAR=ALL>\n");
 				printf("</TD></TR>\n");
 				}
 			if(temp_hostgroup->notes_url != NULL && strcmp(temp_hostgroup->notes_url, "")) {
 				printf("<TR><TD ALIGN='right'>\n");
 				printf("<A HREF='");
 				print_extra_hostgroup_url(temp_hostgroup->group_name, temp_hostgroup->notes_url);
-				printf("' TARGET='%s'><img src='%s%s' border=0 alt='²é¿´Ö÷»ú×éµÄ¶îÍâ×¢ÊÍ¼ÇÂ¼' title='²é¿´Ö÷»ú×éµÄ¶îÍâ×¢ÊÍ¼ÇÂ¼'></A>\n", (notes_url_target == NULL) ? "_blank" : notes_url_target, url_images_path, NOTES_ICON);
-				printf("<BR CLEAR=ALL><FONT SIZE=-1><I>¶îÍâµÄ¼ÇÂ¼</I></FONT><BR CLEAR=ALL><BR CLEAR=ALL>\n");
+				printf("' TARGET='%s'><img src='%s%s' border=0 alt='æŸ¥çœ‹ä¸»æœºç»„çš„é¢å¤–æ³¨é‡Šè®°å½•' title='æŸ¥çœ‹ä¸»æœºç»„çš„é¢å¤–æ³¨é‡Šè®°å½•'></A>\n", (notes_url_target == NULL) ? "_blank" : notes_url_target, url_images_path, NOTES_ICON);
+				printf("<BR CLEAR=ALL><FONT SIZE=-1><I>é¢å¤–çš„è®°å½•</I></FONT><BR CLEAR=ALL><BR CLEAR=ALL>\n");
 				printf("</TD></TR>\n");
 				}
 			printf("</TABLE>\n");
@@ -447,14 +447,14 @@ int main(void) {
 			if(temp_servicegroup->action_url != NULL && strcmp(temp_servicegroup->action_url, "")) {
 				printf("<A HREF='");
 				print_extra_servicegroup_url(temp_servicegroup->group_name, temp_servicegroup->action_url);
-				printf("' TARGET='%s'><img src='%s%s' border=0 alt='¶Ô·şÎñ×é×·¼Ó¶îÍâµÄ¶¯×÷' title='¶Ô·şÎñ×é×·¼Ó¶îÍâµÄ¶¯×÷'></A>\n", (action_url_target == NULL) ? "_blank" : action_url_target, url_images_path, ACTION_ICON);
-				printf("<BR CLEAR=ALL><FONT SIZE=-1><I>×·¼Ó¶¯×÷</I></FONT><BR CLEAR=ALL><BR CLEAR=ALL>\n");
+				printf("' TARGET='%s'><img src='%s%s' border=0 alt='å¯¹æœåŠ¡ç»„è¿½åŠ é¢å¤–çš„åŠ¨ä½œ' title='å¯¹æœåŠ¡ç»„è¿½åŠ é¢å¤–çš„åŠ¨ä½œ'></A>\n", (action_url_target == NULL) ? "_blank" : action_url_target, url_images_path, ACTION_ICON);
+				printf("<BR CLEAR=ALL><FONT SIZE=-1><I>è¿½åŠ åŠ¨ä½œ</I></FONT><BR CLEAR=ALL><BR CLEAR=ALL>\n");
 				}
 			if(temp_servicegroup->notes_url != NULL && strcmp(temp_servicegroup->notes_url, "")) {
 				printf("<A HREF='");
 				print_extra_servicegroup_url(temp_servicegroup->group_name, temp_servicegroup->notes_url);
-				printf("' TARGET='%s'><img src='%s%s' border=0 alt='²é¿´·şÎñ×éµÄ¶îÍâ×¢ÊÍ¼ÇÂ¼' title='²é¿´·şÎñ×éµÄ¶îÍâ×¢ÊÍ¼ÇÂ¼'></A>\n", (notes_url_target == NULL) ? "_blank" : notes_url_target, url_images_path, NOTES_ICON);
-				printf("<BR CLEAR=ALL><FONT SIZE=-1><I>×·¼ÓµÄ×¢ÊÍ¼ÇÂ¼</I></FONT><BR CLEAR=ALL><BR CLEAR=ALL>\n");
+				printf("' TARGET='%s'><img src='%s%s' border=0 alt='æŸ¥çœ‹æœåŠ¡ç»„çš„é¢å¤–æ³¨é‡Šè®°å½•' title='æŸ¥çœ‹æœåŠ¡ç»„çš„é¢å¤–æ³¨é‡Šè®°å½•'></A>\n", (notes_url_target == NULL) ? "_blank" : notes_url_target, url_images_path, NOTES_ICON);
+				printf("<BR CLEAR=ALL><FONT SIZE=-1><I>è¿½åŠ çš„æ³¨é‡Šè®°å½•</I></FONT><BR CLEAR=ALL><BR CLEAR=ALL>\n");
 				}
 			printf("</TABLE>\n");
 			}
@@ -754,8 +754,8 @@ void show_process_info(void) {
 	/* make sure the user has rights to view system information */
 	if(is_authorized_for_system_information(&current_authdata) == FALSE) {
 
-		printf("<P><DIV CLASS='errorMessage'>ÎŞÈ¨ÏŞ»ñÈ¡½ø³ÌĞÅÏ¢¡£</DIV></P>\n");
-		printf("<P><DIV CLASS='errorDescription'>Çë¼ì²éHTTPserverµÄÏà¹ØÅäÖÃ¡£</DIV></P>\n");
+		printf("<P><DIV CLASS='errorMessage'>æ— æƒé™è·å–è¿›ç¨‹ä¿¡æ¯ã€‚</DIV></P>\n");
+		printf("<P><DIV CLASS='errorDescription'>è¯·æ£€æŸ¥HTTPserverçš„ç›¸å…³é…ç½®ã€‚</DIV></P>\n");
 
 		return;
 		}
@@ -766,62 +766,62 @@ void show_process_info(void) {
 	printf("<TABLE BORDER=0 CELLPADDING=20>\n");
 	printf("<TR><TD VALIGN=TOP>\n");
 
-	printf("<DIV CLASS='dataTitle'>½ø³ÌĞÅÏ¢</DIV>\n");
+	printf("<DIV CLASS='dataTitle'>è¿›ç¨‹ä¿¡æ¯</DIV>\n");
 
 	printf("<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=0 CLASS='data'>\n");
 	printf("<TR><TD class='stateInfoTable1'>\n");
 	printf("<TABLE BORDER=0>\n");
 
 	/* program version */
-	printf("<TR><TD CLASS='dataVar'>³ÌĞò°æ±¾ºÅ£º</TD><TD CLASS='dataVal'>%s</TD></TR>\n", PROGRAM_VERSION);
+	printf("<TR><TD CLASS='dataVar'>ç¨‹åºç‰ˆæœ¬å·ï¼š</TD><TD CLASS='dataVal'>%s</TD></TR>\n", PROGRAM_VERSION);
 
 	/* program start time */
 	get_time_string(&program_start, date_time, (int)sizeof(date_time), SHORT_DATE_TIME);
-	printf("<TR><TD CLASS='dataVar'>³ÌĞò¿ªÊ¼Ê±¼ä:</TD><TD CLASS='dataVal'>%s</TD></TR>\n", date_time);
+	printf("<TR><TD CLASS='dataVar'>ç¨‹åºå¼€å§‹æ—¶é—´:</TD><TD CLASS='dataVal'>%s</TD></TR>\n", date_time);
 
 	/* total running time */
 	time(&current_time);
 	run_time = (unsigned long)(current_time - program_start);
 	get_time_breakdown(run_time, &days, &hours, &minutes, &seconds);
-	sprintf(run_time_string, "%dÈÕ %dÊ± %d·Ö %dÃë", days, hours, minutes, seconds);
-	printf("<TR><TD CLASS='dataVar'>¹²ÔËĞĞÊ±¼ä:</TD><TD CLASS='dataVal'>%s</TD></TR>\n", run_time_string);
+	sprintf(run_time_string, "%dæ—¥ %dæ—¶ %dåˆ† %dç§’", days, hours, minutes, seconds);
+	printf("<TR><TD CLASS='dataVar'>å…±è¿è¡Œæ—¶é—´:</TD><TD CLASS='dataVal'>%s</TD></TR>\n", run_time_string);
 
 	/* last log file rotation */
 	get_time_string(&last_log_rotation, date_time, (int)sizeof(date_time), SHORT_DATE_TIME);
-	printf("<TR><TD CLASS='dataVar'>×î½üµÄÈÕÖ¾»Ø×ª:</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (last_log_rotation == (time_t)0) ? "Î´Öª(N/A)" : date_time);
+	printf("<TR><TD CLASS='dataVar'>æœ€è¿‘çš„æ—¥å¿—å›è½¬:</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (last_log_rotation == (time_t)0) ? "æœªçŸ¥(N/A)" : date_time);
 
 	/* PID */
-	printf("<TR><TD CLASS='dataVar'>Nagios½ø³ÌID(PID)</TD><TD CLASS='dataVal'>%d</TD></TR>\n", nagios_pid);
+	printf("<TR><TD CLASS='dataVar'>Nagiosè¿›ç¨‹ID(PID)</TD><TD CLASS='dataVal'>%d</TD></TR>\n", nagios_pid);
 
 	/* notifications enabled */
-	printf("<TR><TD CLASS='dataVar'>Í¨ÖªµÄÆôÓÃ×´Ì¬?</TD><TD CLASS='dataVal'><DIV CLASS='notifications%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (enable_notifications == TRUE) ? "ENABLED" : "DISABLED", (enable_notifications == TRUE) ? "ÆôÓÃ" : "½ûÓÃ");
+	printf("<TR><TD CLASS='dataVar'>é€šçŸ¥çš„å¯ç”¨çŠ¶æ€?</TD><TD CLASS='dataVal'><DIV CLASS='notifications%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (enable_notifications == TRUE) ? "ENABLED" : "DISABLED", (enable_notifications == TRUE) ? "å¯ç”¨" : "ç¦ç”¨");
 
 	/* service check execution enabled */
-	printf("<TR><TD CLASS='dataVar'>·şÎñ¼ì²éÊÇ·ñÖ´ĞĞ?</TD><TD CLASS='dataVal'><DIV CLASS='checks%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (execute_service_checks == TRUE) ? "ENABLED" : "DISABLED", (execute_service_checks == TRUE) ? "ÊÇ" : "·ñ");
+	printf("<TR><TD CLASS='dataVar'>æœåŠ¡æ£€æŸ¥æ˜¯å¦æ‰§è¡Œ?</TD><TD CLASS='dataVal'><DIV CLASS='checks%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (execute_service_checks == TRUE) ? "ENABLED" : "DISABLED", (execute_service_checks == TRUE) ? "æ˜¯" : "å¦");
 
 	/* passive service check acceptance */
-	printf("<TR><TD CLASS='dataVar'>±»¶¯·şÎñ¼ì²éÊÇ·ñ½ÓÊÜ?</TD><TD CLASS='dataVal'><DIV CLASS='checks%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (accept_passive_service_checks == TRUE) ? "ENABLED" : "DISABLED", (accept_passive_service_checks == TRUE) ? "ÊÇ" : "·ñ");
+	printf("<TR><TD CLASS='dataVar'>è¢«åŠ¨æœåŠ¡æ£€æŸ¥æ˜¯å¦æ¥å—?</TD><TD CLASS='dataVal'><DIV CLASS='checks%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (accept_passive_service_checks == TRUE) ? "ENABLED" : "DISABLED", (accept_passive_service_checks == TRUE) ? "æ˜¯" : "å¦");
 
 	/* host check execution enabled */
-	printf("<TR><TD CLASS='dataVar'>Ö÷»ú¼ì²éÊÇ·ñÖ´ĞĞ?</TD><TD CLASS='dataVal'><DIV CLASS='checks%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (execute_host_checks == TRUE) ? "ENABLED" : "DISABLED", (execute_host_checks == TRUE) ? "ÊÇ" : "·ñ");
+	printf("<TR><TD CLASS='dataVar'>ä¸»æœºæ£€æŸ¥æ˜¯å¦æ‰§è¡Œ?</TD><TD CLASS='dataVal'><DIV CLASS='checks%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (execute_host_checks == TRUE) ? "ENABLED" : "DISABLED", (execute_host_checks == TRUE) ? "æ˜¯" : "å¦");
 
 	/* passive host check acceptance */
-	printf("<TR><TD CLASS='dataVar'>±»¶¯Ö÷»ú¼ì²éÊÇ·ñ½ÓÊÜ?</TD><TD CLASS='dataVal'><DIV CLASS='checks%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (accept_passive_host_checks == TRUE) ? "ENABLED" : "DISABLED", (accept_passive_host_checks == TRUE) ? "ÊÇ" : "·ñ");
+	printf("<TR><TD CLASS='dataVar'>è¢«åŠ¨ä¸»æœºæ£€æŸ¥æ˜¯å¦æ¥å—?</TD><TD CLASS='dataVal'><DIV CLASS='checks%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (accept_passive_host_checks == TRUE) ? "ENABLED" : "DISABLED", (accept_passive_host_checks == TRUE) ? "æ˜¯" : "å¦");
 
 	/* event handlers enabled */
-	printf("<TR><TD CLASS='dataVar'>ÊÂ¼ş´¦ÀíÊÇ·ñÆôÓÃ?</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (enable_event_handlers == TRUE) ? "ÆôÓÃ" : "½ûÓÃ");
+	printf("<TR><TD CLASS='dataVar'>äº‹ä»¶å¤„ç†æ˜¯å¦å¯ç”¨?</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (enable_event_handlers == TRUE) ? "å¯ç”¨" : "ç¦ç”¨");
 
 	/* obsessing over services */
-	printf("<TR><TD CLASS='dataVar'>Obsessing Over·şÎñ?</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (obsess_over_services == TRUE) ? "ÊÇ" : "·ñ");
+	printf("<TR><TD CLASS='dataVar'>Obsessing OveræœåŠ¡?</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (obsess_over_services == TRUE) ? "æ˜¯" : "å¦");
 
 	/* obsessing over hosts */
-	printf("<TR><TD CLASS='dataVar'>Obsessing OverÖ÷»ú?</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (obsess_over_hosts == TRUE) ? "ÊÇ" : "·ñ");
+	printf("<TR><TD CLASS='dataVar'>Obsessing Overä¸»æœº?</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (obsess_over_hosts == TRUE) ? "æ˜¯" : "å¦");
 
 	/* flap detection enabled */
-	printf("<TR><TD CLASS='dataVar'>¶¶¶¯¼à²âÊÇ·ñÆôÓÃ?</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (enable_flap_detection == TRUE) ? "ÆôÓÃ" : "½ûÓÃ");
+	printf("<TR><TD CLASS='dataVar'>æŠ–åŠ¨ç›‘æµ‹æ˜¯å¦å¯ç”¨?</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (enable_flap_detection == TRUE) ? "å¯ç”¨" : "ç¦ç”¨");
 
 	/* process performance data */
-	printf("<TR><TD CLASS='dataVar'>ĞÔÄÜÊı¾İÊÇ·ñ¿ªÊ¼´¦Àí?</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (process_performance_data == TRUE) ? "ÊÇ" : "·ñ");
+	printf("<TR><TD CLASS='dataVar'>æ€§èƒ½æ•°æ®æ˜¯å¦å¼€å§‹å¤„ç†?</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (process_performance_data == TRUE) ? "æ˜¯" : "å¦");
 
 	printf("</TABLE>\n");
 	printf("</TD></TR>\n");
@@ -830,7 +830,7 @@ void show_process_info(void) {
 
 	printf("</TD><TD VALIGN=TOP>\n");
 
-	printf("<DIV CLASS='commandTitle'>½ø³ÌÃüÁî</DIV>\n");
+	printf("<DIV CLASS='commandTitle'>è¿›ç¨‹å‘½ä»¤</DIV>\n");
 
 	printf("<TABLE BORDER=1 CELLPADDING=0 CELLSPACING=0 CLASS='command'>\n");
 	printf("<TR><TD>\n");
@@ -839,64 +839,64 @@ void show_process_info(void) {
 		printf("<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0 CLASS='command'>\n");
 
 #ifndef DUMMY_INSTALL
-		printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='¹Ø±ÕNagios½ø³Ì' TITLE='¹Ø±ÕNagios½ø³Ì'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>¹Ø±ÕNagios½ø³Ì</a></td></tr>\n", url_images_path, STOP_ICON, COMMAND_CGI, CMD_SHUTDOWN_PROCESS);
-		printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='Nagios½ø³ÌÖØÆô' TITLE='Nagios½ø³ÌÖØÆô'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>Nagios½ø³ÌÖØÆô</a></td></tr>\n", url_images_path, RESTART_ICON, COMMAND_CGI, CMD_RESTART_PROCESS);
+		printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='å…³é—­Nagiosè¿›ç¨‹' TITLE='å…³é—­Nagiosè¿›ç¨‹'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>å…³é—­Nagiosè¿›ç¨‹</a></td></tr>\n", url_images_path, STOP_ICON, COMMAND_CGI, CMD_SHUTDOWN_PROCESS);
+		printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='Nagiosè¿›ç¨‹é‡å¯' TITLE='Nagiosè¿›ç¨‹é‡å¯'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>Nagiosè¿›ç¨‹é‡å¯</a></td></tr>\n", url_images_path, RESTART_ICON, COMMAND_CGI, CMD_RESTART_PROCESS);
 #endif
 
 		if(enable_notifications == TRUE)
-			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='Í¨Öª±»½ûÓÃ' TITLE='Í¨Öª±»½ûÓÃ'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>Í¨Öª±»½ûÓÃ</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_NOTIFICATIONS);
+			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='é€šçŸ¥è¢«ç¦ç”¨' TITLE='é€šçŸ¥è¢«ç¦ç”¨'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>é€šçŸ¥è¢«ç¦ç”¨</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_NOTIFICATIONS);
 		else
-			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='Í¨Öª±»ÆôÓÃ' TITLE='Í¨Öª±»ÆôÓÃ'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>Í¨Öª±»ÆôÓÃ</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_NOTIFICATIONS);
+			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='é€šçŸ¥è¢«å¯ç”¨' TITLE='é€šçŸ¥è¢«å¯ç”¨'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>é€šçŸ¥è¢«å¯ç”¨</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_NOTIFICATIONS);
 
 		if(execute_service_checks == TRUE)
-			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='Í£Ö¹·şÎñ¼ì²é' TITLE='Í£Ö¹·şÎñ¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>Í£Ö¹·şÎñ¼ì²é</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_STOP_EXECUTING_SVC_CHECKS);
+			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='åœæ­¢æœåŠ¡æ£€æŸ¥' TITLE='åœæ­¢æœåŠ¡æ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>åœæ­¢æœåŠ¡æ£€æŸ¥</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_STOP_EXECUTING_SVC_CHECKS);
 		else
-			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='¿ªÊ¼·şÎñ¼ì²é' TITLE='¿ªÊ¼·şÎñ¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>¿ªÊ¼·şÎñ¼ì²é</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_START_EXECUTING_SVC_CHECKS);
+			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='å¼€å§‹æœåŠ¡æ£€æŸ¥' TITLE='å¼€å§‹æœåŠ¡æ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>å¼€å§‹æœåŠ¡æ£€æŸ¥</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_START_EXECUTING_SVC_CHECKS);
 
 		if(accept_passive_service_checks == TRUE)
-			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='Í£Ö¹½ÓÊÜ±»¶¯·şÎñ¼ì²é' TITLE='Í£Ö¹½ÓÊÜ±»¶¯·şÎñ¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>Í£Ö¹½ÓÊÜ±»¶¯·şÎñ¼ì²é</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_STOP_ACCEPTING_PASSIVE_SVC_CHECKS);
+			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='åœæ­¢æ¥å—è¢«åŠ¨æœåŠ¡æ£€æŸ¥' TITLE='åœæ­¢æ¥å—è¢«åŠ¨æœåŠ¡æ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>åœæ­¢æ¥å—è¢«åŠ¨æœåŠ¡æ£€æŸ¥</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_STOP_ACCEPTING_PASSIVE_SVC_CHECKS);
 		else
-			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='¿ªÊ¼½ÓÊÜ±»¶¯·şÎñ¼ì²é' TITLE='¿ªÊ¼½ÓÊÜ±»¶¯·şÎñ¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>¿ªÊ¼½ÓÊÜ±»¶¯·şÎñ¼ì²é</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_START_ACCEPTING_PASSIVE_SVC_CHECKS);
+			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='å¼€å§‹æ¥å—è¢«åŠ¨æœåŠ¡æ£€æŸ¥' TITLE='å¼€å§‹æ¥å—è¢«åŠ¨æœåŠ¡æ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>å¼€å§‹æ¥å—è¢«åŠ¨æœåŠ¡æ£€æŸ¥</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_START_ACCEPTING_PASSIVE_SVC_CHECKS);
 
 		if(execute_host_checks == TRUE)
-			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='Í£Ö¹Ö÷»ú¼ì²é' TITLE='Í£Ö¹Ö÷»ú¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>Í£Ö¹Ö÷»ú¼ì²é</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_STOP_EXECUTING_HOST_CHECKS);
+			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='åœæ­¢ä¸»æœºæ£€æŸ¥' TITLE='åœæ­¢ä¸»æœºæ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>åœæ­¢ä¸»æœºæ£€æŸ¥</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_STOP_EXECUTING_HOST_CHECKS);
 		else
-			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='¿ªÊ¼Ö÷»ú¼ì²é' TITLE='¿ªÊ¼Ö÷»ú¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>¿ªÊ¼Ö÷»ú¼ì²é</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_START_EXECUTING_HOST_CHECKS);
+			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='å¼€å§‹ä¸»æœºæ£€æŸ¥' TITLE='å¼€å§‹ä¸»æœºæ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>å¼€å§‹ä¸»æœºæ£€æŸ¥</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_START_EXECUTING_HOST_CHECKS);
 
 		if(accept_passive_host_checks == TRUE)
-			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='Í£Ö¹½ÓÊÜ±»¶¯·şÎñ¼ì²é' TITLE='Í£Ö¹½ÓÊÜ±»¶¯·şÎñ¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>Í£Ö¹½ÓÊÜ±»¶¯·şÎñ¼ì²é</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_STOP_ACCEPTING_PASSIVE_HOST_CHECKS);
+			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='åœæ­¢æ¥å—è¢«åŠ¨æœåŠ¡æ£€æŸ¥' TITLE='åœæ­¢æ¥å—è¢«åŠ¨æœåŠ¡æ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>åœæ­¢æ¥å—è¢«åŠ¨æœåŠ¡æ£€æŸ¥</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_STOP_ACCEPTING_PASSIVE_HOST_CHECKS);
 		else
-			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='¿ªÊ¼½ÓÊÜ±»¶¯·şÎñ¼ì²é' TITLE='¿ªÊ¼½ÓÊÜ±»¶¯·şÎñ¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>¿ªÊ¼½ÓÊÜ±»¶¯·şÎñ¼ì²é</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_START_ACCEPTING_PASSIVE_HOST_CHECKS);
+			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='å¼€å§‹æ¥å—è¢«åŠ¨æœåŠ¡æ£€æŸ¥' TITLE='å¼€å§‹æ¥å—è¢«åŠ¨æœåŠ¡æ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>å¼€å§‹æ¥å—è¢«åŠ¨æœåŠ¡æ£€æŸ¥</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_START_ACCEPTING_PASSIVE_HOST_CHECKS);
 
 		if(enable_event_handlers == TRUE)
-			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='ÊÂ¼ş´¦Àí±»½ûÓÃ' TITLE='ÊÂ¼ş´¦Àí±»½ûÓÃ'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>ÊÂ¼ş´¦Àí±»½ûÓÃ</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_EVENT_HANDLERS);
+			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='äº‹ä»¶å¤„ç†è¢«ç¦ç”¨' TITLE='äº‹ä»¶å¤„ç†è¢«ç¦ç”¨'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>äº‹ä»¶å¤„ç†è¢«ç¦ç”¨</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_EVENT_HANDLERS);
 		else
-			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='ÊÂ¼ş´¦Àí±»ÆôÓÃ' TITLE='ÊÂ¼ş´¦Àí±»ÆôÓÃ'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>ÊÂ¼ş´¦Àí±»ÆôÓÃ</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_EVENT_HANDLERS);
+			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='äº‹ä»¶å¤„ç†è¢«å¯ç”¨' TITLE='äº‹ä»¶å¤„ç†è¢«å¯ç”¨'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>äº‹ä»¶å¤„ç†è¢«å¯ç”¨</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_EVENT_HANDLERS);
 
 		if(obsess_over_services == TRUE)
-			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='Í£Ö¹Obsessing Over·şÎñ' TITLE='Í£Ö¹Obsessing Over·şÎñ'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>Í£Ö¹Obsessing Over·şÎñ</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_STOP_OBSESSING_OVER_SVC_CHECKS);
+			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='åœæ­¢Obsessing OveræœåŠ¡' TITLE='åœæ­¢Obsessing OveræœåŠ¡'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>åœæ­¢Obsessing OveræœåŠ¡</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_STOP_OBSESSING_OVER_SVC_CHECKS);
 		else
-			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='Æô¶¯Obsessing Over·şÎñ' TITLE='Æô¶¯Obsessing Over·şÎñ'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>Æô¶¯Obsessing Over·şÎñ</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_START_OBSESSING_OVER_SVC_CHECKS);
+			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='å¯åŠ¨Obsessing OveræœåŠ¡' TITLE='å¯åŠ¨Obsessing OveræœåŠ¡'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>å¯åŠ¨Obsessing OveræœåŠ¡</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_START_OBSESSING_OVER_SVC_CHECKS);
 
 		if(obsess_over_hosts == TRUE)
-			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='Í£Ö¹Obsessing OverÖ÷»ú' TITLE='Í£Ö¹Obsessing OverÖ÷»ú'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>Í£Ö¹Obsessing OverÖ÷»ú</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_STOP_OBSESSING_OVER_HOST_CHECKS);
+			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='åœæ­¢Obsessing Overä¸»æœº' TITLE='åœæ­¢Obsessing Overä¸»æœº'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>åœæ­¢Obsessing Overä¸»æœº</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_STOP_OBSESSING_OVER_HOST_CHECKS);
 		else
-			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='Æô¶¯Obsessing OverÖ÷»ú' TITLE='Æô¶¯Obsessing OverÖ÷»ú'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>Æô¶¯Obsessing OverÖ÷»ú</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_START_OBSESSING_OVER_HOST_CHECKS);
+			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='å¯åŠ¨Obsessing Overä¸»æœº' TITLE='å¯åŠ¨Obsessing Overä¸»æœº'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>å¯åŠ¨Obsessing Overä¸»æœº</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_START_OBSESSING_OVER_HOST_CHECKS);
 
 		if(enable_flap_detection == TRUE)
-			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='½ûÓÃ¶¶¶¯¼à²â' TITLE='½ûÓÃ¶¶¶¯¼à²â'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>½ûÓÃ¶¶¶¯¼à²â</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_FLAP_DETECTION);
+			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='ç¦ç”¨æŠ–åŠ¨ç›‘æµ‹' TITLE='ç¦ç”¨æŠ–åŠ¨ç›‘æµ‹'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>ç¦ç”¨æŠ–åŠ¨ç›‘æµ‹</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_FLAP_DETECTION);
 		else
-			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='ÆôÓÃ¶¶¶¯¼à²â' TITLE='ÆôÓÃ¶¶¶¯¼à²â'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>ÆôÓÃ¶¶¶¯¼à²â</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_FLAP_DETECTION);
+			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='å¯ç”¨æŠ–åŠ¨ç›‘æµ‹' TITLE='å¯ç”¨æŠ–åŠ¨ç›‘æµ‹'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>å¯ç”¨æŠ–åŠ¨ç›‘æµ‹</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_FLAP_DETECTION);
 
 		if(process_performance_data == TRUE)
-			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='½ûÓÃĞÔÄÜÊı¾İ' TITLE='½ûÓÃĞÔÄÜÊı¾İ'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>½ûÓÃĞÔÄÜÊı¾İ</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_PERFORMANCE_DATA);
+			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='ç¦ç”¨æ€§èƒ½æ•°æ®' TITLE='ç¦ç”¨æ€§èƒ½æ•°æ®'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>ç¦ç”¨æ€§èƒ½æ•°æ®</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_PERFORMANCE_DATA);
 		else
-			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='ÆôÓÃĞÔÄÜÊı¾İ' TITLE='ÆôÓÃĞÔÄÜÊı¾İ'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>ÆôÓÃĞÔÄÜÊı¾İ</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_PERFORMANCE_DATA);
+			printf("<TR CLASS='command'><TD><img src='%s%s' border=0 ALT='å¯ç”¨æ€§èƒ½æ•°æ®' TITLE='å¯ç”¨æ€§èƒ½æ•°æ®'></td><td CLASS='command'><a href='%s?cmd_typ=%d'>å¯ç”¨æ€§èƒ½æ•°æ®</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_PERFORMANCE_DATA);
 
 		printf("</TABLE>\n");
 		}
 	else {
-		printf("<DIV ALIGN=CENTER CLASS='infoMessage'>NagiosÎ´ÔËĞĞ£¬ÃüÁîÔİÊ±ÎŞĞ§¡£\n");
+		printf("<DIV ALIGN=CENTER CLASS='infoMessage'>Nagiosæœªè¿è¡Œï¼Œå‘½ä»¤æš‚æ—¶æ— æ•ˆã€‚\n");
 		printf("</DIV>\n");
 		}
 
@@ -932,8 +932,8 @@ void show_host_info(void) {
 	/* make sure the user has rights to view host information */
 	if(is_authorized_for_host(temp_host, &current_authdata) == FALSE) {
 
-		printf("<P><DIV CLASS='errorMessage'>ÎŞÈ¨²é¿´¸ÃÖ÷»úĞÅÏ¢¡£</DIV></P>\n");
-		printf("<P><DIV CLASS='errorDescription'>Çë¼ì²éHTTP·şÎñÆ÷¶Ô¸ÃCGIµÄÈÏÖ¤ÉèÖÃ</DIV></P>\n");
+		printf("<P><DIV CLASS='errorMessage'>æ— æƒæŸ¥çœ‹è¯¥ä¸»æœºä¿¡æ¯ã€‚</DIV></P>\n");
+		printf("<P><DIV CLASS='errorDescription'>è¯·æ£€æŸ¥HTTPæœåŠ¡å™¨å¯¹è¯¥CGIçš„è®¤è¯è®¾ç½®</DIV></P>\n");
 
 		return;
 		}
@@ -943,11 +943,11 @@ void show_host_info(void) {
 
 	/* make sure host information exists */
 	if(temp_host == NULL) {
-		printf("<P><DIV CLASS='errorMessage'>´íÎó: Ö÷»ú²»´æÔÚ¡£</DIV></P>>");
+		printf("<P><DIV CLASS='errorMessage'>é”™è¯¯: ä¸»æœºä¸å­˜åœ¨ã€‚</DIV></P>>");
 		return;
 		}
 	if(temp_hoststatus == NULL) {
-		printf("<P><DIV CLASS='errorMessage'>´íÎó: Ö÷»ú×´Ì¬ĞÅÏ¢²»´æÔÚ¡£</DIV></P");
+		printf("<P><DIV CLASS='errorMessage'>é”™è¯¯: ä¸»æœºçŠ¶æ€ä¿¡æ¯ä¸å­˜åœ¨ã€‚</DIV></P");
 		return;
 		}
 
@@ -958,10 +958,10 @@ void show_host_info(void) {
 
 	printf("<TD ALIGN=CENTER VALIGN=TOP CLASS='stateInfoPanel'>\n");
 
-	printf("<DIV CLASS='dataTitle'>Ö÷»ú×´Ì¬ĞÅÏ¢</DIV>\n");
+	printf("<DIV CLASS='dataTitle'>ä¸»æœºçŠ¶æ€ä¿¡æ¯</DIV>\n");
 
 	if(temp_hoststatus->has_been_checked == FALSE)
-		printf("<P><DIV ALIGN=CENTER>¸ÃÖ÷»úÉĞÎ´¼ì²é£¬×´Ì¬ĞÅÏ¢²»´æÔÚ¡£</DIV></P>\n");
+		printf("<P><DIV ALIGN=CENTER>è¯¥ä¸»æœºå°šæœªæ£€æŸ¥ï¼ŒçŠ¶æ€ä¿¡æ¯ä¸å­˜åœ¨ã€‚</DIV></P>\n");
 
 	else {
 
@@ -995,21 +995,21 @@ void show_host_info(void) {
 		state_duration[sizeof(state_duration) - 1] = '\x0';
 
 		if(temp_hoststatus->status == SD_HOST_UP) {
-			strcpy(state_string, "ÔËĞĞ");
+			strcpy(state_string, "è¿è¡Œ");
 			bg_class = "hostUP";
 			}
 		else if(temp_hoststatus->status == SD_HOST_DOWN) {
-			strcpy(state_string, "å´»ú");
+			strcpy(state_string, "å®•æœº");
 			bg_class = "hostDOWN";
 			}
 		else if(temp_hoststatus->status == SD_HOST_UNREACHABLE) {
-			strcpy(state_string, "²»¿É´ï");
+			strcpy(state_string, "ä¸å¯è¾¾");
 			bg_class = "hostUNREACHABLE";
 			}
 
-		printf("<TR><TD CLASS='dataVar'>µ±Ç°µÄÖ÷»ú×´Ì¬:</td><td CLASS='dataVal'><DIV CLASS='%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV>&nbsp;(for %s)%s</td></tr>\n", bg_class, state_string, state_duration, (temp_hoststatus->problem_has_been_acknowledged == TRUE) ? "&nbsp;&nbsp;(Has been acknowledged)" : "");
+		printf("<TR><TD CLASS='dataVar'>å½“å‰çš„ä¸»æœºçŠ¶æ€:</td><td CLASS='dataVal'><DIV CLASS='%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV>&nbsp;(for %s)%s</td></tr>\n", bg_class, state_string, state_duration, (temp_hoststatus->problem_has_been_acknowledged == TRUE) ? "&nbsp;&nbsp;(Has been acknowledged)" : "");
 
-		printf("<TR><TD CLASS='dataVar' VALIGN='top'>×´Ì¬ĞÅÏ¢:</td><td CLASS='dataVal'>%s", (temp_hoststatus->plugin_output == NULL) ? "" : html_encode(temp_hoststatus->plugin_output, TRUE));
+		printf("<TR><TD CLASS='dataVar' VALIGN='top'>çŠ¶æ€ä¿¡æ¯:</td><td CLASS='dataVal'>%s", (temp_hoststatus->plugin_output == NULL) ? "" : html_encode(temp_hoststatus->plugin_output, TRUE));
 		if(enable_splunk_integration == TRUE) {
 			printf("&nbsp;&nbsp;");
 			asprintf(&buf, "%s %s", temp_host->name, temp_hoststatus->plugin_output);
@@ -1020,41 +1020,41 @@ void show_host_info(void) {
 			printf("<BR>%s", html_encode(temp_hoststatus->long_plugin_output, TRUE));
 		printf("</TD></TR>\n");
 
-		printf("<TR><TD CLASS='dataVar' VALIGN='top'>ĞÔÄÜÊı¾İ:</td><td CLASS='dataVal'>%s</td></tr>\n", (temp_hoststatus->perf_data == NULL) ? "" : html_encode(temp_hoststatus->perf_data, TRUE));
+		printf("<TR><TD CLASS='dataVar' VALIGN='top'>æ€§èƒ½æ•°æ®:</td><td CLASS='dataVal'>%s</td></tr>\n", (temp_hoststatus->perf_data == NULL) ? "" : html_encode(temp_hoststatus->perf_data, TRUE));
 
-		printf("<TR><TD CLASS='dataVar'>µ±Ç°³¢ÊÔ´ÎÊı:</TD><TD CLASS='dataVal'>%d/%d", temp_hoststatus->current_attempt, temp_hoststatus->max_attempts);
-		printf("&nbsp;&nbsp;(%s ×´Ì¬)</TD></TR>\n", (temp_hoststatus->state_type == HARD_STATE) ? "Ó²Ì¬" : "ÈíÌ¬");
+		printf("<TR><TD CLASS='dataVar'>å½“å‰å°è¯•æ¬¡æ•°:</TD><TD CLASS='dataVal'>%d/%d", temp_hoststatus->current_attempt, temp_hoststatus->max_attempts);
+		printf("&nbsp;&nbsp;(%s çŠ¶æ€)</TD></TR>\n", (temp_hoststatus->state_type == HARD_STATE) ? "ç¡¬æ€" : "è½¯æ€");
 
 		get_time_string(&temp_hoststatus->last_check, date_time, (int)sizeof(date_time), SHORT_DATE_TIME);
-		printf("<TR><TD CLASS='dataVar'>×î½ü¼ì²éÊ±¼ä:</td><td CLASS='dataVal'>%s</td></tr>\n", date_time);
+		printf("<TR><TD CLASS='dataVar'>æœ€è¿‘æ£€æŸ¥æ—¶é—´:</td><td CLASS='dataVal'>%s</td></tr>\n", date_time);
 
-		printf("<TR><TD CLASS='dataVar'>¼ì²âÀàĞÍ:</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (temp_hoststatus->check_type == CHECK_TYPE_ACTIVE) ? "Ö÷¶¯Ê½" : "Ç¿ÆÈÊ½");
+		printf("<TR><TD CLASS='dataVar'>æ£€æµ‹ç±»å‹:</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (temp_hoststatus->check_type == CHECK_TYPE_ACTIVE) ? "ä¸»åŠ¨å¼" : "å¼ºè¿«å¼");
 
-		printf("<TR><TD CLASS='dataVar' NOWRAP>¼ì²âµÈ´ıÊ±¼ä£¯¼ì²âÊ±ÑÓ:</TD><TD CLASS='dataVal'>");
+		printf("<TR><TD CLASS='dataVar' NOWRAP>æ£€æµ‹ç­‰å¾…æ—¶é—´ï¼æ£€æµ‹æ—¶å»¶:</TD><TD CLASS='dataVal'>");
 		if(temp_hoststatus->check_type == CHECK_TYPE_ACTIVE)
 			printf("%.3f", temp_hoststatus->latency);
 		else
 			printf("N/A");
-		printf("&nbsp;/&nbsp;%.3f Ãë", temp_hoststatus->execution_time);
+		printf("&nbsp;/&nbsp;%.3f ç§’", temp_hoststatus->execution_time);
 		printf("</TD></TR>\n");
 
 		get_time_string(&temp_hoststatus->next_check, date_time, (int)sizeof(date_time), SHORT_DATE_TIME);
-		printf("<TR><TD CLASS='dataVar'>ÏÂÒ»´Î¼Æ»®Ö÷¶¯Ê½¼ì²âÊ±¼ä:&nbsp;&nbsp;</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (temp_hoststatus->checks_enabled && temp_hoststatus->next_check != (time_t)0 && temp_hoststatus->should_be_scheduled == TRUE) ? date_time : "N/A");
+		printf("<TR><TD CLASS='dataVar'>ä¸‹ä¸€æ¬¡è®¡åˆ’ä¸»åŠ¨å¼æ£€æµ‹æ—¶é—´:&nbsp;&nbsp;</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (temp_hoststatus->checks_enabled && temp_hoststatus->next_check != (time_t)0 && temp_hoststatus->should_be_scheduled == TRUE) ? date_time : "N/A");
 
 		get_time_string(&temp_hoststatus->last_state_change, date_time, (int)sizeof(date_time), SHORT_DATE_TIME);
-		printf("<TR><TD CLASS='dataVar'>×îºóÒ»´Î¼ì²â×´Ì¬±ä»¯Ê±¼ä:</td><td CLASS='dataVal'>%s</td></tr>\n", (temp_hoststatus->last_state_change == (time_t)0) ? "N/A" : date_time);
+		printf("<TR><TD CLASS='dataVar'>æœ€åä¸€æ¬¡æ£€æµ‹çŠ¶æ€å˜åŒ–æ—¶é—´:</td><td CLASS='dataVal'>%s</td></tr>\n", (temp_hoststatus->last_state_change == (time_t)0) ? "N/A" : date_time);
 
 		get_time_string(&temp_hoststatus->last_notification, date_time, (int)sizeof(date_time), SHORT_DATE_TIME);
-		printf("<TR><TD CLASS='dataVar'>×î½üÖ÷»úÍ¨Öª:</td><td CLASS='dataVal'>%s&nbsp;(notification %d)</td></tr>\n", (temp_hoststatus->last_notification == (time_t)0) ? "Î´Öª(N/A)" : date_time, temp_hoststatus->current_notification_number);
+		printf("<TR><TD CLASS='dataVar'>æœ€è¿‘ä¸»æœºé€šçŸ¥:</td><td CLASS='dataVal'>%s&nbsp;(notification %d)</td></tr>\n", (temp_hoststatus->last_notification == (time_t)0) ? "æœªçŸ¥(N/A)" : date_time, temp_hoststatus->current_notification_number);
 
-		printf("<TR><TD CLASS='dataVar'>¶¶¶¯ÊÇ·ñÖ´ĞĞ?</td><td CLASS='dataVal'>");
+		printf("<TR><TD CLASS='dataVar'>æŠ–åŠ¨æ˜¯å¦æ‰§è¡Œ?</td><td CLASS='dataVal'>");
 		if(temp_hoststatus->flap_detection_enabled == FALSE || enable_flap_detection == FALSE)
 			printf("N/A");
 		else
-			printf("<DIV CLASS='%sflapping'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV>&nbsp;¶¶¶¯Öµ(×´Ì¬±ä»¯ÂÊ %3.2f%%)", (temp_hoststatus->is_flapping == TRUE) ? "" : "not", (temp_hoststatus->is_flapping == TRUE) ? "¶¶¶¯ÖĞ" : "Î´¶¶¶¯", temp_hoststatus->percent_state_change);
+			printf("<DIV CLASS='%sflapping'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV>&nbsp;æŠ–åŠ¨å€¼(çŠ¶æ€å˜åŒ–ç‡ %3.2f%%)", (temp_hoststatus->is_flapping == TRUE) ? "" : "not", (temp_hoststatus->is_flapping == TRUE) ? "æŠ–åŠ¨ä¸­" : "æœªæŠ–åŠ¨", temp_hoststatus->percent_state_change);
 		printf("</td></tr>\n");
 
-		printf("<TR><TD CLASS='dataVar'>´¦ÓÚ¼Æ»®å´»úÊ±¼äÄÚ?</td><td CLASS='dataVal'><DIV CLASS='downtime%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></td></tr>\n", (temp_hoststatus->scheduled_downtime_depth > 0) ? "ACTIVE" : "INACTIVE", (temp_hoststatus->scheduled_downtime_depth > 0) ? "ÊÇ" : "Ã»ÓĞ");
+		printf("<TR><TD CLASS='dataVar'>å¤„äºè®¡åˆ’å®•æœºæ—¶é—´å†…?</td><td CLASS='dataVal'><DIV CLASS='downtime%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></td></tr>\n", (temp_hoststatus->scheduled_downtime_depth > 0) ? "ACTIVE" : "INACTIVE", (temp_hoststatus->scheduled_downtime_depth > 0) ? "æ˜¯" : "æ²¡æœ‰");
 
 		t = 0;
 		duration_error = FALSE;
@@ -1069,11 +1069,11 @@ void show_host_info(void) {
 		else if(temp_hoststatus->last_check == (time_t)0)
 			snprintf(status_age, sizeof(status_age) - 1, "N/A");
 		else
-			snprintf(status_age, sizeof(status_age) - 1, "%2dÌì %2dÊ± %2d·Ö %2dÃë", days, hours, minutes, seconds);
+			snprintf(status_age, sizeof(status_age) - 1, "%2då¤© %2dæ—¶ %2dåˆ† %2dç§’", days, hours, minutes, seconds);
 		status_age[sizeof(status_age) - 1] = '\x0';
 
 		get_time_string(&temp_hoststatus->last_update, date_time, (int)sizeof(date_time), SHORT_DATE_TIME);
-		printf("<TR><TD CLASS='dataVar'>×î½ü¸üĞÂ:</td><td CLASS='dataVal'>%s&nbsp;&nbsp;(%s ago)</td></tr>\n", (temp_hoststatus->last_update == (time_t)0) ? "Î´Öª(N/A)" : date_time, status_age);
+		printf("<TR><TD CLASS='dataVar'>æœ€è¿‘æ›´æ–°:</td><td CLASS='dataVal'>%s&nbsp;&nbsp;(%s ago)</td></tr>\n", (temp_hoststatus->last_update == (time_t)0) ? "æœªçŸ¥(N/A)" : date_time, status_age);
 
 		printf("</TABLE>\n");
 		printf("</TD></TR>\n");
@@ -1086,17 +1086,17 @@ void show_host_info(void) {
 		printf("<TR><TD class='stateInfoTable2'>\n");
 		printf("<TABLE BORDER=0>\n");
 
-		printf("<TR><TD CLASS='dataVar'>¿ªÆôÖ÷¶¯¼ì²é:</TD><TD CLASS='dataVal'><DIV CLASS='checks%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (temp_hoststatus->checks_enabled == TRUE) ? "ENABLED" : "DISABLED", (temp_hoststatus->checks_enabled == TRUE) ? "ENABLED" : "DISABLED");
+		printf("<TR><TD CLASS='dataVar'>å¼€å¯ä¸»åŠ¨æ£€æŸ¥:</TD><TD CLASS='dataVal'><DIV CLASS='checks%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (temp_hoststatus->checks_enabled == TRUE) ? "ENABLED" : "DISABLED", (temp_hoststatus->checks_enabled == TRUE) ? "ENABLED" : "DISABLED");
 
-		printf("<TR><TD CLASS='dataVar'>¿ªÆô±»¶¯¼ì²é:</TD><td CLASS='dataVal'><DIV CLASS='checks%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (temp_hoststatus->accept_passive_checks == TRUE) ? "ENABLED" : "DISABLED", (temp_hoststatus->accept_passive_checks) ? "ENABLED" : "DISABLED");
+		printf("<TR><TD CLASS='dataVar'>å¼€å¯è¢«åŠ¨æ£€æŸ¥:</TD><td CLASS='dataVal'><DIV CLASS='checks%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (temp_hoststatus->accept_passive_checks == TRUE) ? "ENABLED" : "DISABLED", (temp_hoststatus->accept_passive_checks) ? "ENABLED" : "DISABLED");
 
 		printf("<TR><TD CLASS='dataVar'>Obsessing:</TD><td CLASS='dataVal'><DIV CLASS='checks%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (temp_hoststatus->obsess == TRUE) ? "ENABLED" : "DISABLED", (temp_hoststatus->obsess) ? "ENABLED" : "DISABLED");
 
-		printf("<TR><TD CLASS='dataVar'>Í¨Öª:</td><td CLASS='dataVal'><DIV CLASS='notifications%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></td></tr>\n", (temp_hoststatus->notifications_enabled) ? "ENABLED" : "DISABLED", (temp_hoststatus->notifications_enabled) ? "ENABLED" : "DISABLED");
+		printf("<TR><TD CLASS='dataVar'>é€šçŸ¥:</td><td CLASS='dataVal'><DIV CLASS='notifications%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></td></tr>\n", (temp_hoststatus->notifications_enabled) ? "ENABLED" : "DISABLED", (temp_hoststatus->notifications_enabled) ? "ENABLED" : "DISABLED");
 
-		printf("<TR><TD CLASS='dataVar'>ÊÂ¼ş´¦Àí:</td><td CLASS='dataVal'><DIV CLASS='eventhandlers%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></td></tr>\n", (temp_hoststatus->event_handler_enabled) ? "ENABLED" : "DISABLED", (temp_hoststatus->event_handler_enabled) ? "ENABLED" : "DISABLED");
+		printf("<TR><TD CLASS='dataVar'>äº‹ä»¶å¤„ç†:</td><td CLASS='dataVal'><DIV CLASS='eventhandlers%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></td></tr>\n", (temp_hoststatus->event_handler_enabled) ? "ENABLED" : "DISABLED", (temp_hoststatus->event_handler_enabled) ? "ENABLED" : "DISABLED");
 
-		printf("<TR><TD CLASS='dataVar'>¶¶¶¯¼à²â:</td><td CLASS='dataVal'><DIV CLASS='flapdetection%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></td></tr>\n", (temp_hoststatus->flap_detection_enabled == TRUE) ? "ENABLED" : "DISABLED", (temp_hoststatus->flap_detection_enabled == TRUE) ? "ENABLED" : "DISABLED");
+		printf("<TR><TD CLASS='dataVar'>æŠ–åŠ¨ç›‘æµ‹:</td><td CLASS='dataVal'><DIV CLASS='flapdetection%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></td></tr>\n", (temp_hoststatus->flap_detection_enabled == TRUE) ? "ENABLED" : "DISABLED", (temp_hoststatus->flap_detection_enabled == TRUE) ? "ENABLED" : "DISABLED");
 
 		printf("</TABLE>\n");
 		printf("</TD></TR>\n");
@@ -1113,7 +1113,7 @@ void show_host_info(void) {
 
 	printf("<TD ALIGN=CENTER VALIGN=TOP CLASS='commandPanel'>\n");
 
-	printf("<DIV CLASS='commandTitle'>Ö÷»úÃüÁî</DIV>\n");
+	printf("<DIV CLASS='commandTitle'>ä¸»æœºå‘½ä»¤</DIV>\n");
 
 	printf("<TABLE BORDER='1' CELLPADDING=0 CELLSPACING=0><TR><TD>\n");
 
@@ -1121,67 +1121,67 @@ void show_host_info(void) {
 
 		printf("<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 CLASS='command'>\n");
 #ifdef USE_STATUSMAP
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÔÚµØÍ¼ÉÏ¶¨Î»Ö÷»ú' TITLE='ÔÚµØÍ¼ÉÏ¶¨Î»Ö÷»ú'></td><td CLASS='command'><a href='%s?host=%s'>ÔÚµØÍ¼ÉÏ¶¨Î»Ö÷»ú</a></td></tr>\n", url_images_path, STATUSMAP_ICON, STATUSMAP_CGI, url_encode(host_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='åœ¨åœ°å›¾ä¸Šå®šä½ä¸»æœº' TITLE='åœ¨åœ°å›¾ä¸Šå®šä½ä¸»æœº'></td><td CLASS='command'><a href='%s?host=%s'>åœ¨åœ°å›¾ä¸Šå®šä½ä¸»æœº</a></td></tr>\n", url_images_path, STATUSMAP_ICON, STATUSMAP_CGI, url_encode(host_name));
 #endif
 		if(temp_hoststatus->checks_enabled == TRUE) {
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='½ûÓÃ¸ÃÖ÷»úµÄÖ÷¶¯¼ì²é' TITLE='½ûÓÃ¸ÃÖ÷»úµÄÖ÷¶¯¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>½ûÓÃ¸ÃÖ÷»úµÄÖ÷¶¯¼ì²é</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_HOST_CHECK, url_encode(host_name));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ç¦ç”¨è¯¥ä¸»æœºçš„ä¸»åŠ¨æ£€æŸ¥' TITLE='ç¦ç”¨è¯¥ä¸»æœºçš„ä¸»åŠ¨æ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>ç¦ç”¨è¯¥ä¸»æœºçš„ä¸»åŠ¨æ£€æŸ¥</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_HOST_CHECK, url_encode(host_name));
 			}
 		else
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÆôÓÃ¸ÃÖ÷»úµÄÖ÷¶¯¼ì²é' TITLE='ÆôÓÃ¸ÃÖ÷»úµÄÖ÷¶¯¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>ÆôÓÃ¸ÃÖ÷»úµÄÖ÷¶¯¼ì²é</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_HOST_CHECK, url_encode(host_name));
-		printf("<tr CLASS='data'><td><img src='%s%s' border=0 ALT='ÖØ¶¨ÖÆÏÂ´ÎÖ÷»ú¼ì²â¼Æ»®Ê±¼ä' TITLE='ÖØ¶¨ÖÆÏÂ´ÎÖ÷»ú¼ì²â¼Æ»®'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s%s'>¶Ô¸ÃÖ÷»úÖØĞÂ¶¨ÖÆÏÂÒ»´ÎµÄ¼Æ»®¼ì²âÊ±¼ä</a></td></tr>\n", url_images_path, DELAY_ICON, COMMAND_CGI, CMD_SCHEDULE_HOST_CHECK, url_encode(host_name), (temp_hoststatus->checks_enabled == TRUE) ? "&force_check" : "");
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å¯ç”¨è¯¥ä¸»æœºçš„ä¸»åŠ¨æ£€æŸ¥' TITLE='å¯ç”¨è¯¥ä¸»æœºçš„ä¸»åŠ¨æ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>å¯ç”¨è¯¥ä¸»æœºçš„ä¸»åŠ¨æ£€æŸ¥</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_HOST_CHECK, url_encode(host_name));
+		printf("<tr CLASS='data'><td><img src='%s%s' border=0 ALT='é‡å®šåˆ¶ä¸‹æ¬¡ä¸»æœºæ£€æµ‹è®¡åˆ’æ—¶é—´' TITLE='é‡å®šåˆ¶ä¸‹æ¬¡ä¸»æœºæ£€æµ‹è®¡åˆ’'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s%s'>å¯¹è¯¥ä¸»æœºé‡æ–°å®šåˆ¶ä¸‹ä¸€æ¬¡çš„è®¡åˆ’æ£€æµ‹æ—¶é—´</a></td></tr>\n", url_images_path, DELAY_ICON, COMMAND_CGI, CMD_SCHEDULE_HOST_CHECK, url_encode(host_name), (temp_hoststatus->checks_enabled == TRUE) ? "&force_check" : "");
 
 		if(temp_hoststatus->accept_passive_checks == TRUE) {
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='Ìá½»¸ÃÖ÷»ú±»¶¯¼ì²é½á¹û' TITLE='Ìá½»¸ÃÖ÷»ú±»¶¯¼ì²é½á¹û'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>Ìá½»¸ÃÖ÷»ú±»¶¯¼ì²é½á¹û</a></td></tr>\n", url_images_path, PASSIVE_ICON, COMMAND_CGI, CMD_PROCESS_HOST_CHECK_RESULT, url_encode(host_name));
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='½ûÓÃ¸ÃÖ÷»ú½ÓÊÜ±»¶¯¼ì²é' TITLE='½ûÓÃ¸ÃÖ÷»ú½ÓÊÜ±»¶¯¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>½ûÓÃ¸ÃÖ÷»ú½ÓÊÜ±»¶¯¼ì²é</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_PASSIVE_HOST_CHECKS, url_encode(host_name));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='æäº¤è¯¥ä¸»æœºè¢«åŠ¨æ£€æŸ¥ç»“æœ' TITLE='æäº¤è¯¥ä¸»æœºè¢«åŠ¨æ£€æŸ¥ç»“æœ'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>æäº¤è¯¥ä¸»æœºè¢«åŠ¨æ£€æŸ¥ç»“æœ</a></td></tr>\n", url_images_path, PASSIVE_ICON, COMMAND_CGI, CMD_PROCESS_HOST_CHECK_RESULT, url_encode(host_name));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ç¦ç”¨è¯¥ä¸»æœºæ¥å—è¢«åŠ¨æ£€æŸ¥' TITLE='ç¦ç”¨è¯¥ä¸»æœºæ¥å—è¢«åŠ¨æ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>ç¦ç”¨è¯¥ä¸»æœºæ¥å—è¢«åŠ¨æ£€æŸ¥</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_PASSIVE_HOST_CHECKS, url_encode(host_name));
 			}
 		else
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÆôÓÃÓÃ¸ÃÖ÷»ú½ÓÊÜ±»¶¯¼ì²é' TITLE='ÆôÓÃÓÃ¸ÃÖ÷»ú½ÓÊÜ±»¶¯¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>ÆôÓÃÓÃ¸ÃÖ÷»ú½ÓÊÜ±»¶¯¼ì²é</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_PASSIVE_HOST_CHECKS, url_encode(host_name));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å¯ç”¨ç”¨è¯¥ä¸»æœºæ¥å—è¢«åŠ¨æ£€æŸ¥' TITLE='å¯ç”¨ç”¨è¯¥ä¸»æœºæ¥å—è¢«åŠ¨æ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>å¯ç”¨ç”¨è¯¥ä¸»æœºæ¥å—è¢«åŠ¨æ£€æŸ¥</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_PASSIVE_HOST_CHECKS, url_encode(host_name));
 
 		if(temp_hoststatus->obsess == TRUE)
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='Í£Ö¹¸ÃÖ÷»úµÄObsessing Over' TITLE='Í£Ö¹¸ÃÖ÷»úµÄObsessing Over'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>Í£Ö¹¸ÃÖ÷»úµÄObsessing Over</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_STOP_OBSESSING_OVER_HOST, url_encode(host_name));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='åœæ­¢è¯¥ä¸»æœºçš„Obsessing Over' TITLE='åœæ­¢è¯¥ä¸»æœºçš„Obsessing Over'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>åœæ­¢è¯¥ä¸»æœºçš„Obsessing Over</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_STOP_OBSESSING_OVER_HOST, url_encode(host_name));
 		else
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='¿ªÊ¼¸ÃÖ÷»úµÄObsessing Over' TITLE='¿ªÊ¼¸ÃÖ÷»úµÄObsessing Over'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>¿ªÊ¼¸ÃÖ÷»úµÄObsessing Over</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_START_OBSESSING_OVER_HOST, url_encode(host_name));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å¼€å§‹è¯¥ä¸»æœºçš„Obsessing Over' TITLE='å¼€å§‹è¯¥ä¸»æœºçš„Obsessing Over'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>å¼€å§‹è¯¥ä¸»æœºçš„Obsessing Over</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_START_OBSESSING_OVER_HOST, url_encode(host_name));
 
 		if(temp_hoststatus->status == SD_HOST_DOWN || temp_hoststatus->status == SD_HOST_UNREACHABLE) {
 			if(temp_hoststatus->problem_has_been_acknowledged == FALSE)
-				printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÎÊÌâÈ·ÈÏ' TITLE='ÎÊÌâÈ·ÈÏ'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>ÎÊÌâÈ·ÈÏ</a></td></tr>\n", url_images_path, ACKNOWLEDGEMENT_ICON, COMMAND_CGI, CMD_ACKNOWLEDGE_HOST_PROBLEM, url_encode(host_name));
+				printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='é—®é¢˜ç¡®è®¤' TITLE='é—®é¢˜ç¡®è®¤'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>é—®é¢˜ç¡®è®¤</a></td></tr>\n", url_images_path, ACKNOWLEDGEMENT_ICON, COMMAND_CGI, CMD_ACKNOWLEDGE_HOST_PROBLEM, url_encode(host_name));
 			else
-				printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='È¡ÏûÎÊÌâÈ·ÈÏ' TITLE='È¡ÏûÎÊÌâÈ·ÈÏ'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>È¡ÏûÎÊÌâÈ·ÈÏ</a></td></tr>\n", url_images_path, REMOVE_ACKNOWLEDGEMENT_ICON, COMMAND_CGI, CMD_REMOVE_HOST_ACKNOWLEDGEMENT, url_encode(host_name));
+				printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å–æ¶ˆé—®é¢˜ç¡®è®¤' TITLE='å–æ¶ˆé—®é¢˜ç¡®è®¤'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>å–æ¶ˆé—®é¢˜ç¡®è®¤</a></td></tr>\n", url_images_path, REMOVE_ACKNOWLEDGEMENT_ICON, COMMAND_CGI, CMD_REMOVE_HOST_ACKNOWLEDGEMENT, url_encode(host_name));
 			}
 
 		if(temp_hoststatus->notifications_enabled == TRUE)
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='½ûÓÃ¸ÃÖ÷»úµÄÍ¨Öª' TITLE='½ûÓÃ¸ÃÖ÷»úµÄÍ¨Öª'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>½ûÓÃ¸ÃÖ÷»úµÄÍ¨Öª</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_HOST_NOTIFICATIONS, url_encode(host_name));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ç¦ç”¨è¯¥ä¸»æœºçš„é€šçŸ¥' TITLE='ç¦ç”¨è¯¥ä¸»æœºçš„é€šçŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>ç¦ç”¨è¯¥ä¸»æœºçš„é€šçŸ¥</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_HOST_NOTIFICATIONS, url_encode(host_name));
 		else
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÆôÓÃ¸ÃÖ÷»úµÄÍ¨Öª' TITLE='ÆôÓÃ¸ÃÖ÷»úµÄÍ¨Öª'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>ÆôÓÃ¸ÃÖ÷»úµÄÍ¨Öª</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_HOST_NOTIFICATIONS, url_encode(host_name));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å¯ç”¨è¯¥ä¸»æœºçš„é€šçŸ¥' TITLE='å¯ç”¨è¯¥ä¸»æœºçš„é€šçŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>å¯ç”¨è¯¥ä¸»æœºçš„é€šçŸ¥</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_HOST_NOTIFICATIONS, url_encode(host_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='·¢ËÍÓÃ»§¶¨ÖÆÍ¨Öª' TITLE='·¢ËÍÓÃ»§¶¨ÖÆÍ¨Öª'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>·¢ËÍÓÃ»§¶¨ÖÆÍ¨Öª</a></td></tr>\n", url_images_path, NOTIFICATION_ICON, COMMAND_CGI, CMD_SEND_CUSTOM_HOST_NOTIFICATION, url_encode(host_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å‘é€ç”¨æˆ·å®šåˆ¶é€šçŸ¥' TITLE='å‘é€ç”¨æˆ·å®šåˆ¶é€šçŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>å‘é€ç”¨æˆ·å®šåˆ¶é€šçŸ¥</a></td></tr>\n", url_images_path, NOTIFICATION_ICON, COMMAND_CGI, CMD_SEND_CUSTOM_HOST_NOTIFICATION, url_encode(host_name));
 
 		if(temp_hoststatus->status != SD_HOST_UP)
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÑÓÆÚÏÂÒ»´ÎÖ÷»úÍ¨Öª' TITLE='ÑÓÆÚÏÂÒ»´ÎÖ÷»úÍ¨Öª'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>ÑÓÆÚÏÂÒ»´ÎÖ÷»úÍ¨Öª</a></td></tr>\n", url_images_path, DELAY_ICON, COMMAND_CGI, CMD_DELAY_HOST_NOTIFICATION, url_encode(host_name));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å»¶æœŸä¸‹ä¸€æ¬¡ä¸»æœºé€šçŸ¥' TITLE='å»¶æœŸä¸‹ä¸€æ¬¡ä¸»æœºé€šçŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>å»¶æœŸä¸‹ä¸€æ¬¡ä¸»æœºé€šçŸ¥</a></td></tr>\n", url_images_path, DELAY_ICON, COMMAND_CGI, CMD_DELAY_HOST_NOTIFICATION, url_encode(host_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='°²ÅÅ¸ÃÖ÷»úµÄå´»úÊ±¼ä' TITLE='°²ÅÅ¸ÃÖ÷»úµÄå´»úÊ±¼ä'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>°²ÅÅ¸ÃÖ÷»úµÄå´»úÊ±¼ä</a></td></tr>\n", url_images_path, DOWNTIME_ICON, COMMAND_CGI, CMD_SCHEDULE_HOST_DOWNTIME, url_encode(host_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å®‰æ’è¯¥ä¸»æœºçš„å®•æœºæ—¶é—´' TITLE='å®‰æ’è¯¥ä¸»æœºçš„å®•æœºæ—¶é—´'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>å®‰æ’è¯¥ä¸»æœºçš„å®•æœºæ—¶é—´</a></td></tr>\n", url_images_path, DOWNTIME_ICON, COMMAND_CGI, CMD_SCHEDULE_HOST_DOWNTIME, url_encode(host_name));
 
 		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='Schedule Downtime For All Services On This Host' TITLE='Schedule Downtime For All Services On This Host'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>Schedule downtime for all services on this host</a></td></tr>\n", url_images_path, DOWNTIME_ICON, COMMAND_CGI, CMD_SCHEDULE_HOST_SVC_DOWNTIME, url_encode(host_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='½ûÓÃ¸ÃÖ÷»úÉÏµÄËùÓĞ·şÎñÍ¨Öª' TITLE='½ûÓÃ¸ÃÖ÷»úÉÏµÄËùÓĞ·şÎñÍ¨Öª'></td><td CLASS='command' NOWRAP><a href='%s?cmd_typ=%d&host=%s'>½ûÓÃ¸ÃÖ÷»úÉÏµÄËùÓĞ·şÎñÍ¨Öª</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_HOST_SVC_NOTIFICATIONS, url_encode(host_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ç¦ç”¨è¯¥ä¸»æœºä¸Šçš„æ‰€æœ‰æœåŠ¡é€šçŸ¥' TITLE='ç¦ç”¨è¯¥ä¸»æœºä¸Šçš„æ‰€æœ‰æœåŠ¡é€šçŸ¥'></td><td CLASS='command' NOWRAP><a href='%s?cmd_typ=%d&host=%s'>ç¦ç”¨è¯¥ä¸»æœºä¸Šçš„æ‰€æœ‰æœåŠ¡é€šçŸ¥</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_HOST_SVC_NOTIFICATIONS, url_encode(host_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÆôÓÃ¸ÃÖ÷»úÉÏµÄËùÓĞ·şÎñÍ¨Öª' TITLE='ÆôÓÃ¸ÃÖ÷»úÉÏµÄËùÓĞ·şÎñÍ¨Öª'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>ÆôÓÃ¸ÃÖ÷»úÉÏµÄËùÓĞ·şÎñÍ¨Öª</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_HOST_SVC_NOTIFICATIONS, url_encode(host_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å¯ç”¨è¯¥ä¸»æœºä¸Šçš„æ‰€æœ‰æœåŠ¡é€šçŸ¥' TITLE='å¯ç”¨è¯¥ä¸»æœºä¸Šçš„æ‰€æœ‰æœåŠ¡é€šçŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>å¯ç”¨è¯¥ä¸»æœºä¸Šçš„æ‰€æœ‰æœåŠ¡é€šçŸ¥</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_HOST_SVC_NOTIFICATIONS, url_encode(host_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='°²ÅÅ¸ÃÖ÷»úÉÏµÄËùÓĞ·şÎñ¼ì²é' TITLE='°²ÅÅ¸ÃÖ÷»úÉÏµÄËùÓĞ·şÎñ¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>°²ÅÅ¸ÃÖ÷»úÉÏµÄËùÓĞ·şÎñ¼ì²é</a></td></tr>\n", url_images_path, DELAY_ICON, COMMAND_CGI, CMD_SCHEDULE_HOST_SVC_CHECKS, url_encode(host_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å®‰æ’è¯¥ä¸»æœºä¸Šçš„æ‰€æœ‰æœåŠ¡æ£€æŸ¥' TITLE='å®‰æ’è¯¥ä¸»æœºä¸Šçš„æ‰€æœ‰æœåŠ¡æ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>å®‰æ’è¯¥ä¸»æœºä¸Šçš„æ‰€æœ‰æœåŠ¡æ£€æŸ¥</a></td></tr>\n", url_images_path, DELAY_ICON, COMMAND_CGI, CMD_SCHEDULE_HOST_SVC_CHECKS, url_encode(host_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='½ûÓÃ¸ÃÖ÷»úÉÏµÄËùÓĞ·şÎñ¼ì²é' TITLE='½ûÓÃ¸ÃÖ÷»úÉÏµÄËùÓĞ·şÎñ¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>½ûÓÃ¸ÃÖ÷»úÉÏµÄËùÓĞ·şÎñ¼ì²é</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_HOST_SVC_CHECKS, url_encode(host_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ç¦ç”¨è¯¥ä¸»æœºä¸Šçš„æ‰€æœ‰æœåŠ¡æ£€æŸ¥' TITLE='ç¦ç”¨è¯¥ä¸»æœºä¸Šçš„æ‰€æœ‰æœåŠ¡æ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>ç¦ç”¨è¯¥ä¸»æœºä¸Šçš„æ‰€æœ‰æœåŠ¡æ£€æŸ¥</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_HOST_SVC_CHECKS, url_encode(host_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÆôÓÃ¸ÃÖ÷»úÉÏµÄËùÓĞ·şÎñ¼ì²é' TITLE='ÆôÓÃ¸ÃÖ÷»úÉÏµÄËùÓĞ·şÎñ¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>ÆôÓÃ¸ÃÖ÷»úÉÏµÄËùÓĞ·şÎñ¼ì²é</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_HOST_SVC_CHECKS, url_encode(host_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å¯ç”¨è¯¥ä¸»æœºä¸Šçš„æ‰€æœ‰æœåŠ¡æ£€æŸ¥' TITLE='å¯ç”¨è¯¥ä¸»æœºä¸Šçš„æ‰€æœ‰æœåŠ¡æ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>å¯ç”¨è¯¥ä¸»æœºä¸Šçš„æ‰€æœ‰æœåŠ¡æ£€æŸ¥</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_HOST_SVC_CHECKS, url_encode(host_name));
 
 		if(temp_hoststatus->event_handler_enabled == TRUE)
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='½ûÓÃ¸ÃÖ÷»úµÄÊÂ¼ş´¦Àí' TITLE='½ûÓÃ¸ÃÖ÷»úµÄÊÂ¼ş´¦Àí'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>½ûÓÃ¸ÃÖ÷»úµÄÊÂ¼ş´¦Àí</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_HOST_EVENT_HANDLER, url_encode(host_name));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ç¦ç”¨è¯¥ä¸»æœºçš„äº‹ä»¶å¤„ç†' TITLE='ç¦ç”¨è¯¥ä¸»æœºçš„äº‹ä»¶å¤„ç†'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>ç¦ç”¨è¯¥ä¸»æœºçš„äº‹ä»¶å¤„ç†</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_HOST_EVENT_HANDLER, url_encode(host_name));
 		else
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÆôÓÃ¸ÃÖ÷»úµÄÊÂ¼ş´¦Àí' TITLE='ÆôÓÃ¸ÃÖ÷»úµÄÊÂ¼ş´¦Àí'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>ÆôÓÃ¸ÃÖ÷»úµÄÊÂ¼ş´¦Àí</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_HOST_EVENT_HANDLER, url_encode(host_name));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å¯ç”¨è¯¥ä¸»æœºçš„äº‹ä»¶å¤„ç†' TITLE='å¯ç”¨è¯¥ä¸»æœºçš„äº‹ä»¶å¤„ç†'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>å¯ç”¨è¯¥ä¸»æœºçš„äº‹ä»¶å¤„ç†</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_HOST_EVENT_HANDLER, url_encode(host_name));
 		if(temp_hoststatus->flap_detection_enabled == TRUE) {
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='½ûÓÃ¸ÃÖ÷»úµÄ¶¶¶¯¼à²â' TITLE='½ûÓÃ¸ÃÖ÷»úµÄ¶¶¶¯¼à²â'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>½ûÓÃ¸ÃÖ÷»úµÄ¶¶¶¯¼à²â</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_HOST_FLAP_DETECTION, url_encode(host_name));
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='Çå³ı¸ÃÖ÷»úµÄ¶¶¶¯Êı¾İ' TITLE='Çå³ı¸ÃÖ÷»úµÄ¶¶¶¯Êı¾İ'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>Çå³ı¸ÃÖ÷»úµÄ¶¶¶¯Êı¾İ</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_CLEAR_HOST_FLAPPING_STATE, url_encode(host_name));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ç¦ç”¨è¯¥ä¸»æœºçš„æŠ–åŠ¨ç›‘æµ‹' TITLE='ç¦ç”¨è¯¥ä¸»æœºçš„æŠ–åŠ¨ç›‘æµ‹'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>ç¦ç”¨è¯¥ä¸»æœºçš„æŠ–åŠ¨ç›‘æµ‹</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_HOST_FLAP_DETECTION, url_encode(host_name));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='æ¸…é™¤è¯¥ä¸»æœºçš„æŠ–åŠ¨æ•°æ®' TITLE='æ¸…é™¤è¯¥ä¸»æœºçš„æŠ–åŠ¨æ•°æ®'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>æ¸…é™¤è¯¥ä¸»æœºçš„æŠ–åŠ¨æ•°æ®</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_CLEAR_HOST_FLAPPING_STATE, url_encode(host_name));
 		} else
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÆôÓÃ¸ÃÖ÷»úµÄ¶¶¶¯¼à²â' TITLE='ÆôÓÃ¸ÃÖ÷»úµÄ¶¶¶¯¼à²â'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>ÆôÓÃ¸ÃÖ÷»úµÄ¶¶¶¯¼à²â</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_HOST_FLAP_DETECTION, url_encode(host_name));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å¯ç”¨è¯¥ä¸»æœºçš„æŠ–åŠ¨ç›‘æµ‹' TITLE='å¯ç”¨è¯¥ä¸»æœºçš„æŠ–åŠ¨ç›‘æµ‹'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s'>å¯ç”¨è¯¥ä¸»æœºçš„æŠ–åŠ¨ç›‘æµ‹</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_HOST_FLAP_DETECTION, url_encode(host_name));
 
 		printf("</TABLE>\n");
 		}
@@ -1189,8 +1189,8 @@ void show_host_info(void) {
 		printf("<DIV ALIGN=CENTER CLASS='infoMessage'>Your account does not have permissions to execute commands.<br>\n");
 		}
 	else {
-		printf("<DIV ALIGN=CENTER CLASS='infoMessage'>NagiosÎ´ÔËĞĞ£¬ÃüÁîÔİÊ±ÎŞĞ§¡£<br>\n");
-		printf("Click <a href='%s?type=%d'>µã»÷</a> ²é¿´Nagios½ø³ÌĞÅÏ¢¡£</DIV>\n", EXTINFO_CGI, DISPLAY_PROCESS_INFO);
+		printf("<DIV ALIGN=CENTER CLASS='infoMessage'>Nagiosæœªè¿è¡Œï¼Œå‘½ä»¤æš‚æ—¶æ— æ•ˆã€‚<br>\n");
+		printf("Click <a href='%s?type=%d'>ç‚¹å‡»</a> æŸ¥çœ‹Nagiosè¿›ç¨‹ä¿¡æ¯ã€‚</DIV>\n", EXTINFO_CGI, DISPLAY_PROCESS_INFO);
 		}
 	printf("</TD></TR></TABLE>\n");
 
@@ -1239,8 +1239,8 @@ void show_service_info(void) {
 	/* make sure the user has rights to view service information */
 	if(is_authorized_for_service(temp_service, &current_authdata) == FALSE) {
 
-		printf("<P><DIV CLASS='errorMessage'>ÎŞÈ¨»ñÈ¡·şÎñĞÅÏ¢¡£</DIV></P>\n");
-		printf("<P><DIV CLASS='errorDescription'>Çë¼ì²éHTTP·şÎñÆ÷¹ØÓÚ¸ÃCGIµÄ·ÃÎÊÈ¨ÏŞÉèÖÃ¡£</DIV></P>\n");
+		printf("<P><DIV CLASS='errorMessage'>æ— æƒè·å–æœåŠ¡ä¿¡æ¯ã€‚</DIV></P>\n");
+		printf("<P><DIV CLASS='errorDescription'>è¯·æ£€æŸ¥HTTPæœåŠ¡å™¨å…³äºè¯¥CGIçš„è®¿é—®æƒé™è®¾ç½®ã€‚</DIV></P>\n");
 
 		return;
 		}
@@ -1250,11 +1250,11 @@ void show_service_info(void) {
 
 	/* make sure service information exists */
 	if(temp_service == NULL) {
-		printf("<P><DIV CLASS='errorMessage'>´íÎó: ·şÎñ²»´æÔÚ!</DIV></P>");
+		printf("<P><DIV CLASS='errorMessage'>é”™è¯¯: æœåŠ¡ä¸å­˜åœ¨!</DIV></P>");
 		return;
 		}
 	if(temp_svcstatus == NULL) {
-		printf("<P><DIV CLASS='errorMessage'>´íÎó: ·şÎñ×´Ì¬²»´æÔÚ!</DIV></P>");
+		printf("<P><DIV CLASS='errorMessage'>é”™è¯¯: æœåŠ¡çŠ¶æ€ä¸å­˜åœ¨!</DIV></P>");
 		return;
 		}
 
@@ -1265,10 +1265,10 @@ void show_service_info(void) {
 
 	printf("<TD ALIGN=CENTER VALIGN=TOP CLASS='stateInfoPanel'>\n");
 
-	printf("<DIV CLASS='dataTitle'>·şÎñ×´Ì¬ĞÅÏ¢</DIV>\n");
+	printf("<DIV CLASS='dataTitle'>æœåŠ¡çŠ¶æ€ä¿¡æ¯</DIV>\n");
 
 	if(temp_svcstatus->has_been_checked == FALSE)
-		printf("<P><DIV ALIGN=CENTER>¸Ã·şÎñÎ´±»¼ì²â£¬×´Ì¬ĞÅÏ¢²»¿ÉÓÃ.</DIV></P>\n");
+		printf("<P><DIV ALIGN=CENTER>è¯¥æœåŠ¡æœªè¢«æ£€æµ‹ï¼ŒçŠ¶æ€ä¿¡æ¯ä¸å¯ç”¨.</DIV></P>\n");
 
 	else {
 
@@ -1300,28 +1300,28 @@ void show_service_info(void) {
 		if(duration_error == TRUE)
 			snprintf(state_duration, sizeof(state_duration) - 1, "???");
 		else
-			snprintf(state_duration, sizeof(state_duration) - 1, "%2dÈÕ %2dÊ± %2d·Ö %2dÃë %s", days, hours, minutes, seconds, (temp_svcstatus->last_state_change == (time_t)0) ? "+" : "");
+			snprintf(state_duration, sizeof(state_duration) - 1, "%2dæ—¥ %2dæ—¶ %2dåˆ† %2dç§’ %s", days, hours, minutes, seconds, (temp_svcstatus->last_state_change == (time_t)0) ? "+" : "");
 		state_duration[sizeof(state_duration) - 1] = '\x0';
 
 		if(temp_svcstatus->status == SERVICE_OK) {
-			strcpy(state_string, "Õı³£(OK)");
+			strcpy(state_string, "æ­£å¸¸(OK)");
 			bg_class = "serviceOK";
 			}
 		else if(temp_svcstatus->status == SERVICE_WARNING) {
-			strcpy(state_string, "¸æ¾¯");
+			strcpy(state_string, "å‘Šè­¦");
 			bg_class = "serviceWARNING";
 			}
 		else if(temp_svcstatus->status == SERVICE_CRITICAL) {
-			strcpy(state_string, "½ô¼±");
+			strcpy(state_string, "ç´§æ€¥");
 			bg_class = "serviceCRITICAL";
 			}
 		else {
-			strcpy(state_string, "Î´Öª");
+			strcpy(state_string, "æœªçŸ¥");
 			bg_class = "serviceUNKNOWN";
 			}
-		printf("<TR><TD CLASS='dataVar'>µ±Ç°µÄ×´Ì¬:</TD><TD CLASS='dataVal'><DIV CLASS='%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV>&nbsp;(for %s)%s</TD></TR>\n", bg_class, state_string, state_duration, (temp_svcstatus->problem_has_been_acknowledged == TRUE) ? "&nbsp;&nbsp;(Has been acknowledged)" : "");
+		printf("<TR><TD CLASS='dataVar'>å½“å‰çš„çŠ¶æ€:</TD><TD CLASS='dataVal'><DIV CLASS='%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV>&nbsp;(for %s)%s</TD></TR>\n", bg_class, state_string, state_duration, (temp_svcstatus->problem_has_been_acknowledged == TRUE) ? "&nbsp;&nbsp;(Has been acknowledged)" : "");
 
-		printf("<TR><TD CLASS='dataVar' VALIGN='top'>×´Ì¬ĞÅÏ¢:</TD><TD CLASS='dataVal'>%s", (temp_svcstatus->plugin_output == NULL) ? "" : html_encode(temp_svcstatus->plugin_output, TRUE));
+		printf("<TR><TD CLASS='dataVar' VALIGN='top'>çŠ¶æ€ä¿¡æ¯:</TD><TD CLASS='dataVal'>%s", (temp_svcstatus->plugin_output == NULL) ? "" : html_encode(temp_svcstatus->plugin_output, TRUE));
 		if(enable_splunk_integration == TRUE) {
 			printf("&nbsp;&nbsp;");
 			asprintf(&buf, "%s %s %s", temp_service->host_name, temp_service->description, temp_svcstatus->plugin_output);
@@ -1332,41 +1332,41 @@ void show_service_info(void) {
 			printf("<BR>%s", html_encode(temp_svcstatus->long_plugin_output, TRUE));
 		printf("</TD></TR>\n");
 
-		printf("<TR><TD CLASS='dataVar' VALIGN='top'>ĞÔÄÜÊı¾İ:</td><td CLASS='dataVal'>%s</td></tr>\n", (temp_svcstatus->perf_data == NULL) ? "" : html_encode(temp_svcstatus->perf_data, TRUE));
+		printf("<TR><TD CLASS='dataVar' VALIGN='top'>æ€§èƒ½æ•°æ®:</td><td CLASS='dataVal'>%s</td></tr>\n", (temp_svcstatus->perf_data == NULL) ? "" : html_encode(temp_svcstatus->perf_data, TRUE));
 
-		printf("<TR><TD CLASS='dataVar'>µ±Ç°³¢ÊÔ:</TD><TD CLASS='dataVal'>%d/%d", temp_svcstatus->current_attempt, temp_svcstatus->max_attempts);
-		printf("&nbsp;&nbsp;(%s ×´Ì¬)</TD></TR>\n", (temp_svcstatus->state_type == HARD_STATE) ? "Ó²Ì¬" : "ÈíÌ¬");
+		printf("<TR><TD CLASS='dataVar'>å½“å‰å°è¯•:</TD><TD CLASS='dataVal'>%d/%d", temp_svcstatus->current_attempt, temp_svcstatus->max_attempts);
+		printf("&nbsp;&nbsp;(%s çŠ¶æ€)</TD></TR>\n", (temp_svcstatus->state_type == HARD_STATE) ? "ç¡¬æ€" : "è½¯æ€");
 
 		get_time_string(&temp_svcstatus->last_check, date_time, (int)sizeof(date_time), SHORT_DATE_TIME);
-		printf("<TR><TD CLASS='dataVar'>×î½ü¼ì²éÊ±¼ä:</TD><TD CLASS='dataVal'>%s</TD></TR>\n", date_time);
+		printf("<TR><TD CLASS='dataVar'>æœ€è¿‘æ£€æŸ¥æ—¶é—´:</TD><TD CLASS='dataVal'>%s</TD></TR>\n", date_time);
 
-		printf("<TR><TD CLASS='dataVar'>¼ì²âÀàĞÍ:</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (temp_svcstatus->check_type == CHECK_TYPE_ACTIVE) ? "Ö÷¶¯Ê½" : "Ç¿ÆÈÊ½");
+		printf("<TR><TD CLASS='dataVar'>æ£€æµ‹ç±»å‹:</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (temp_svcstatus->check_type == CHECK_TYPE_ACTIVE) ? "ä¸»åŠ¨å¼" : "å¼ºè¿«å¼");
 
-		printf("<TR><TD CLASS='dataVar' NOWRAP>¼ì²âµÈ´ıÊ±¼ä / ¼ì²âÊ±ÑÓ:</TD><TD CLASS='dataVal'>");
+		printf("<TR><TD CLASS='dataVar' NOWRAP>æ£€æµ‹ç­‰å¾…æ—¶é—´ / æ£€æµ‹æ—¶å»¶:</TD><TD CLASS='dataVal'>");
 		if(temp_svcstatus->check_type == CHECK_TYPE_ACTIVE)
 			printf("%.3f", temp_svcstatus->latency);
 		else
 			printf("N/A");
-		printf("&nbsp;/&nbsp;%.3f Ãë", temp_svcstatus->execution_time);
+		printf("&nbsp;/&nbsp;%.3f ç§’", temp_svcstatus->execution_time);
 		printf("</TD></TR>\n");
 
 		get_time_string(&temp_svcstatus->next_check, date_time, (int)sizeof(date_time), SHORT_DATE_TIME);
-		printf("<TR><TD CLASS='dataVar'>ÏÂ´Î¼ì²â¼Æ»®¼ì²âÊ±¼ä:&nbsp;&nbsp;</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (temp_svcstatus->checks_enabled && temp_svcstatus->next_check != (time_t)0 && temp_svcstatus->should_be_scheduled == TRUE) ? date_time : "N/A");
+		printf("<TR><TD CLASS='dataVar'>ä¸‹æ¬¡æ£€æµ‹è®¡åˆ’æ£€æµ‹æ—¶é—´:&nbsp;&nbsp;</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (temp_svcstatus->checks_enabled && temp_svcstatus->next_check != (time_t)0 && temp_svcstatus->should_be_scheduled == TRUE) ? date_time : "N/A");
 
 		get_time_string(&temp_svcstatus->last_state_change, date_time, (int)sizeof(date_time), SHORT_DATE_TIME);
-		printf("<TR><TD CLASS='dataVar'>×î½ü×´Ì¬¸Ä±äÊ±¼ä:</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (temp_svcstatus->last_state_change == (time_t)0) ? "Î´Öª(N/A)" : date_time);
+		printf("<TR><TD CLASS='dataVar'>æœ€è¿‘çŠ¶æ€æ”¹å˜æ—¶é—´:</TD><TD CLASS='dataVal'>%s</TD></TR>\n", (temp_svcstatus->last_state_change == (time_t)0) ? "æœªçŸ¥(N/A)" : date_time);
 
 		get_time_string(&temp_svcstatus->last_notification, date_time, (int)sizeof(date_time), SHORT_DATE_TIME);
-		printf("<TR><TD CLASS='dataVar'>×îºóÒ»´ÎËÍ³öÍ¨ÖªÊ±¼ä:</TD><TD CLASS='dataVal'>%s&nbsp;(Í¨Öª´ÎÊı %d)</TD></TR>\n", (temp_svcstatus->last_notification == (time_t)0) ? "N/A" : date_time, temp_svcstatus->current_notification_number);
+		printf("<TR><TD CLASS='dataVar'>æœ€åä¸€æ¬¡é€å‡ºé€šçŸ¥æ—¶é—´:</TD><TD CLASS='dataVal'>%s&nbsp;(é€šçŸ¥æ¬¡æ•° %d)</TD></TR>\n", (temp_svcstatus->last_notification == (time_t)0) ? "N/A" : date_time, temp_svcstatus->current_notification_number);
 
-		printf("<TR><TD CLASS='dataVar'>¶¶¶¯ÊÇ·ñÖ´ĞĞ?</TD><TD CLASS='dataVal'>");
+		printf("<TR><TD CLASS='dataVar'>æŠ–åŠ¨æ˜¯å¦æ‰§è¡Œ?</TD><TD CLASS='dataVal'>");
 		if(temp_svcstatus->flap_detection_enabled == FALSE || enable_flap_detection == FALSE)
 			printf("N/A");
 		else
-			printf("<DIV CLASS='%sflapping'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV>&nbsp;¶¶¶¯Öµ(×´Ì¬±ä»¯ÂÊ %3.2f%%)", (temp_svcstatus->is_flapping == TRUE) ? "" : "not", (temp_svcstatus->is_flapping == TRUE) ? "YES" : "NO", temp_svcstatus->percent_state_change);
+			printf("<DIV CLASS='%sflapping'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV>&nbsp;æŠ–åŠ¨å€¼(çŠ¶æ€å˜åŒ–ç‡ %3.2f%%)", (temp_svcstatus->is_flapping == TRUE) ? "" : "not", (temp_svcstatus->is_flapping == TRUE) ? "YES" : "NO", temp_svcstatus->percent_state_change);
 		printf("</TD></TR>\n");
 
-		printf("<TR><TD CLASS='dataVar'>´¦ÓÚ¼Æ»®å´»úÊ±¼ä?</TD><TD CLASS='dataVal'><DIV CLASS='downtime%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (temp_svcstatus->scheduled_downtime_depth > 0) ? "ACTIVE" : "INACTIVE", (temp_svcstatus->scheduled_downtime_depth > 0) ? "YES" : "NO");
+		printf("<TR><TD CLASS='dataVar'>å¤„äºè®¡åˆ’å®•æœºæ—¶é—´?</TD><TD CLASS='dataVal'><DIV CLASS='downtime%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (temp_svcstatus->scheduled_downtime_depth > 0) ? "ACTIVE" : "INACTIVE", (temp_svcstatus->scheduled_downtime_depth > 0) ? "YES" : "NO");
 
 		t = 0;
 		duration_error = FALSE;
@@ -1381,11 +1381,11 @@ void show_service_info(void) {
 		else if(temp_svcstatus->last_check == (time_t)0)
 			snprintf(status_age, sizeof(status_age) - 1, "N/A");
 		else
-			snprintf(status_age, sizeof(status_age) - 1, "%2dÌì %2dÊ± %2d·Ö %2dÃë", days, hours, minutes, seconds);
+			snprintf(status_age, sizeof(status_age) - 1, "%2då¤© %2dæ—¶ %2dåˆ† %2dç§’", days, hours, minutes, seconds);
 		status_age[sizeof(status_age) - 1] = '\x0';
 
 		get_time_string(&temp_svcstatus->last_update, date_time, (int)sizeof(date_time), SHORT_DATE_TIME);
-		printf("<TR><TD CLASS='dataVar'>×î½ü¸üĞÂ:</TD><TD CLASS='dataVal'>%s&nbsp;&nbsp;(%s ago)</TD></TR>\n", (temp_svcstatus->last_update == (time_t)0) ? "Î´Öª(N/A)" : date_time, status_age);
+		printf("<TR><TD CLASS='dataVar'>æœ€è¿‘æ›´æ–°:</TD><TD CLASS='dataVal'>%s&nbsp;&nbsp;(%s ago)</TD></TR>\n", (temp_svcstatus->last_update == (time_t)0) ? "æœªçŸ¥(N/A)" : date_time, status_age);
 
 
 		printf("</TABLE>\n");
@@ -1400,17 +1400,17 @@ void show_service_info(void) {
 		printf("<TR><TD class='stateInfoTable2'>\n");
 		printf("<TABLE BORDER=0>\n");
 
-		printf("<TR><TD CLASS='dataVar'>¿ªÆôÖ÷¶¯¼ì²é:</TD><td CLASS='dataVal'><DIV CLASS='checks%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (temp_svcstatus->checks_enabled) ? "ENABLED" : "DISABLED", (temp_svcstatus->checks_enabled) ? "ÆôÓÃ" : "½ûÓÃ");
+		printf("<TR><TD CLASS='dataVar'>å¼€å¯ä¸»åŠ¨æ£€æŸ¥:</TD><td CLASS='dataVal'><DIV CLASS='checks%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (temp_svcstatus->checks_enabled) ? "ENABLED" : "DISABLED", (temp_svcstatus->checks_enabled) ? "å¯ç”¨" : "ç¦ç”¨");
 
-		printf("<TR><TD CLASS='dataVar'>¿ªÆô±»¶¯¼ì²é:</TD><td CLASS='dataVal'><DIV CLASS='checks%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (temp_svcstatus->accept_passive_checks == TRUE) ? "ENABLED" : "DISABLED", (temp_svcstatus->accept_passive_checks) ? "ÆôÓÃ" : "½ûÓÃ");
+		printf("<TR><TD CLASS='dataVar'>å¼€å¯è¢«åŠ¨æ£€æŸ¥:</TD><td CLASS='dataVal'><DIV CLASS='checks%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (temp_svcstatus->accept_passive_checks == TRUE) ? "ENABLED" : "DISABLED", (temp_svcstatus->accept_passive_checks) ? "å¯ç”¨" : "ç¦ç”¨");
 
-		printf("<TR><TD CLASS='dataVar'>Obsessing:</TD><td CLASS='dataVal'><DIV CLASS='checks%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (temp_svcstatus->obsess == TRUE) ? "ENABLED" : "DISABLED", (temp_svcstatus->obsess) ? "ÆôÓÃ" : "½ûÓÃ");
+		printf("<TR><TD CLASS='dataVar'>Obsessing:</TD><td CLASS='dataVal'><DIV CLASS='checks%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (temp_svcstatus->obsess == TRUE) ? "ENABLED" : "DISABLED", (temp_svcstatus->obsess) ? "å¯ç”¨" : "ç¦ç”¨");
 
-		printf("<TR><td CLASS='dataVar'>Í¨Öª:</TD><td CLASS='dataVal'><DIV CLASS='notifications%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (temp_svcstatus->notifications_enabled) ? "ENABLED" : "DISABLED", (temp_svcstatus->notifications_enabled) ? "ÆôÓÃ" : "½ûÓÃ");
+		printf("<TR><td CLASS='dataVar'>é€šçŸ¥:</TD><td CLASS='dataVal'><DIV CLASS='notifications%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (temp_svcstatus->notifications_enabled) ? "ENABLED" : "DISABLED", (temp_svcstatus->notifications_enabled) ? "å¯ç”¨" : "ç¦ç”¨");
 
-		printf("<TR><TD CLASS='dataVar'>ÊÂ¼ş´¦Àí:</TD><td CLASS='dataVal'><DIV CLASS='eventhandlers%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (temp_svcstatus->event_handler_enabled) ? "ENABLED" : "DISABLED", (temp_svcstatus->event_handler_enabled) ? "ÆôÓÃ" : "½ûÓÃ");
+		printf("<TR><TD CLASS='dataVar'>äº‹ä»¶å¤„ç†:</TD><td CLASS='dataVal'><DIV CLASS='eventhandlers%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (temp_svcstatus->event_handler_enabled) ? "ENABLED" : "DISABLED", (temp_svcstatus->event_handler_enabled) ? "å¯ç”¨" : "ç¦ç”¨");
 
-		printf("<TR><TD CLASS='dataVar'>¶¶¶¯¼à²â:</TD><td CLASS='dataVal'><DIV CLASS='flapdetection%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (temp_svcstatus->flap_detection_enabled == TRUE) ? "ENABLED" : "DISABLED", (temp_svcstatus->flap_detection_enabled == TRUE) ? "ÆôÓÃ" : "½ûÓÃ");
+		printf("<TR><TD CLASS='dataVar'>æŠ–åŠ¨ç›‘æµ‹:</TD><td CLASS='dataVal'><DIV CLASS='flapdetection%s'>&nbsp;&nbsp;%s&nbsp;&nbsp;</DIV></TD></TR>\n", (temp_svcstatus->flap_detection_enabled == TRUE) ? "ENABLED" : "DISABLED", (temp_svcstatus->flap_detection_enabled == TRUE) ? "å¯ç”¨" : "ç¦ç”¨");
 
 
 		printf("</TABLE>\n");
@@ -1430,7 +1430,7 @@ void show_service_info(void) {
 
 	printf("<TD ALIGN=CENTER VALIGN=TOP CLASS='commandPanel'>\n");
 
-	printf("<DIV CLASS='dataTitle'>·şÎñÃüÁî</DIV>\n");
+	printf("<DIV CLASS='dataTitle'>æœåŠ¡å‘½ä»¤</DIV>\n");
 
 	printf("<TABLE BORDER='1' CELLSPACING=0 CELLPADDING=0>\n");
 	printf("<TR><TD>\n");
@@ -1440,65 +1440,65 @@ void show_service_info(void) {
 
 		if(temp_svcstatus->checks_enabled) {
 
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='½ûÓÃ¸Ã·şÎñµÄÖ÷¶¯¼ì²é' TITLE='½ûÓÃ¸Ã·şÎñµÄÖ÷¶¯¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_SVC_CHECK, url_encode(host_name));
-			printf("&service=%s'>½ûÓÃ¸Ã·şÎñµÄÖ÷¶¯¼ì²é</a></td></tr>\n", url_encode(service_desc));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ç¦ç”¨è¯¥æœåŠ¡çš„ä¸»åŠ¨æ£€æŸ¥' TITLE='ç¦ç”¨è¯¥æœåŠ¡çš„ä¸»åŠ¨æ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_SVC_CHECK, url_encode(host_name));
+			printf("&service=%s'>ç¦ç”¨è¯¥æœåŠ¡çš„ä¸»åŠ¨æ£€æŸ¥</a></td></tr>\n", url_encode(service_desc));
 			}
 		else {
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÆôÓÃ¸Ã·şÎñµÄÖ÷¶¯¼ì²é' TITLE='ÆôÓÃ¸Ã·şÎñµÄÖ÷¶¯¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_SVC_CHECK, url_encode(host_name));
-			printf("&service=%s'>ÆôÓÃ¸Ã·şÎñµÄÖ÷¶¯¼ì²é</a></td></tr>\n", url_encode(service_desc));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å¯ç”¨è¯¥æœåŠ¡çš„ä¸»åŠ¨æ£€æŸ¥' TITLE='å¯ç”¨è¯¥æœåŠ¡çš„ä¸»åŠ¨æ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_SVC_CHECK, url_encode(host_name));
+			printf("&service=%s'>å¯ç”¨è¯¥æœåŠ¡çš„ä¸»åŠ¨æ£€æŸ¥</a></td></tr>\n", url_encode(service_desc));
 			}
-		printf("<tr CLASS='data'><td><img src='%s%s' border=0 ALT='ÖØĞÂ¶¨ÖÆÏÂÒ»´Î·şÎñ¼ì²âÊ±¼ä' TITLE='ÖØ¶¨ÖÆÏÂ´Î¼Æ»®¼ì²âÊ±¼ä'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, DELAY_ICON, COMMAND_CGI, CMD_SCHEDULE_SVC_CHECK, url_encode(host_name));
-		printf("&service=%s%s'>ÖØ¶¨ÖÆ¸Ã·şÎñµÄ¼Æ»®¼ì²âÊ±¼ä</a></td></tr>\n", url_encode(service_desc), (temp_svcstatus->checks_enabled == TRUE) ? "&force_check" : "");
+		printf("<tr CLASS='data'><td><img src='%s%s' border=0 ALT='é‡æ–°å®šåˆ¶ä¸‹ä¸€æ¬¡æœåŠ¡æ£€æµ‹æ—¶é—´' TITLE='é‡å®šåˆ¶ä¸‹æ¬¡è®¡åˆ’æ£€æµ‹æ—¶é—´'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, DELAY_ICON, COMMAND_CGI, CMD_SCHEDULE_SVC_CHECK, url_encode(host_name));
+		printf("&service=%s%s'>é‡å®šåˆ¶è¯¥æœåŠ¡çš„è®¡åˆ’æ£€æµ‹æ—¶é—´</a></td></tr>\n", url_encode(service_desc), (temp_svcstatus->checks_enabled == TRUE) ? "&force_check" : "");
 
 		if(temp_svcstatus->accept_passive_checks == TRUE) {
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='Ìá½»¸Ã·şÎñµÄ±»¶¯¼ì²é½á¹û' TITLE='Ìá½»¸Ã·şÎñµÄ±»¶¯¼ì²é½á¹û'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, PASSIVE_ICON, COMMAND_CGI, CMD_PROCESS_SERVICE_CHECK_RESULT, url_encode(host_name));
-			printf("&service=%s'>Ìá½»¸Ã·şÎñµÄ±»¶¯¼ì²é½á¹û</a></td></tr>\n", url_encode(service_desc));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='æäº¤è¯¥æœåŠ¡çš„è¢«åŠ¨æ£€æŸ¥ç»“æœ' TITLE='æäº¤è¯¥æœåŠ¡çš„è¢«åŠ¨æ£€æŸ¥ç»“æœ'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, PASSIVE_ICON, COMMAND_CGI, CMD_PROCESS_SERVICE_CHECK_RESULT, url_encode(host_name));
+			printf("&service=%s'>æäº¤è¯¥æœåŠ¡çš„è¢«åŠ¨æ£€æŸ¥ç»“æœ</a></td></tr>\n", url_encode(service_desc));
 
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='Í£Ö¹½ÓÊÜ¸Ã·şÎñµÄ±»¶¯¼ì²â½á¹û' TITLE='Í£Ö¹½ÓÊÜ¸Ã·şÎñµÄ±»¶¯¼ì²â½á¹û'></td><td CLASS='command' NOWRAP><a href='%s?cmd_typ=%d&host=%s", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_PASSIVE_SVC_CHECKS, url_encode(host_name));
-			printf("&service=%s'>Í£Ö¹½ÓÊÜ¸Ã·şÎñµÄ±»¶¯¼ì²â½á¹û</a></td></tr>\n", url_encode(service_desc));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='åœæ­¢æ¥å—è¯¥æœåŠ¡çš„è¢«åŠ¨æ£€æµ‹ç»“æœ' TITLE='åœæ­¢æ¥å—è¯¥æœåŠ¡çš„è¢«åŠ¨æ£€æµ‹ç»“æœ'></td><td CLASS='command' NOWRAP><a href='%s?cmd_typ=%d&host=%s", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_PASSIVE_SVC_CHECKS, url_encode(host_name));
+			printf("&service=%s'>åœæ­¢æ¥å—è¯¥æœåŠ¡çš„è¢«åŠ¨æ£€æµ‹ç»“æœ</a></td></tr>\n", url_encode(service_desc));
 			}
 		else {
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='¿ªÊ¼¸Ã·şÎñµÄ½ÓÊÜ±»¶¯¼ì²é' TITLE='¿ªÊ¼¸Ã·şÎñµÄ½ÓÊÜ±»¶¯¼ì²é'></td><td CLASS='command' NOWRAP><a href='%s?cmd_typ=%d&host=%s", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_PASSIVE_SVC_CHECKS, url_encode(host_name));
-			printf("&service=%s'>¿ªÊ¼¸Ã·şÎñµÄ½ÓÊÜ±»¶¯¼ì²é</a></td></tr>\n", url_encode(service_desc));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å¼€å§‹è¯¥æœåŠ¡çš„æ¥å—è¢«åŠ¨æ£€æŸ¥' TITLE='å¼€å§‹è¯¥æœåŠ¡çš„æ¥å—è¢«åŠ¨æ£€æŸ¥'></td><td CLASS='command' NOWRAP><a href='%s?cmd_typ=%d&host=%s", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_PASSIVE_SVC_CHECKS, url_encode(host_name));
+			printf("&service=%s'>å¼€å§‹è¯¥æœåŠ¡çš„æ¥å—è¢«åŠ¨æ£€æŸ¥</a></td></tr>\n", url_encode(service_desc));
 			}
 
 		if(temp_svcstatus->obsess == TRUE) {
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='Í£Ö¹¸Ã·şÎñµÄObsessing Over' TITLE='Í£Ö¹¸Ã·şÎñµÄObsessing Over'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_STOP_OBSESSING_OVER_SVC, url_encode(host_name));
-			printf("&service=%s'>Í£Ö¹¸Ã·şÎñµÄObsessing Over</a></td></tr>\n", url_encode(service_desc));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='åœæ­¢è¯¥æœåŠ¡çš„Obsessing Over' TITLE='åœæ­¢è¯¥æœåŠ¡çš„Obsessing Over'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_STOP_OBSESSING_OVER_SVC, url_encode(host_name));
+			printf("&service=%s'>åœæ­¢è¯¥æœåŠ¡çš„Obsessing Over</a></td></tr>\n", url_encode(service_desc));
 			}
 		else {
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='¿ªÊ¼¸Ã·şÎñµÄObsessing Over' TITLE='¿ªÊ¼¸Ã·şÎñµÄObsessing Over'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_START_OBSESSING_OVER_SVC, url_encode(host_name));
-			printf("&service=%s'>¿ªÊ¼¸Ã·şÎñµÄObsessing Over</a></td></tr>\n", url_encode(service_desc));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å¼€å§‹è¯¥æœåŠ¡çš„Obsessing Over' TITLE='å¼€å§‹è¯¥æœåŠ¡çš„Obsessing Over'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_START_OBSESSING_OVER_SVC, url_encode(host_name));
+			printf("&service=%s'>å¼€å§‹è¯¥æœåŠ¡çš„Obsessing Over</a></td></tr>\n", url_encode(service_desc));
 			}
 
 		if((temp_svcstatus->status == SERVICE_WARNING || temp_svcstatus->status == SERVICE_UNKNOWN || temp_svcstatus->status == SERVICE_CRITICAL) && temp_svcstatus->state_type == HARD_STATE) {
 			if(temp_svcstatus->problem_has_been_acknowledged == FALSE) {
-				printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÎÊÌâÈ·ÈÏ' TITLE='ÎÊÌâÈ·ÈÏ'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, ACKNOWLEDGEMENT_ICON, COMMAND_CGI, CMD_ACKNOWLEDGE_SVC_PROBLEM, url_encode(host_name));
-				printf("&service=%s'>ÎÊÌâÈ·ÈÏ</a></td></tr>\n", url_encode(service_desc));
+				printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='é—®é¢˜ç¡®è®¤' TITLE='é—®é¢˜ç¡®è®¤'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, ACKNOWLEDGEMENT_ICON, COMMAND_CGI, CMD_ACKNOWLEDGE_SVC_PROBLEM, url_encode(host_name));
+				printf("&service=%s'>é—®é¢˜ç¡®è®¤</a></td></tr>\n", url_encode(service_desc));
 				}
 			else {
-				printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='È¡ÏûÎÊÌâÈ·ÈÏ' TITLE='È¡ÏûÎÊÌâÈ·ÈÏ'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, REMOVE_ACKNOWLEDGEMENT_ICON, COMMAND_CGI, CMD_REMOVE_SVC_ACKNOWLEDGEMENT, url_encode(host_name));
-				printf("&service=%s'>È¡ÏûÎÊÌâÈ·ÈÏ</a></td></tr>\n", url_encode(service_desc));
+				printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å–æ¶ˆé—®é¢˜ç¡®è®¤' TITLE='å–æ¶ˆé—®é¢˜ç¡®è®¤'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, REMOVE_ACKNOWLEDGEMENT_ICON, COMMAND_CGI, CMD_REMOVE_SVC_ACKNOWLEDGEMENT, url_encode(host_name));
+				printf("&service=%s'>å–æ¶ˆé—®é¢˜ç¡®è®¤</a></td></tr>\n", url_encode(service_desc));
 				}
 			}
 		if(temp_svcstatus->notifications_enabled == TRUE) {
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='½ûÓÃ¸Ã·şÎñµÄÍ¨Öª' TITLE='½ûÓÃ¸Ã·şÎñµÄÍ¨Öª'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_SVC_NOTIFICATIONS, url_encode(host_name));
-			printf("&service=%s'>½ûÓÃ¸Ã·şÎñµÄÍ¨Öª</a></td></tr>\n", url_encode(service_desc));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ç¦ç”¨è¯¥æœåŠ¡çš„é€šçŸ¥' TITLE='ç¦ç”¨è¯¥æœåŠ¡çš„é€šçŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_SVC_NOTIFICATIONS, url_encode(host_name));
+			printf("&service=%s'>ç¦ç”¨è¯¥æœåŠ¡çš„é€šçŸ¥</a></td></tr>\n", url_encode(service_desc));
 			if(temp_svcstatus->status != SERVICE_OK) {
-				printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÑÓÆÚÏÂÒ»´Î·şÎñÍ¨Öª' TITLE='ÑÓÆÚÏÂÒ»´Î·şÎñÍ¨Öª'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, DELAY_ICON, COMMAND_CGI, CMD_DELAY_SVC_NOTIFICATION, url_encode(host_name));
-				printf("&service=%s'>ÑÓÆÚÏÂÒ»´Î·şÎñÍ¨Öª</a></td></tr>\n", url_encode(service_desc));
+				printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å»¶æœŸä¸‹ä¸€æ¬¡æœåŠ¡é€šçŸ¥' TITLE='å»¶æœŸä¸‹ä¸€æ¬¡æœåŠ¡é€šçŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, DELAY_ICON, COMMAND_CGI, CMD_DELAY_SVC_NOTIFICATION, url_encode(host_name));
+				printf("&service=%s'>å»¶æœŸä¸‹ä¸€æ¬¡æœåŠ¡é€šçŸ¥</a></td></tr>\n", url_encode(service_desc));
 				}
 			}
 		else {
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÆôÓÃ¸Ã·şÎñÍ¨Öª' TITLE='ÆôÓÃ¸Ã·şÎñÍ¨Öª'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_SVC_NOTIFICATIONS, url_encode(host_name));
-			printf("&service=%s'>ÆôÓÃ¸Ã·şÎñÍ¨Öª</a></td></tr>\n", url_encode(service_desc));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å¯ç”¨è¯¥æœåŠ¡é€šçŸ¥' TITLE='å¯ç”¨è¯¥æœåŠ¡é€šçŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_SVC_NOTIFICATIONS, url_encode(host_name));
+			printf("&service=%s'>å¯ç”¨è¯¥æœåŠ¡é€šçŸ¥</a></td></tr>\n", url_encode(service_desc));
 			}
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='·¢ËÍ¿Í»§¶¨ÖÆ·şÎñ¸æ¾¯' TITLE='·¢ËÍ¿Í»§¶¨ÖÆ·şÎñ¸æ¾¯'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, NOTIFICATION_ICON, COMMAND_CGI, CMD_SEND_CUSTOM_SVC_NOTIFICATION, url_encode(host_name));
-		printf("&service=%s'>·¢ËÍ¿Í»§¶¨ÖÆ·şÎñ¸æ¾¯</a></td></tr>\n", url_encode(service_desc));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å‘é€å®¢æˆ·å®šåˆ¶æœåŠ¡å‘Šè­¦' TITLE='å‘é€å®¢æˆ·å®šåˆ¶æœåŠ¡å‘Šè­¦'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, NOTIFICATION_ICON, COMMAND_CGI, CMD_SEND_CUSTOM_SVC_NOTIFICATION, url_encode(host_name));
+		printf("&service=%s'>å‘é€å®¢æˆ·å®šåˆ¶æœåŠ¡å‘Šè­¦</a></td></tr>\n", url_encode(service_desc));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='°²ÅÅ¸Ã·şÎñµÄå´»úÊ±¼ä' TITLE='°²ÅÅ¸Ã·şÎñµÄå´»úÊ±¼ä'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, DOWNTIME_ICON, COMMAND_CGI, CMD_SCHEDULE_SVC_DOWNTIME, url_encode(host_name));
-		printf("&service=%s'>°²ÅÅ¸Ã·şÎñµÄå´»úÊ±¼ä</a></td></tr>\n", url_encode(service_desc));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å®‰æ’è¯¥æœåŠ¡çš„å®•æœºæ—¶é—´' TITLE='å®‰æ’è¯¥æœåŠ¡çš„å®•æœºæ—¶é—´'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, DOWNTIME_ICON, COMMAND_CGI, CMD_SCHEDULE_SVC_DOWNTIME, url_encode(host_name));
+		printf("&service=%s'>å®‰æ’è¯¥æœåŠ¡çš„å®•æœºæ—¶é—´</a></td></tr>\n", url_encode(service_desc));
 
 		/*
 		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='Cancel Scheduled Downtime For This Service' TITLE='Cancel Scheduled Downtime For This Service'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s",url_images_path,SCHEDULED_DOWNTIME_ICON,COMMAND_CGI,CMD_CANCEL_SVC_DOWNTIME,url_encode(host_name));
@@ -1506,23 +1506,23 @@ void show_service_info(void) {
 		*/
 
 		if(temp_svcstatus->event_handler_enabled == TRUE) {
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='½ûÓÃ¸Ã·şÎñµÄÊÂ¼ş´¦Àí' TITLE='½ûÓÃ¸Ã·şÎñµÄÊÂ¼ş´¦Àí'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_SVC_EVENT_HANDLER, url_encode(host_name));
-			printf("&service=%s'>½ûÓÃ¸Ã·şÎñµÄÊÂ¼ş´¦Àí</a></td></tr>\n", url_encode(service_desc));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ç¦ç”¨è¯¥æœåŠ¡çš„äº‹ä»¶å¤„ç†' TITLE='ç¦ç”¨è¯¥æœåŠ¡çš„äº‹ä»¶å¤„ç†'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_SVC_EVENT_HANDLER, url_encode(host_name));
+			printf("&service=%s'>ç¦ç”¨è¯¥æœåŠ¡çš„äº‹ä»¶å¤„ç†</a></td></tr>\n", url_encode(service_desc));
 			}
 		else {
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÆôÓÃ¸Ã·şÎñµÄÊÂ¼ş´¦Àí' TITLE='ÆôÓÃ¸Ã·şÎñµÄÊÂ¼ş´¦Àí'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_SVC_EVENT_HANDLER, url_encode(host_name));
-			printf("&service=%s'>ÆôÓÃ¸Ã·şÎñµÄÊÂ¼ş´¦Àí</a></td></tr>\n", url_encode(service_desc));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å¯ç”¨è¯¥æœåŠ¡çš„äº‹ä»¶å¤„ç†' TITLE='å¯ç”¨è¯¥æœåŠ¡çš„äº‹ä»¶å¤„ç†'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_SVC_EVENT_HANDLER, url_encode(host_name));
+			printf("&service=%s'>å¯ç”¨è¯¥æœåŠ¡çš„äº‹ä»¶å¤„ç†</a></td></tr>\n", url_encode(service_desc));
 			}
 
 		if(temp_svcstatus->flap_detection_enabled == TRUE) {
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='½ûÓÃ¸Ã·şÎñµÄ¶¶¶¯¼à²â' TITLE='½ûÓÃ¸Ã·şÎñµÄ¶¶¶¯¼à²â'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_SVC_FLAP_DETECTION, url_encode(host_name));
-			printf("&service=%s'>½ûÓÃ¸Ã·şÎñµÄ¶¶¶¯¼à²â</a></td></tr>\n", url_encode(service_desc));
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='Çå³ı¸Ã·şÎñµÄ¶¶¶¯×´Ì¬' TITLE='Çå³ı¸Ã·şÎñµÄ¶¶¶¯×´Ì¬'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_CLEAR_SVC_FLAPPING_STATE, url_encode(host_name));
-			printf("&service=%s'>Çå³ı¸Ã·şÎñµÄ¶¶¶¯×´Ì¬</a></td></tr>\n", url_encode(service_desc));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ç¦ç”¨è¯¥æœåŠ¡çš„æŠ–åŠ¨ç›‘æµ‹' TITLE='ç¦ç”¨è¯¥æœåŠ¡çš„æŠ–åŠ¨ç›‘æµ‹'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_SVC_FLAP_DETECTION, url_encode(host_name));
+			printf("&service=%s'>ç¦ç”¨è¯¥æœåŠ¡çš„æŠ–åŠ¨ç›‘æµ‹</a></td></tr>\n", url_encode(service_desc));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='æ¸…é™¤è¯¥æœåŠ¡çš„æŠ–åŠ¨çŠ¶æ€' TITLE='æ¸…é™¤è¯¥æœåŠ¡çš„æŠ–åŠ¨çŠ¶æ€'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_CLEAR_SVC_FLAPPING_STATE, url_encode(host_name));
+			printf("&service=%s'>æ¸…é™¤è¯¥æœåŠ¡çš„æŠ–åŠ¨çŠ¶æ€</a></td></tr>\n", url_encode(service_desc));
 			}
 		else {
-			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÆôÓÃ¸Ã·şÎñµÄ¶¶¶¯¼à²â' TITLE='ÆôÓÃ¸Ã·şÎñµÄ¶¶¶¯¼à²â'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_SVC_FLAP_DETECTION, url_encode(host_name));
-			printf("&service=%s'>ÆôÓÃ¸Ã·şÎñµÄ¶¶¶¯¼à²â</a></td></tr>\n", url_encode(service_desc));
+			printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å¯ç”¨è¯¥æœåŠ¡çš„æŠ–åŠ¨ç›‘æµ‹' TITLE='å¯ç”¨è¯¥æœåŠ¡çš„æŠ–åŠ¨ç›‘æµ‹'></td><td CLASS='command'><a href='%s?cmd_typ=%d&host=%s", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_SVC_FLAP_DETECTION, url_encode(host_name));
+			printf("&service=%s'>å¯ç”¨è¯¥æœåŠ¡çš„æŠ–åŠ¨ç›‘æµ‹</a></td></tr>\n", url_encode(service_desc));
 			}
 
 		printf("</table>\n");
@@ -1531,8 +1531,8 @@ void show_service_info(void) {
 		printf("<DIV ALIGN=CENTER CLASS='infoMessage'>Your account does not have permissions to execute commands.<br>\n");
 		}
 	else {
-		printf("<DIV CLASS='infoMessage'>Nagios½ø³ÌÎ´ÔËĞĞ£¬ÃüÁîÔİÊ±ÎŞĞ§¡£<br>\n");
-		printf("<a href='%s?type=%d'>µã»÷²é¿´</a>Nagios½ø³ÌĞÅÏ¢¡£</DIV>\n", EXTINFO_CGI, DISPLAY_PROCESS_INFO);
+		printf("<DIV CLASS='infoMessage'>Nagiosè¿›ç¨‹æœªè¿è¡Œï¼Œå‘½ä»¤æš‚æ—¶æ— æ•ˆã€‚<br>\n");
+		printf("<a href='%s?type=%d'>ç‚¹å‡»æŸ¥çœ‹</a>Nagiosè¿›ç¨‹ä¿¡æ¯ã€‚</DIV>\n", EXTINFO_CGI, DISPLAY_PROCESS_INFO);
 		}
 
 	printf("</td></tr>\n");
@@ -1573,8 +1573,8 @@ void show_hostgroup_info(void) {
 	/* make sure the user has rights to view hostgroup information */
 	if(is_authorized_for_hostgroup(temp_hostgroup, &current_authdata) == FALSE) {
 
-		printf("<P><DIV CLASS='errorMessage'>ÎŞÈ¨·ÃÎÊÖ÷»ú×éĞÅÏ¢¡£</DIV></P>\n");
-		printf("<P><DIV CLASS='errorDescription'>Çë¼ì²éHTTP·şÎñÆ÷¹ØÓÚ¸ÃCGIµÄ·ÃÎÊÈ¨ÏŞÉèÖÃ¡£</DIV></P>\n");
+		printf("<P><DIV CLASS='errorMessage'>æ— æƒè®¿é—®ä¸»æœºç»„ä¿¡æ¯ã€‚</DIV></P>\n");
+		printf("<P><DIV CLASS='errorDescription'>è¯·æ£€æŸ¥HTTPæœåŠ¡å™¨å…³äºè¯¥CGIçš„è®¿é—®æƒé™è®¾ç½®ã€‚</DIV></P>\n");
 		//printf("and check the authorization options in your CGI configuration file.</DIV></P>\n");
 
 		return;
@@ -1582,7 +1582,7 @@ void show_hostgroup_info(void) {
 
 	/* make sure hostgroup information exists */
 	if(temp_hostgroup == NULL) {
-		printf("<P><DIV CLASS='errorMessage'>´íÎó: Ö÷»ú×é²»´æÔÚ!</DIV></P>");
+		printf("<P><DIV CLASS='errorMessage'>é”™è¯¯: ä¸»æœºç»„ä¸å­˜åœ¨!</DIV></P>");
 		return;
 		}
 
@@ -1598,7 +1598,7 @@ void show_hostgroup_info(void) {
 	/* right top panel */
 	printf("</TD><TD ALIGN=CENTER VALIGN=TOP CLASS='stateInfoPanel' ROWSPAN=2>\n");
 
-	printf("<DIV CLASS='dataTitle'>Ö÷»ú×éÃüÁî</DIV>\n");
+	printf("<DIV CLASS='dataTitle'>ä¸»æœºç»„å‘½ä»¤</DIV>\n");
 
 	if(nagios_process_state == STATE_OK && is_authorized_for_read_only(&current_authdata) == FALSE) {
 
@@ -1607,21 +1607,21 @@ void show_hostgroup_info(void) {
 
 		printf("<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 CLASS='command'>\n");
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='°²ÅÅ¸ÃÖ÷»ú×éÖĞËùÓĞÖ÷»úµÄå´»úÊ±¼ä' TITLE='°²ÅÅ¸ÃÖ÷»ú×éÖĞËùÓĞÖ÷»úµÄå´»úÊ±¼ä'></td><td CLASS='command'><a href='%s?cmd_typ=%d&hostgroup=%s'>Schedule downtime for all hosts in this hostgroup</a></td></tr>\n", url_images_path, DOWNTIME_ICON, COMMAND_CGI, CMD_SCHEDULE_HOSTGROUP_HOST_DOWNTIME, url_encode(hostgroup_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å®‰æ’è¯¥ä¸»æœºç»„ä¸­æ‰€æœ‰ä¸»æœºçš„å®•æœºæ—¶é—´' TITLE='å®‰æ’è¯¥ä¸»æœºç»„ä¸­æ‰€æœ‰ä¸»æœºçš„å®•æœºæ—¶é—´'></td><td CLASS='command'><a href='%s?cmd_typ=%d&hostgroup=%s'>Schedule downtime for all hosts in this hostgroup</a></td></tr>\n", url_images_path, DOWNTIME_ICON, COMMAND_CGI, CMD_SCHEDULE_HOSTGROUP_HOST_DOWNTIME, url_encode(hostgroup_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='°²ÅÅ¸ÃÖ÷»ú×éÖĞËùÓĞ·şÎñµÄå´»úÊ±¼ä' TITLE='°²ÅÅ¸ÃÖ÷»ú×éÖĞËùÓĞ·şÎñµÄå´»úÊ±¼ä'></td><td CLASS='command'><a href='%s?cmd_typ=%d&hostgroup=%s'>Schedule downtime for all services in this hostgroup</a></td></tr>\n", url_images_path, DOWNTIME_ICON, COMMAND_CGI, CMD_SCHEDULE_HOSTGROUP_SVC_DOWNTIME, url_encode(hostgroup_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å®‰æ’è¯¥ä¸»æœºç»„ä¸­æ‰€æœ‰æœåŠ¡çš„å®•æœºæ—¶é—´' TITLE='å®‰æ’è¯¥ä¸»æœºç»„ä¸­æ‰€æœ‰æœåŠ¡çš„å®•æœºæ—¶é—´'></td><td CLASS='command'><a href='%s?cmd_typ=%d&hostgroup=%s'>Schedule downtime for all services in this hostgroup</a></td></tr>\n", url_images_path, DOWNTIME_ICON, COMMAND_CGI, CMD_SCHEDULE_HOSTGROUP_SVC_DOWNTIME, url_encode(hostgroup_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÆôÓÃ¸ÃÖ÷»ú×éÖĞËùÓĞÖ÷»úµÄÍ¨Öª' TITLE='ÆôÓÃ¸ÃÖ÷»ú×éÖĞËùÓĞÖ÷»úµÄÍ¨Öª'></td><td CLASS='command'><a href='%s?cmd_typ=%d&hostgroup=%s'>Enable notifications for all hosts in this hostgroup</a></td></tr>\n", url_images_path, NOTIFICATION_ICON, COMMAND_CGI, CMD_ENABLE_HOSTGROUP_HOST_NOTIFICATIONS, url_encode(hostgroup_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å¯ç”¨è¯¥ä¸»æœºç»„ä¸­æ‰€æœ‰ä¸»æœºçš„é€šçŸ¥' TITLE='å¯ç”¨è¯¥ä¸»æœºç»„ä¸­æ‰€æœ‰ä¸»æœºçš„é€šçŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&hostgroup=%s'>Enable notifications for all hosts in this hostgroup</a></td></tr>\n", url_images_path, NOTIFICATION_ICON, COMMAND_CGI, CMD_ENABLE_HOSTGROUP_HOST_NOTIFICATIONS, url_encode(hostgroup_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='½ûÓÃ¸ÃÖ÷»ú×éÖĞËùÓĞÖ÷»úµÄÍ¨Öª' TITLE='½ûÓÃ¸ÃÖ÷»ú×éÖĞËùÓĞÖ÷»úµÄÍ¨Öª'></td><td CLASS='command'><a href='%s?cmd_typ=%d&hostgroup=%s'>Disable notifications for all hosts in this hostgroup</a></td></tr>\n", url_images_path, NOTIFICATIONS_DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_HOSTGROUP_HOST_NOTIFICATIONS, url_encode(hostgroup_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ç¦ç”¨è¯¥ä¸»æœºç»„ä¸­æ‰€æœ‰ä¸»æœºçš„é€šçŸ¥' TITLE='ç¦ç”¨è¯¥ä¸»æœºç»„ä¸­æ‰€æœ‰ä¸»æœºçš„é€šçŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&hostgroup=%s'>Disable notifications for all hosts in this hostgroup</a></td></tr>\n", url_images_path, NOTIFICATIONS_DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_HOSTGROUP_HOST_NOTIFICATIONS, url_encode(hostgroup_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÆôÓÃ¸ÃÖ÷»ú×éÖĞËùÓĞ·şÎñµÄÍ¨Öª' TITLE='ÆôÓÃ¸ÃÖ÷»ú×éÖĞËùÓĞ·şÎñµÄÍ¨Öª'></td><td CLASS='command'><a href='%s?cmd_typ=%d&hostgroup=%s'>Enable notifications for all services in this hostgroup</a></td></tr>\n", url_images_path, NOTIFICATION_ICON, COMMAND_CGI, CMD_ENABLE_HOSTGROUP_SVC_NOTIFICATIONS, url_encode(hostgroup_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å¯ç”¨è¯¥ä¸»æœºç»„ä¸­æ‰€æœ‰æœåŠ¡çš„é€šçŸ¥' TITLE='å¯ç”¨è¯¥ä¸»æœºç»„ä¸­æ‰€æœ‰æœåŠ¡çš„é€šçŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&hostgroup=%s'>Enable notifications for all services in this hostgroup</a></td></tr>\n", url_images_path, NOTIFICATION_ICON, COMMAND_CGI, CMD_ENABLE_HOSTGROUP_SVC_NOTIFICATIONS, url_encode(hostgroup_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='½ûÓÃ¸ÃÖ÷»ú×éÖĞËùÓĞ·şÎñµÄÍ¨Öª' TITLE='½ûÓÃ¸ÃÖ÷»ú×éÖĞËùÓĞ·şÎñµÄÍ¨Öª'></td><td CLASS='command'><a href='%s?cmd_typ=%d&hostgroup=%s'>Disable notifications for all services in this hostgroup</a></td></tr>\n", url_images_path, NOTIFICATIONS_DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_HOSTGROUP_SVC_NOTIFICATIONS, url_encode(hostgroup_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ç¦ç”¨è¯¥ä¸»æœºç»„ä¸­æ‰€æœ‰æœåŠ¡çš„é€šçŸ¥' TITLE='ç¦ç”¨è¯¥ä¸»æœºç»„ä¸­æ‰€æœ‰æœåŠ¡çš„é€šçŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&hostgroup=%s'>Disable notifications for all services in this hostgroup</a></td></tr>\n", url_images_path, NOTIFICATIONS_DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_HOSTGROUP_SVC_NOTIFICATIONS, url_encode(hostgroup_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÆôÓÃ¸ÃÖ÷»ú×éÖĞËùÓĞ·şÎñµÄÖ÷¶¯¼ì²é' TITLE='ÆôÓÃ¸ÃÖ÷»ú×éÖĞËùÓĞ·şÎñµÄÖ÷¶¯¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d&hostgroup=%s'>Enable active checks of all services in this hostgroup</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_HOSTGROUP_SVC_CHECKS, url_encode(hostgroup_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å¯ç”¨è¯¥ä¸»æœºç»„ä¸­æ‰€æœ‰æœåŠ¡çš„ä¸»åŠ¨æ£€æŸ¥' TITLE='å¯ç”¨è¯¥ä¸»æœºç»„ä¸­æ‰€æœ‰æœåŠ¡çš„ä¸»åŠ¨æ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&hostgroup=%s'>Enable active checks of all services in this hostgroup</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_HOSTGROUP_SVC_CHECKS, url_encode(hostgroup_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='½ûÓÃ¸ÃÖ÷»ú×éÖĞËùÓĞ·şÎñµÄÖ÷¶¯¼ì²é' TITLE='½ûÓÃ¸ÃÖ÷»ú×éÖĞËùÓĞ·şÎñµÄÖ÷¶¯¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d&hostgroup=%s'>Disable active checks of all services in this hostgroup</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_HOSTGROUP_SVC_CHECKS, url_encode(hostgroup_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ç¦ç”¨è¯¥ä¸»æœºç»„ä¸­æ‰€æœ‰æœåŠ¡çš„ä¸»åŠ¨æ£€æŸ¥' TITLE='ç¦ç”¨è¯¥ä¸»æœºç»„ä¸­æ‰€æœ‰æœåŠ¡çš„ä¸»åŠ¨æ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&hostgroup=%s'>Disable active checks of all services in this hostgroup</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_HOSTGROUP_SVC_CHECKS, url_encode(hostgroup_name));
 
 		printf("</table>\n");
 
@@ -1632,8 +1632,8 @@ void show_hostgroup_info(void) {
 		printf("<DIV ALIGN=CENTER CLASS='infoMessage'>Your account does not have permissions to execute commands.<br>\n");
 		}
 	else {
-		printf("<DIV CLASS='infoMessage'>Nagios½ø³ÌÎ´ÔËĞĞ£¬ÃüÁîÔİÊ±ÎŞĞ§¡£<br>\n");
-		printf("<a href='%s?type=%d'>µã»÷²é¿´</a>Nagios½ø³ÌĞÅÏ¢¡£</DIV>\n", EXTINFO_CGI, DISPLAY_PROCESS_INFO);
+		printf("<DIV CLASS='infoMessage'>Nagiosè¿›ç¨‹æœªè¿è¡Œï¼Œå‘½ä»¤æš‚æ—¶æ— æ•ˆã€‚<br>\n");
+		printf("<a href='%s?type=%d'>ç‚¹å‡»æŸ¥çœ‹</a>Nagiosè¿›ç¨‹ä¿¡æ¯ã€‚</DIV>\n", EXTINFO_CGI, DISPLAY_PROCESS_INFO);
 		}
 
 	printf("</TD></TR>\n");
@@ -1669,15 +1669,15 @@ void show_servicegroup_info() {
 	/* make sure the user has rights to view servicegroup information */
 	if(is_authorized_for_servicegroup(temp_servicegroup, &current_authdata) == FALSE) {
 
-		printf("<P><DIV CLASS='errorMessage'>ÎŞÈ¨·ÃÎÊ·şÎñ×éĞÅÏ¢¡£</DIV></P>\n");
-		printf("<P><DIV CLASS='errorDescription'>Çë¼ì²éHTTP·şÎñÆ÷¹ØÓÚ¸ÃCGIµÄ·ÃÎÊÈ¨ÏŞÉèÖÃ¡£</DIV></P>\n");
+		printf("<P><DIV CLASS='errorMessage'>æ— æƒè®¿é—®æœåŠ¡ç»„ä¿¡æ¯ã€‚</DIV></P>\n");
+		printf("<P><DIV CLASS='errorDescription'>è¯·æ£€æŸ¥HTTPæœåŠ¡å™¨å…³äºè¯¥CGIçš„è®¿é—®æƒé™è®¾ç½®ã€‚</DIV></P>\n");
 
 		return;
 		}
 
 	/* make sure servicegroup information exists */
 	if(temp_servicegroup == NULL) {
-		printf("<P><DIV CLASS='errorMessage'>´íÎó: ·şÎñ×é²»´æÔÚ!</DIV></P>");
+		printf("<P><DIV CLASS='errorMessage'>é”™è¯¯: æœåŠ¡ç»„ä¸å­˜åœ¨!</DIV></P>");
 		return;
 		}
 
@@ -1693,7 +1693,7 @@ void show_servicegroup_info() {
 	/* right top panel */
 	printf("</TD><TD ALIGN=CENTER VALIGN=TOP CLASS='stateInfoPanel' ROWSPAN=2>\n");
 
-	printf("<DIV CLASS='dataTitle'>·şÎñ×éÃüÁî</DIV>\n");
+	printf("<DIV CLASS='dataTitle'>æœåŠ¡ç»„å‘½ä»¤</DIV>\n");
 
 	if(nagios_process_state == STATE_OK) {
 
@@ -1702,21 +1702,21 @@ void show_servicegroup_info() {
 
 		printf("<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 CLASS='command'>\n");
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='°²ÅÅ¸Ã·şÎñ×éÖĞËùÓĞÖ÷»úµÄå´»úÊ±¼ä' TITLE='°²ÅÅ¸Ã·şÎñ×éÖĞËùÓĞÖ÷»úµÄå´»úÊ±¼ä'></td><td CLASS='command'><a href='%s?cmd_typ=%d&servicegroup=%s'>Schedule downtime for all hosts in this servicegroup</a></td></tr>\n", url_images_path, DOWNTIME_ICON, COMMAND_CGI, CMD_SCHEDULE_SERVICEGROUP_HOST_DOWNTIME, url_encode(servicegroup_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å®‰æ’è¯¥æœåŠ¡ç»„ä¸­æ‰€æœ‰ä¸»æœºçš„å®•æœºæ—¶é—´' TITLE='å®‰æ’è¯¥æœåŠ¡ç»„ä¸­æ‰€æœ‰ä¸»æœºçš„å®•æœºæ—¶é—´'></td><td CLASS='command'><a href='%s?cmd_typ=%d&servicegroup=%s'>Schedule downtime for all hosts in this servicegroup</a></td></tr>\n", url_images_path, DOWNTIME_ICON, COMMAND_CGI, CMD_SCHEDULE_SERVICEGROUP_HOST_DOWNTIME, url_encode(servicegroup_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='°²ÅÅ¸Ã·şÎñ×éÖĞËùÓĞ·şÎñµÄå´»úÊ±¼ä' TITLE='°²ÅÅ¸Ã·şÎñ×éÖĞËùÓĞ·şÎñµÄå´»úÊ±¼ä'></td><td CLASS='command'><a href='%s?cmd_typ=%d&servicegroup=%s'>Schedule downtime for all services in this servicegroup</a></td></tr>\n", url_images_path, DOWNTIME_ICON, COMMAND_CGI, CMD_SCHEDULE_SERVICEGROUP_SVC_DOWNTIME, url_encode(servicegroup_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å®‰æ’è¯¥æœåŠ¡ç»„ä¸­æ‰€æœ‰æœåŠ¡çš„å®•æœºæ—¶é—´' TITLE='å®‰æ’è¯¥æœåŠ¡ç»„ä¸­æ‰€æœ‰æœåŠ¡çš„å®•æœºæ—¶é—´'></td><td CLASS='command'><a href='%s?cmd_typ=%d&servicegroup=%s'>Schedule downtime for all services in this servicegroup</a></td></tr>\n", url_images_path, DOWNTIME_ICON, COMMAND_CGI, CMD_SCHEDULE_SERVICEGROUP_SVC_DOWNTIME, url_encode(servicegroup_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÆôÓÃ¸Ã·şÎñ×éÖĞËùÓĞÖ÷»úµÄÍ¨Öª' TITLE='ÆôÓÃ¸Ã·şÎñ×éÖĞËùÓĞÖ÷»úµÄÍ¨Öª'></td><td CLASS='command'><a href='%s?cmd_typ=%d&servicegroup=%s'>Enable notifications for all hosts in this servicegroup</a></td></tr>\n", url_images_path, NOTIFICATION_ICON, COMMAND_CGI, CMD_ENABLE_SERVICEGROUP_HOST_NOTIFICATIONS, url_encode(servicegroup_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å¯ç”¨è¯¥æœåŠ¡ç»„ä¸­æ‰€æœ‰ä¸»æœºçš„é€šçŸ¥' TITLE='å¯ç”¨è¯¥æœåŠ¡ç»„ä¸­æ‰€æœ‰ä¸»æœºçš„é€šçŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&servicegroup=%s'>Enable notifications for all hosts in this servicegroup</a></td></tr>\n", url_images_path, NOTIFICATION_ICON, COMMAND_CGI, CMD_ENABLE_SERVICEGROUP_HOST_NOTIFICATIONS, url_encode(servicegroup_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='½ûÓÃ¸Ã·şÎñ×éÖĞËùÓĞÖ÷»úµÄÍ¨Öª' TITLE='½ûÓÃ¸Ã·şÎñ×éÖĞËùÓĞÖ÷»úµÄÍ¨Öª'></td><td CLASS='command'><a href='%s?cmd_typ=%d&servicegroup=%s'>Disable notifications for all hosts in this servicegroup</a></td></tr>\n", url_images_path, NOTIFICATIONS_DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_SERVICEGROUP_HOST_NOTIFICATIONS, url_encode(servicegroup_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ç¦ç”¨è¯¥æœåŠ¡ç»„ä¸­æ‰€æœ‰ä¸»æœºçš„é€šçŸ¥' TITLE='ç¦ç”¨è¯¥æœåŠ¡ç»„ä¸­æ‰€æœ‰ä¸»æœºçš„é€šçŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&servicegroup=%s'>Disable notifications for all hosts in this servicegroup</a></td></tr>\n", url_images_path, NOTIFICATIONS_DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_SERVICEGROUP_HOST_NOTIFICATIONS, url_encode(servicegroup_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÆôÓÃ¸Ã·şÎñ×éÖĞËùÓĞ·şÎñµÄÍ¨Öª' TITLE='ÆôÓÃ¸Ã·şÎñ×éÖĞËùÓĞ·şÎñµÄÍ¨Öª'></td><td CLASS='command'><a href='%s?cmd_typ=%d&servicegroup=%s'>Enable notifications for all services in this servicegroup</a></td></tr>\n", url_images_path, NOTIFICATION_ICON, COMMAND_CGI, CMD_ENABLE_SERVICEGROUP_SVC_NOTIFICATIONS, url_encode(servicegroup_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å¯ç”¨è¯¥æœåŠ¡ç»„ä¸­æ‰€æœ‰æœåŠ¡çš„é€šçŸ¥' TITLE='å¯ç”¨è¯¥æœåŠ¡ç»„ä¸­æ‰€æœ‰æœåŠ¡çš„é€šçŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&servicegroup=%s'>Enable notifications for all services in this servicegroup</a></td></tr>\n", url_images_path, NOTIFICATION_ICON, COMMAND_CGI, CMD_ENABLE_SERVICEGROUP_SVC_NOTIFICATIONS, url_encode(servicegroup_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='½ûÓÃ¸Ã·şÎñ×éÖĞËùÓĞ·şÎñµÄÍ¨Öª' TITLE='½ûÓÃ¸Ã·şÎñ×éÖĞËùÓĞ·şÎñµÄÍ¨Öª'></td><td CLASS='command'><a href='%s?cmd_typ=%d&servicegroup=%s'>Disable notifications for all services in this servicegroup</a></td></tr>\n", url_images_path, NOTIFICATIONS_DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_SERVICEGROUP_SVC_NOTIFICATIONS, url_encode(servicegroup_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ç¦ç”¨è¯¥æœåŠ¡ç»„ä¸­æ‰€æœ‰æœåŠ¡çš„é€šçŸ¥' TITLE='ç¦ç”¨è¯¥æœåŠ¡ç»„ä¸­æ‰€æœ‰æœåŠ¡çš„é€šçŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&servicegroup=%s'>Disable notifications for all services in this servicegroup</a></td></tr>\n", url_images_path, NOTIFICATIONS_DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_SERVICEGROUP_SVC_NOTIFICATIONS, url_encode(servicegroup_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ÆôÓÃ¸Ã·şÎñ×éÖĞËùÓĞ·şÎñµÄÖ÷¶¯¼ì²é' TITLE='ÆôÓÃ¸Ã·şÎñ×éÖĞËùÓĞ·şÎñµÄÖ÷¶¯¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d&servicegroup=%s'>Enable active checks of all services in this servicegroup</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_SERVICEGROUP_SVC_CHECKS, url_encode(servicegroup_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='å¯ç”¨è¯¥æœåŠ¡ç»„ä¸­æ‰€æœ‰æœåŠ¡çš„ä¸»åŠ¨æ£€æŸ¥' TITLE='å¯ç”¨è¯¥æœåŠ¡ç»„ä¸­æ‰€æœ‰æœåŠ¡çš„ä¸»åŠ¨æ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&servicegroup=%s'>Enable active checks of all services in this servicegroup</a></td></tr>\n", url_images_path, ENABLED_ICON, COMMAND_CGI, CMD_ENABLE_SERVICEGROUP_SVC_CHECKS, url_encode(servicegroup_name));
 
-		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='½ûÓÃ¸Ã·şÎñ×éÖĞËùÓĞ·şÎñµÄÖ÷¶¯¼ì²é' TITLE='½ûÓÃ¸Ã·şÎñ×éÖĞËùÓĞ·şÎñµÄÖ÷¶¯¼ì²é'></td><td CLASS='command'><a href='%s?cmd_typ=%d&servicegroup=%s'>Disable active checks of all services in this servicegroup</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_SERVICEGROUP_SVC_CHECKS, url_encode(servicegroup_name));
+		printf("<tr CLASS='command'><td><img src='%s%s' border=0 ALT='ç¦ç”¨è¯¥æœåŠ¡ç»„ä¸­æ‰€æœ‰æœåŠ¡çš„ä¸»åŠ¨æ£€æŸ¥' TITLE='ç¦ç”¨è¯¥æœåŠ¡ç»„ä¸­æ‰€æœ‰æœåŠ¡çš„ä¸»åŠ¨æ£€æŸ¥'></td><td CLASS='command'><a href='%s?cmd_typ=%d&servicegroup=%s'>Disable active checks of all services in this servicegroup</a></td></tr>\n", url_images_path, DISABLED_ICON, COMMAND_CGI, CMD_DISABLE_SERVICEGROUP_SVC_CHECKS, url_encode(servicegroup_name));
 
 		printf("</table>\n");
 
@@ -1724,8 +1724,8 @@ void show_servicegroup_info() {
 		printf("</TABLE>\n");
 		}
 	else {
-		printf("<DIV CLASS='infoMessage'>Nagios½ø³ÌÎ´ÔËĞĞ£¬ÃüÁîÔİÊ±ÎŞĞ§¡£<br>\n");
-		printf("<a href='%s?type=%d'>µã»÷²é¿´</a>Nagios½ø³ÌĞÅÏ¢¡£</DIV>\n",EXTINFO_CGI,DISPLAY_PROCESS_INFO);
+		printf("<DIV CLASS='infoMessage'>Nagiosè¿›ç¨‹æœªè¿è¡Œï¼Œå‘½ä»¤æš‚æ—¶æ— æ•ˆã€‚<br>\n");
+		printf("<a href='%s?type=%d'>ç‚¹å‡»æŸ¥çœ‹</a>Nagiosè¿›ç¨‹ä¿¡æ¯ã€‚</DIV>\n",EXTINFO_CGI,DISPLAY_PROCESS_INFO);
 		}
 
 	printf("</TD></TR>\n");
@@ -1766,21 +1766,21 @@ void show_all_comments(void) {
 	printf("<BR />\n");
 
 	printf("<A NAME=HOSTCOMMENTS></A>\n");
-	printf("<DIV CLASS='commentTitle'>Ö÷»ú×¢ÊÍ</DIV>\n");
+	printf("<DIV CLASS='commentTitle'>ä¸»æœºæ³¨é‡Š</DIV>\n");
 
 	if(is_authorized_for_read_only(&current_authdata)==FALSE) {
 		printf("<div CLASS='comment'><img src='%s%s' border=0>&nbsp;", url_images_path, COMMENT_ICON);
 		printf("<a href='%s?cmd_typ=%d'>", COMMAND_CGI, CMD_ADD_HOST_COMMENT);
-		printf("Ôö¼ÓĞÂ×¢ÊÍ</a></div>\n");
+		printf("å¢åŠ æ–°æ³¨é‡Š</a></div>\n");
 		}
 
 	printf("<BR />\n");
 	printf("<DIV ALIGN=CENTER>\n");
 	printf("<TABLE BORDER=0 CLASS='comment'>\n");
 	if(is_authorized_for_read_only(&current_authdata)==FALSE)
-		printf("<TR CLASS='comment'><TH CLASS='comment'>Ö÷»úÃû</TH><TH CLASS='comment'>Ê±¼ä</TH><TH CLASS='comment'>×÷Õß</TH><TH CLASS='comment'>×¢ÊÍ</TH><TH CLASS='comment'>×¢ÊÍID</TH><TH CLASS='comment'>±£³ÖÅäÖÃ</TH><TH CLASS='comment'>ÀàĞÍ</TH><TH CLASS='comment'>¹ıÆÚÊ±¼ä</TH><TH CLASS='comment'>¶¯×÷</TH></TR>\n");
+		printf("<TR CLASS='comment'><TH CLASS='comment'>ä¸»æœºå</TH><TH CLASS='comment'>æ—¶é—´</TH><TH CLASS='comment'>ä½œè€…</TH><TH CLASS='comment'>æ³¨é‡Š</TH><TH CLASS='comment'>æ³¨é‡ŠID</TH><TH CLASS='comment'>ä¿æŒé…ç½®</TH><TH CLASS='comment'>ç±»å‹</TH><TH CLASS='comment'>è¿‡æœŸæ—¶é—´</TH><TH CLASS='comment'>åŠ¨ä½œ</TH></TR>\n");
 	else
-		printf("<TR CLASS='comment'><TH CLASS='comment'>Ö÷»úÃû</TH><TH CLASS='comment'>Ê±¼ä</TH><TH CLASS='comment'>×÷Õß</TH><TH CLASS='comment'>×¢ÊÍ</TH><TH CLASS='comment'>×¢ÊÍID</TH><TH CLASS='comment'>±£³ÖÅäÖÃ</TH><TH CLASS='comment'>ÀàĞÍ</TH><TH CLASS='comment'>¹ıÆÚÊ±¼ä</TH></TR>\n");
+		printf("<TR CLASS='comment'><TH CLASS='comment'>ä¸»æœºå</TH><TH CLASS='comment'>æ—¶é—´</TH><TH CLASS='comment'>ä½œè€…</TH><TH CLASS='comment'>æ³¨é‡Š</TH><TH CLASS='comment'>æ³¨é‡ŠID</TH><TH CLASS='comment'>ä¿æŒé…ç½®</TH><TH CLASS='comment'>ç±»å‹</TH><TH CLASS='comment'>è¿‡æœŸæ—¶é—´</TH></TR>\n");
 
 	/* display all the host comments */
 	for(temp_comment = comment_list, total_comments = 0; temp_comment != NULL; temp_comment = temp_comment->next) {
@@ -1828,12 +1828,12 @@ void show_all_comments(void) {
 		printf("<td CLASS='%s'><A HREF='%s?type=%d&host=%s'>%s</A></td>", bg_class, EXTINFO_CGI, DISPLAY_HOST_INFO, url_encode(temp_comment->host_name), temp_comment->host_name);
 		printf("<td CLASS='%s'>%s</td><td CLASS='%s'>%s</td><td CLASS='%s'>%s</td><td CLASS='%s'>%ld</td><td CLASS='%s'>%s</td><td CLASS='%s'>%s</td><td CLASS='%s'>%s</td>", bg_class, date_time, bg_class, temp_comment->author, bg_class, temp_comment->comment_data, bg_class, temp_comment->comment_id, bg_class, (temp_comment->persistent) ? "Yes" : "No", bg_class, comment_type, bg_class, (temp_comment->expires == TRUE) ? expire_time : "N/A");
 		if(is_authorized_for_read_only(&current_authdata)==FALSE)
-			printf("<td><a href='%s?cmd_typ=%d&com_id=%lu'><img src='%s%s' border=0 ALT='É¾³ı×¢ÊÍ' TITLE='É¾³ı×¢ÊÍ'></td>", COMMAND_CGI, CMD_DEL_HOST_COMMENT, temp_comment->comment_id, url_images_path, DELETE_ICON);
+			printf("<td><a href='%s?cmd_typ=%d&com_id=%lu'><img src='%s%s' border=0 ALT='åˆ é™¤æ³¨é‡Š' TITLE='åˆ é™¤æ³¨é‡Š'></td>", COMMAND_CGI, CMD_DEL_HOST_COMMENT, temp_comment->comment_id, url_images_path, DELETE_ICON);
 		printf("</tr>\n");
 		}
 
 	if(total_comments == 0)
-		printf("<TR CLASS='commentOdd'><TD CLASS='commentOdd' COLSPAN=9>Ö÷»úµÄ×¢ÊÍ²»´æÔÚ¡£</TD></TR>");
+		printf("<TR CLASS='commentOdd'><TD CLASS='commentOdd' COLSPAN=9>ä¸»æœºçš„æ³¨é‡Šä¸å­˜åœ¨ã€‚</TD></TR>");
 
 	printf("</TABLE>\n");
 	printf("</DIV>\n");
@@ -1842,21 +1842,21 @@ void show_all_comments(void) {
 
 
 	printf("<A NAME=SERVICECOMMENTS></A>\n");
-	printf("<DIV CLASS='commentTitle'>·şÎñ×¢ÊÍ</DIV>\n");
+	printf("<DIV CLASS='commentTitle'>æœåŠ¡æ³¨é‡Š</DIV>\n");
 
 	if(is_authorized_for_read_only(&current_authdata)==FALSE){
 		printf("<div CLASS='comment'><img src='%s%s' border=0>&nbsp;", url_images_path, COMMENT_ICON);
 		printf("<a href='%s?cmd_typ=%d'>", COMMAND_CGI, CMD_ADD_SVC_COMMENT);
-		printf("Ôö¼ÓĞÂ×¢ÊÍ</a></div>\n");
+		printf("å¢åŠ æ–°æ³¨é‡Š</a></div>\n");
 		}
 
 	printf("<BR />\n");
 	printf("<DIV ALIGN=CENTER>\n");
 	printf("<TABLE BORDER=0 CLASS='comment'>\n");
 	if(is_authorized_for_read_only(&current_authdata)==FALSE)
-		printf("<TR CLASS='comment'><TH CLASS='comment'>Ö÷»úÃû</TH><TH CLASS='comment'>·şÎñ</TH><TH CLASS='comment'>Entry Time</TH><TH CLASS='comment'>×÷Õß</TH><TH CLASS='comment'>×¢ÊÍ</TH><TH CLASS='comment'>×¢ÊÍ ID</TH><TH CLASS='comment'>±£³ÖÅäÖÃ</TH><TH CLASS='comment'>ÀàĞÍ</TH><TH CLASS='comment'>¹ıÆÚÊ±¼ä</TH><TH CLASS='comment'>¶¯×÷</TH></TR>\n");
+		printf("<TR CLASS='comment'><TH CLASS='comment'>ä¸»æœºå</TH><TH CLASS='comment'>æœåŠ¡</TH><TH CLASS='comment'>Entry Time</TH><TH CLASS='comment'>ä½œè€…</TH><TH CLASS='comment'>æ³¨é‡Š</TH><TH CLASS='comment'>æ³¨é‡Š ID</TH><TH CLASS='comment'>ä¿æŒé…ç½®</TH><TH CLASS='comment'>ç±»å‹</TH><TH CLASS='comment'>è¿‡æœŸæ—¶é—´</TH><TH CLASS='comment'>åŠ¨ä½œ</TH></TR>\n");
 	else
-		printf("<TR CLASS='comment'><TH CLASS='comment'>Ö÷»úÃû</TH><TH CLASS='comment'>·şÎñ</TH><TH CLASS='comment'>Entry Time</TH><TH CLASS='comment'>×÷Õß</TH><TH CLASS='comment'>×¢ÊÍ</TH><TH CLASS='comment'>×¢ÊÍ ID</TH><TH CLASS='comment'>±£³ÖÅäÖÃ</TH><TH CLASS='comment'>ÀàĞÍ</TH><TH CLASS='comment'>¹ıÆÚÊ±¼ä</TH></TR>\n");
+		printf("<TR CLASS='comment'><TH CLASS='comment'>ä¸»æœºå</TH><TH CLASS='comment'>æœåŠ¡</TH><TH CLASS='comment'>Entry Time</TH><TH CLASS='comment'>ä½œè€…</TH><TH CLASS='comment'>æ³¨é‡Š</TH><TH CLASS='comment'>æ³¨é‡Š ID</TH><TH CLASS='comment'>ä¿æŒé…ç½®</TH><TH CLASS='comment'>ç±»å‹</TH><TH CLASS='comment'>è¿‡æœŸæ—¶é—´</TH></TR>\n");
 
 	/* display all the service comments */
 	for(temp_comment = comment_list, total_comments = 0; temp_comment != NULL; temp_comment = temp_comment->next) {
@@ -1906,12 +1906,12 @@ void show_all_comments(void) {
 		printf("&service=%s'>%s</A></td>", url_encode(temp_comment->service_description), temp_comment->service_description);
 		printf("<td CLASS='%s'>%s</td><td CLASS='%s'>%s</td><td CLASS='%s'>%s</td><td CLASS='%s'>%ld</td><td CLASS='%s'>%s</td><td CLASS='%s'>%s</td><td CLASS='%s'>%s</td>", bg_class, date_time, bg_class, temp_comment->author, bg_class, temp_comment->comment_data, bg_class, temp_comment->comment_id, bg_class, (temp_comment->persistent) ? "Yes" : "No", bg_class, comment_type, bg_class, (temp_comment->expires == TRUE) ? expire_time : "N/A");
 		if(is_authorized_for_read_only(&current_authdata)==FALSE)
-			printf("<td><a href='%s?cmd_typ=%d&com_id=%ld'><img src='%s%s' border=0 ALT='É¾³ı×¢ÊÍ' TITLE='É¾³ı×¢ÊÍ'></td>", COMMAND_CGI, CMD_DEL_SVC_COMMENT, temp_comment->comment_id, url_images_path, DELETE_ICON);
+			printf("<td><a href='%s?cmd_typ=%d&com_id=%ld'><img src='%s%s' border=0 ALT='åˆ é™¤æ³¨é‡Š' TITLE='åˆ é™¤æ³¨é‡Š'></td>", COMMAND_CGI, CMD_DEL_SVC_COMMENT, temp_comment->comment_id, url_images_path, DELETE_ICON);
 		printf("</tr>\n");
 		}
 
 	if(total_comments == 0)
-		printf("<TR CLASS='commentOdd'><TD CLASS='commentOdd' COLSPAN=10>·şÎñµÄ×¢ÊÍ²»´æÔÚ¡£</TD></TR>");
+		printf("<TR CLASS='commentOdd'><TD CLASS='commentOdd' COLSPAN=10>æœåŠ¡çš„æ³¨é‡Šä¸å­˜åœ¨ã€‚</TD></TR>");
 
 	printf("</TABLE>\n");
 	printf("</DIV>\n");
@@ -2177,7 +2177,7 @@ void show_performance_data(void) {
 	printf("<div align=center>\n");
 
 
-	printf("<DIV CLASS='dataTitle'>³ÌĞòÉè¶¨µÄĞÔÄÜĞÅÏ¢</DIV>\n");
+	printf("<DIV CLASS='dataTitle'>ç¨‹åºè®¾å®šçš„æ€§èƒ½ä¿¡æ¯</DIV>\n");
 
 	printf("<table border='0' cellpadding='10'>\n");
 
@@ -2185,7 +2185,7 @@ void show_performance_data(void) {
 	/***** ACTIVE SERVICE CHECKS *****/
 
 	printf("<tr>\n");
-	printf("<td valign=middle><div class='perfTypeTitle'>¿ªÆôÖ÷¶¯¼ì²é:</div></td>\n");
+	printf("<td valign=middle><div class='perfTypeTitle'>å¼€å¯ä¸»åŠ¨æ£€æŸ¥:</div></td>\n");
 	printf("<td valign=top>\n");
 
 	/* fake this so we don't divide by zero for just showing the table */
@@ -2196,12 +2196,12 @@ void show_performance_data(void) {
 	printf("<TR><TD class='stateInfoTable1'>\n");
 	printf("<TABLE BORDER=0>\n");
 
-	printf("<tr class='data'><th class='data'>Ê±¼ä¿ò</th><th class='data'>Íê³ÉµÄ¼ì²é</th></tr>\n");
-	printf("<tr><td class='dataVar'>&lt;= 1 ·ÖÖÓ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", active_service_checks_1min, (double)(((double)active_service_checks_1min * 100.0) / (double)total_active_service_checks));
-	printf("<tr><td class='dataVar'>&lt;= 5 ·ÖÖÓ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", active_service_checks_5min, (double)(((double)active_service_checks_5min * 100.0) / (double)total_active_service_checks));
-	printf("<tr><td class='dataVar'>&lt;= 15 ·ÖÖÓ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", active_service_checks_15min, (double)(((double)active_service_checks_15min * 100.0) / (double)total_active_service_checks));
-	printf("<tr><td class='dataVar'>&lt;= 1 Ğ¡Ê±:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", active_service_checks_1hour, (double)(((double)active_service_checks_1hour * 100.0) / (double)total_active_service_checks));
-	printf("<tr><td class='dataVar'>×Ô³ÌĞòÆô¶¯ÒÔÀ´:&nbsp;&nbsp;</td><td class='dataVal'>%d (%.1f%%)</td>", active_service_checks_start, (double)(((double)active_service_checks_start * 100.0) / (double)total_active_service_checks));
+	printf("<tr class='data'><th class='data'>æ—¶é—´æ¡†</th><th class='data'>å®Œæˆçš„æ£€æŸ¥</th></tr>\n");
+	printf("<tr><td class='dataVar'>&lt;= 1 åˆ†é’Ÿ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", active_service_checks_1min, (double)(((double)active_service_checks_1min * 100.0) / (double)total_active_service_checks));
+	printf("<tr><td class='dataVar'>&lt;= 5 åˆ†é’Ÿ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", active_service_checks_5min, (double)(((double)active_service_checks_5min * 100.0) / (double)total_active_service_checks));
+	printf("<tr><td class='dataVar'>&lt;= 15 åˆ†é’Ÿ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", active_service_checks_15min, (double)(((double)active_service_checks_15min * 100.0) / (double)total_active_service_checks));
+	printf("<tr><td class='dataVar'>&lt;= 1 å°æ—¶:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", active_service_checks_1hour, (double)(((double)active_service_checks_1hour * 100.0) / (double)total_active_service_checks));
+	printf("<tr><td class='dataVar'>è‡ªç¨‹åºå¯åŠ¨ä»¥æ¥:&nbsp;&nbsp;</td><td class='dataVal'>%d (%.1f%%)</td>", active_service_checks_start, (double)(((double)active_service_checks_start * 100.0) / (double)total_active_service_checks));
 
 	printf("</TABLE>\n");
 	printf("</TD></TR>\n");
@@ -2213,13 +2213,13 @@ void show_performance_data(void) {
 	printf("<TR><TD class='stateInfoTable2'>\n");
 	printf("<TABLE BORDER=0>\n");
 
-	printf("<tr class='data'><th class='data'>Metric</th><th class='data'>×îĞ¡.</th><th class='data'>×î´ó.</th><th class='data'>Æ½¾ù</th></tr>\n");
+	printf("<tr class='data'><th class='data'>Metric</th><th class='data'>æœ€å°.</th><th class='data'>æœ€å¤§.</th><th class='data'>å¹³å‡</th></tr>\n");
 
-	printf("<tr><td class='dataVar'>¼ì²éÖ´ĞĞÊ±¼ä:&nbsp;&nbsp;</td><td class='dataVal'>%.2f Ãë</td><td class='dataVal'>%.2f Ãë</td><td class='dataVal'>%.3f Ãë</td></tr>\n", min_service_execution_time, max_service_execution_time, (double)((double)total_service_execution_time / (double)total_active_service_checks));
+	printf("<tr><td class='dataVar'>æ£€æŸ¥æ‰§è¡Œæ—¶é—´:&nbsp;&nbsp;</td><td class='dataVal'>%.2f ç§’</td><td class='dataVal'>%.2f ç§’</td><td class='dataVal'>%.3f ç§’</td></tr>\n", min_service_execution_time, max_service_execution_time, (double)((double)total_service_execution_time / (double)total_active_service_checks));
 
-	printf("<tr><td class='dataVar'>¼ì²é·´Ó¦Ê±¼ä:</td><td class='dataVal'>%.2f Ãë</td><td class='dataVal'>%.2f Ãë</td><td class='dataVal'>%.3f Ãë</td></tr>\n", min_service_latency, max_service_latency, (double)((double)total_service_latency / (double)total_active_service_checks));
+	printf("<tr><td class='dataVar'>æ£€æŸ¥ååº”æ—¶é—´:</td><td class='dataVal'>%.2f ç§’</td><td class='dataVal'>%.2f ç§’</td><td class='dataVal'>%.3f ç§’</td></tr>\n", min_service_latency, max_service_latency, (double)((double)total_service_latency / (double)total_active_service_checks));
 
-	printf("<tr><td class='dataVar'>×´Ì¬±ä»¯ÂÊ:</td><td class='dataVal'>%.2f%%</td><td class='dataVal'>%.2f%%</td><td class='dataVal'>%.2f%%</td></tr>\n", min_service_percent_change_a, max_service_percent_change_a, (double)((double)total_service_percent_change_a / (double)total_active_service_checks));
+	printf("<tr><td class='dataVar'>çŠ¶æ€å˜åŒ–ç‡:</td><td class='dataVal'>%.2f%%</td><td class='dataVal'>%.2f%%</td><td class='dataVal'>%.2f%%</td></tr>\n", min_service_percent_change_a, max_service_percent_change_a, (double)((double)total_service_percent_change_a / (double)total_active_service_checks));
 
 	printf("</TABLE>\n");
 	printf("</TD></TR>\n");
@@ -2233,7 +2233,7 @@ void show_performance_data(void) {
 	/***** PASSIVE SERVICE CHECKS *****/
 
 	printf("<tr>\n");
-	printf("<td valign=middle><div class='perfTypeTitle'>±»¶¯¼ì²é·şÎñ:</div></td>\n");
+	printf("<td valign=middle><div class='perfTypeTitle'>è¢«åŠ¨æ£€æŸ¥æœåŠ¡:</div></td>\n");
 	printf("<td valign=top>\n");
 
 
@@ -2245,12 +2245,12 @@ void show_performance_data(void) {
 	printf("<TR><TD class='stateInfoTable1'>\n");
 	printf("<TABLE BORDER=0>\n");
 
-	printf("<tr class='data'><th class='data'>Ê±¼ä¿ò</th><th class='data'>Íê³ÉµÄ¼ì²é</th></tr>\n");
-	printf("<tr><td class='dataVar'>&lt;= 1 ·ÖÖÓ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", passive_service_checks_1min, (double)(((double)passive_service_checks_1min * 100.0) / (double)total_passive_service_checks));
-	printf("<tr><td class='dataVar'>&lt;= 5 ·ÖÖÓ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", passive_service_checks_5min, (double)(((double)passive_service_checks_5min * 100.0) / (double)total_passive_service_checks));
-	printf("<tr><td class='dataVar'>&lt;= 15 ·ÖÖÓ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", passive_service_checks_15min, (double)(((double)passive_service_checks_15min * 100.0) / (double)total_passive_service_checks));
-	printf("<tr><td class='dataVar'>&lt;= 1 Ğ¡Ê±:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", passive_service_checks_1hour, (double)(((double)passive_service_checks_1hour * 100.0) / (double)total_passive_service_checks));
-	printf("<tr><td class='dataVar'>×Ô³ÌĞòÆô¶¯ÒÔÀ´:&nbsp;&nbsp;</td><td class='dataVal'>%d (%.1f%%)</td></tr>", passive_service_checks_start, (double)(((double)passive_service_checks_start * 100.0) / (double)total_passive_service_checks));
+	printf("<tr class='data'><th class='data'>æ—¶é—´æ¡†</th><th class='data'>å®Œæˆçš„æ£€æŸ¥</th></tr>\n");
+	printf("<tr><td class='dataVar'>&lt;= 1 åˆ†é’Ÿ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", passive_service_checks_1min, (double)(((double)passive_service_checks_1min * 100.0) / (double)total_passive_service_checks));
+	printf("<tr><td class='dataVar'>&lt;= 5 åˆ†é’Ÿ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", passive_service_checks_5min, (double)(((double)passive_service_checks_5min * 100.0) / (double)total_passive_service_checks));
+	printf("<tr><td class='dataVar'>&lt;= 15 åˆ†é’Ÿ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", passive_service_checks_15min, (double)(((double)passive_service_checks_15min * 100.0) / (double)total_passive_service_checks));
+	printf("<tr><td class='dataVar'>&lt;= 1 å°æ—¶:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", passive_service_checks_1hour, (double)(((double)passive_service_checks_1hour * 100.0) / (double)total_passive_service_checks));
+	printf("<tr><td class='dataVar'>è‡ªç¨‹åºå¯åŠ¨ä»¥æ¥:&nbsp;&nbsp;</td><td class='dataVal'>%d (%.1f%%)</td></tr>", passive_service_checks_start, (double)(((double)passive_service_checks_start * 100.0) / (double)total_passive_service_checks));
 
 	printf("</TABLE>\n");
 	printf("</TD></TR>\n");
@@ -2262,8 +2262,8 @@ void show_performance_data(void) {
 	printf("<TR><TD class='stateInfoTable2'>\n");
 	printf("<TABLE BORDER=0>\n");
 
-	printf("<tr class='data'><th class='data'>Metric</th><th class='data'>×îĞ¡.</th><th class='data'>×î´ó.</th><th class='data'>Æ½¾ù</th></tr>\n");
-	printf("<tr><td class='dataVar'>×´Ì¬±ä»¯ÂÊ:&nbsp;&nbsp;</td><td class='dataVal'>%.2f%%</td><td class='dataVal'>%.2f%%</td><td class='dataVal'>%.2f%%</td></tr>\n", min_service_percent_change_b, max_service_percent_change_b, (double)((double)total_service_percent_change_b / (double)total_passive_service_checks));
+	printf("<tr class='data'><th class='data'>Metric</th><th class='data'>æœ€å°.</th><th class='data'>æœ€å¤§.</th><th class='data'>å¹³å‡</th></tr>\n");
+	printf("<tr><td class='dataVar'>çŠ¶æ€å˜åŒ–ç‡:&nbsp;&nbsp;</td><td class='dataVal'>%.2f%%</td><td class='dataVal'>%.2f%%</td><td class='dataVal'>%.2f%%</td></tr>\n", min_service_percent_change_b, max_service_percent_change_b, (double)((double)total_service_percent_change_b / (double)total_passive_service_checks));
 
 	printf("</TABLE>\n");
 	printf("</TD></TR>\n");
@@ -2276,7 +2276,7 @@ void show_performance_data(void) {
 	/***** ACTIVE HOST CHECKS *****/
 
 	printf("<tr>\n");
-	printf("<td valign=middle><div class='perfTypeTitle'>Ö÷»úÖ÷¶¯¼ì²é:</div></td>\n");
+	printf("<td valign=middle><div class='perfTypeTitle'>ä¸»æœºä¸»åŠ¨æ£€æŸ¥:</div></td>\n");
 	printf("<td valign=top>\n");
 
 	/* fake this so we don't divide by zero for just showing the table */
@@ -2287,12 +2287,12 @@ void show_performance_data(void) {
 	printf("<TR><TD class='stateInfoTable1'>\n");
 	printf("<TABLE BORDER=0>\n");
 
-	printf("<tr class='data'><th class='data'>Ê±¼ä¿ò</th><th class='data'>Íê³ÉµÄÖ÷»ú¼ì²é</th></tr>\n");
-	printf("<tr><td class='dataVar'>&lt;= 1 ·ÖÖÓ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", active_host_checks_1min, (double)(((double)active_host_checks_1min * 100.0) / (double)total_active_host_checks));
-	printf("<tr><td class='dataVar'>&lt;= 5 ·ÖÖÓ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", active_host_checks_5min, (double)(((double)active_host_checks_5min * 100.0) / (double)total_active_host_checks));
-	printf("<tr><td class='dataVar'>&lt;= 15 ·ÖÖÓ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", active_host_checks_15min, (double)(((double)active_host_checks_15min * 100.0) / (double)total_active_host_checks));
-	printf("<tr><td class='dataVar'>&lt;= 1 Ğ¡Ê±:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", active_host_checks_1hour, (double)(((double)active_host_checks_1hour * 100.0) / (double)total_active_host_checks));
-	printf("<tr><td class='dataVar'>×Ô³ÌĞòÆô¶¯ÒÔÀ´:&nbsp;&nbsp;</td><td class='dataVal'>%d (%.1f%%)</td>", active_host_checks_start, (double)(((double)active_host_checks_start * 100.0) / (double)total_active_host_checks));
+	printf("<tr class='data'><th class='data'>æ—¶é—´æ¡†</th><th class='data'>å®Œæˆçš„ä¸»æœºæ£€æŸ¥</th></tr>\n");
+	printf("<tr><td class='dataVar'>&lt;= 1 åˆ†é’Ÿ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", active_host_checks_1min, (double)(((double)active_host_checks_1min * 100.0) / (double)total_active_host_checks));
+	printf("<tr><td class='dataVar'>&lt;= 5 åˆ†é’Ÿ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", active_host_checks_5min, (double)(((double)active_host_checks_5min * 100.0) / (double)total_active_host_checks));
+	printf("<tr><td class='dataVar'>&lt;= 15 åˆ†é’Ÿ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", active_host_checks_15min, (double)(((double)active_host_checks_15min * 100.0) / (double)total_active_host_checks));
+	printf("<tr><td class='dataVar'>&lt;= 1 å°æ—¶:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", active_host_checks_1hour, (double)(((double)active_host_checks_1hour * 100.0) / (double)total_active_host_checks));
+	printf("<tr><td class='dataVar'>è‡ªç¨‹åºå¯åŠ¨ä»¥æ¥:&nbsp;&nbsp;</td><td class='dataVal'>%d (%.1f%%)</td>", active_host_checks_start, (double)(((double)active_host_checks_start * 100.0) / (double)total_active_host_checks));
 
 	printf("</TABLE>\n");
 	printf("</TD></TR>\n");
@@ -2304,13 +2304,13 @@ void show_performance_data(void) {
 	printf("<TR><TD class='stateInfoTable2'>\n");
 	printf("<TABLE BORDER=0>\n");
 
-	printf("<tr class='data'><th class='data'>Metric</th><th class='data'>×îĞ¡.</th><th class='data'>×î´ó.</th><th class='data'>Æ½¾ù</th></tr>\n");
+	printf("<tr class='data'><th class='data'>Metric</th><th class='data'>æœ€å°.</th><th class='data'>æœ€å¤§.</th><th class='data'>å¹³å‡</th></tr>\n");
 
-	printf("<tr><td class='dataVar'>¼ì²éÖ´ĞĞÊ±¼ä:&nbsp;&nbsp;</td><td class='dataVal'>%.2f Ãë</td><td class='dataVal'>%.2f Ãë</td><td class='dataVal'>%.3f Ãë</td></tr>\n", min_host_execution_time, max_host_execution_time, (double)((double)total_host_execution_time / (double)total_active_host_checks));
+	printf("<tr><td class='dataVar'>æ£€æŸ¥æ‰§è¡Œæ—¶é—´:&nbsp;&nbsp;</td><td class='dataVal'>%.2f ç§’</td><td class='dataVal'>%.2f ç§’</td><td class='dataVal'>%.3f ç§’</td></tr>\n", min_host_execution_time, max_host_execution_time, (double)((double)total_host_execution_time / (double)total_active_host_checks));
 
-	printf("<tr><td class='dataVar'>¼ì²é·´Ó¦Ê±¼ä:</td><td class='dataVal'>%.2f Ãë</td><td class='dataVal'>%.2f Ãë</td><td class='dataVal'>%.3f Ãë</td></tr>\n", min_host_latency, max_host_latency, (double)((double)total_host_latency / (double)total_active_host_checks));
+	printf("<tr><td class='dataVar'>æ£€æŸ¥ååº”æ—¶é—´:</td><td class='dataVal'>%.2f ç§’</td><td class='dataVal'>%.2f ç§’</td><td class='dataVal'>%.3f ç§’</td></tr>\n", min_host_latency, max_host_latency, (double)((double)total_host_latency / (double)total_active_host_checks));
 
-	printf("<tr><td class='dataVar'>×´Ì¬±ä»¯ÂÊ:</td><td class='dataVal'>%.2f%%</td><td class='dataVal'>%.2f%%</td><td class='dataVal'>%.2f%%</td></tr>\n", min_host_percent_change_a, max_host_percent_change_a, (double)((double)total_host_percent_change_a / (double)total_active_host_checks));
+	printf("<tr><td class='dataVar'>çŠ¶æ€å˜åŒ–ç‡:</td><td class='dataVal'>%.2f%%</td><td class='dataVal'>%.2f%%</td><td class='dataVal'>%.2f%%</td></tr>\n", min_host_percent_change_a, max_host_percent_change_a, (double)((double)total_host_percent_change_a / (double)total_active_host_checks));
 
 	printf("</TABLE>\n");
 	printf("</TD></TR>\n");
@@ -2324,7 +2324,7 @@ void show_performance_data(void) {
 	/***** PASSIVE HOST CHECKS *****/
 
 	printf("<tr>\n");
-	printf("<td valign=middle><div class='perfTypeTitle'>±»¶¯Ö÷»ú¼ì²é:</div></td>\n");
+	printf("<td valign=middle><div class='perfTypeTitle'>è¢«åŠ¨ä¸»æœºæ£€æŸ¥:</div></td>\n");
 	printf("<td valign=top>\n");
 
 
@@ -2336,12 +2336,12 @@ void show_performance_data(void) {
 	printf("<TR><TD class='stateInfoTable1'>\n");
 	printf("<TABLE BORDER=0>\n");
 
-	printf("<tr class='data'><th class='data'>Ê±¼ä¿ò</th><th class='data'>Íê³ÉµÄÖ÷»ú¼ì²é</th></tr>\n");
-	printf("<tr><td class='dataVar'>&lt;= 1 ·ÖÖÓ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", passive_host_checks_1min, (double)(((double)passive_host_checks_1min * 100.0) / (double)total_passive_host_checks));
-	printf("<tr><td class='dataVar'>&lt;= 5 ·ÖÖÓ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", passive_host_checks_5min, (double)(((double)passive_host_checks_5min * 100.0) / (double)total_passive_host_checks));
-	printf("<tr><td class='dataVar'>&lt;= 15 ·ÖÖÓ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", passive_host_checks_15min, (double)(((double)passive_host_checks_15min * 100.0) / (double)total_passive_host_checks));
-	printf("<tr><td class='dataVar'>&lt;= 1 Ğ¡Ê±:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", passive_host_checks_1hour, (double)(((double)passive_host_checks_1hour * 100.0) / (double)total_passive_host_checks));
-	printf("<tr><td class='dataVar'>×Ô³ÌĞòÆô¶¯ÒÔÀ´:&nbsp;&nbsp;</td><td class='dataVal'>%d (%.1f%%)</td></tr>", passive_host_checks_start, (double)(((double)passive_host_checks_start * 100.0) / (double)total_passive_host_checks));
+	printf("<tr class='data'><th class='data'>æ—¶é—´æ¡†</th><th class='data'>å®Œæˆçš„ä¸»æœºæ£€æŸ¥</th></tr>\n");
+	printf("<tr><td class='dataVar'>&lt;= 1 åˆ†é’Ÿ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", passive_host_checks_1min, (double)(((double)passive_host_checks_1min * 100.0) / (double)total_passive_host_checks));
+	printf("<tr><td class='dataVar'>&lt;= 5 åˆ†é’Ÿ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", passive_host_checks_5min, (double)(((double)passive_host_checks_5min * 100.0) / (double)total_passive_host_checks));
+	printf("<tr><td class='dataVar'>&lt;= 15 åˆ†é’Ÿ:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", passive_host_checks_15min, (double)(((double)passive_host_checks_15min * 100.0) / (double)total_passive_host_checks));
+	printf("<tr><td class='dataVar'>&lt;= 1 å°æ—¶:</td><td class='dataVal'>%d (%.1f%%)</td></tr>", passive_host_checks_1hour, (double)(((double)passive_host_checks_1hour * 100.0) / (double)total_passive_host_checks));
+	printf("<tr><td class='dataVar'>è‡ªç¨‹åºå¯åŠ¨ä»¥æ¥:&nbsp;&nbsp;</td><td class='dataVal'>%d (%.1f%%)</td></tr>", passive_host_checks_start, (double)(((double)passive_host_checks_start * 100.0) / (double)total_passive_host_checks));
 
 	printf("</TABLE>\n");
 	printf("</TD></TR>\n");
@@ -2353,8 +2353,8 @@ void show_performance_data(void) {
 	printf("<TR><TD class='stateInfoTable2'>\n");
 	printf("<TABLE BORDER=0>\n");
 
-	printf("<tr class='data'><th class='data'>Metric</th><th class='data'>×îĞ¡.</th><th class='data'>×î´ó.</th><th class='data'>Æ½¾ù</th></tr>\n");
-	printf("<tr><td class='dataVar'>×´Ì¬±ä»¯ÂÊ:&nbsp;&nbsp;</td><td class='dataVal'>%.2f%%</td><td class='dataVal'>%.2f%%</td><td class='dataVal'>%.2f%%</td></tr>\n", min_host_percent_change_b, max_host_percent_change_b, (double)((double)total_host_percent_change_b / (double)total_passive_host_checks));
+	printf("<tr class='data'><th class='data'>Metric</th><th class='data'>æœ€å°.</th><th class='data'>æœ€å¤§.</th><th class='data'>å¹³å‡</th></tr>\n");
+	printf("<tr><td class='dataVar'>çŠ¶æ€å˜åŒ–ç‡:&nbsp;&nbsp;</td><td class='dataVal'>%.2f%%</td><td class='dataVal'>%.2f%%</td><td class='dataVal'>%.2f%%</td></tr>\n", min_host_percent_change_b, max_host_percent_change_b, (double)((double)total_host_percent_change_b / (double)total_passive_host_checks));
 
 	printf("</TABLE>\n");
 	printf("</TD></TR>\n");
@@ -2368,7 +2368,7 @@ void show_performance_data(void) {
 	/***** CHECK STATS *****/
 
 	printf("<tr>\n");
-	printf("<td valign=center><div class='perfTypeTitle'>¼ì²âÍ³¼Æ:</div></td>\n");
+	printf("<td valign=center><div class='perfTypeTitle'>æ£€æµ‹ç»Ÿè®¡:</div></td>\n");
 	printf("<td valign=top colspan='2'>\n");
 
 
@@ -2376,20 +2376,20 @@ void show_performance_data(void) {
 	printf("<TR><TD class='stateInfoTable1'>\n");
 	printf("<TABLE BORDER=0>\n");
 
-	printf("<tr class='data'><th class='data'>ÀàĞÍ</th><th class='data'>1·ÖÖÓÇ°</th><th class='data'>5·ÖÖÓÇ°</th><th class='data'>15·ÖÖÓÇ°</th></tr>\n");
-	printf("<tr><td class='dataVar'>Ö÷¶¯Ê½¼Æ»®Ö÷»ú¼ì²â</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[ACTIVE_SCHEDULED_HOST_CHECK_STATS][0], program_stats[ACTIVE_SCHEDULED_HOST_CHECK_STATS][1], program_stats[ACTIVE_SCHEDULED_HOST_CHECK_STATS][2]);
-	printf("<tr><td class='dataVar'>Ö÷¶¯Ê½°´ĞèÖ÷»ú¼ì²â</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[ACTIVE_ONDEMAND_HOST_CHECK_STATS][0], program_stats[ACTIVE_ONDEMAND_HOST_CHECK_STATS][1], program_stats[ACTIVE_ONDEMAND_HOST_CHECK_STATS][2]);
-	printf("<tr><td class='dataVar'>²¢ĞĞÖ÷»ú¼ì²â</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[PARALLEL_HOST_CHECK_STATS][0], program_stats[PARALLEL_HOST_CHECK_STATS][1], program_stats[PARALLEL_HOST_CHECK_STATS][2]);
-	printf("<tr><td class='dataVar'>´®ĞĞÖ÷»ú¼ì²â</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[SERIAL_HOST_CHECK_STATS][0], program_stats[SERIAL_HOST_CHECK_STATS][1], program_stats[SERIAL_HOST_CHECK_STATS][2]);
-	printf("<tr><td class='dataVar'>Ö÷¶¯Ê½»º´æÊ½Ö÷»ú¼ì²â</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[ACTIVE_CACHED_HOST_CHECK_STATS][0], program_stats[ACTIVE_CACHED_HOST_CHECK_STATS][1], program_stats[ACTIVE_CACHED_HOST_CHECK_STATS][2]);
-	printf("<tr><td class='dataVar'>±»¶¯Ê½Ö÷»ú¼ì²â</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[PASSIVE_HOST_CHECK_STATS][0], program_stats[PASSIVE_HOST_CHECK_STATS][1], program_stats[PASSIVE_HOST_CHECK_STATS][2]);
+	printf("<tr class='data'><th class='data'>ç±»å‹</th><th class='data'>1åˆ†é’Ÿå‰</th><th class='data'>5åˆ†é’Ÿå‰</th><th class='data'>15åˆ†é’Ÿå‰</th></tr>\n");
+	printf("<tr><td class='dataVar'>ä¸»åŠ¨å¼è®¡åˆ’ä¸»æœºæ£€æµ‹</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[ACTIVE_SCHEDULED_HOST_CHECK_STATS][0], program_stats[ACTIVE_SCHEDULED_HOST_CHECK_STATS][1], program_stats[ACTIVE_SCHEDULED_HOST_CHECK_STATS][2]);
+	printf("<tr><td class='dataVar'>ä¸»åŠ¨å¼æŒ‰éœ€ä¸»æœºæ£€æµ‹</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[ACTIVE_ONDEMAND_HOST_CHECK_STATS][0], program_stats[ACTIVE_ONDEMAND_HOST_CHECK_STATS][1], program_stats[ACTIVE_ONDEMAND_HOST_CHECK_STATS][2]);
+	printf("<tr><td class='dataVar'>å¹¶è¡Œä¸»æœºæ£€æµ‹</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[PARALLEL_HOST_CHECK_STATS][0], program_stats[PARALLEL_HOST_CHECK_STATS][1], program_stats[PARALLEL_HOST_CHECK_STATS][2]);
+	printf("<tr><td class='dataVar'>ä¸²è¡Œä¸»æœºæ£€æµ‹</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[SERIAL_HOST_CHECK_STATS][0], program_stats[SERIAL_HOST_CHECK_STATS][1], program_stats[SERIAL_HOST_CHECK_STATS][2]);
+	printf("<tr><td class='dataVar'>ä¸»åŠ¨å¼ç¼“å­˜å¼ä¸»æœºæ£€æµ‹</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[ACTIVE_CACHED_HOST_CHECK_STATS][0], program_stats[ACTIVE_CACHED_HOST_CHECK_STATS][1], program_stats[ACTIVE_CACHED_HOST_CHECK_STATS][2]);
+	printf("<tr><td class='dataVar'>è¢«åŠ¨å¼ä¸»æœºæ£€æµ‹</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[PASSIVE_HOST_CHECK_STATS][0], program_stats[PASSIVE_HOST_CHECK_STATS][1], program_stats[PASSIVE_HOST_CHECK_STATS][2]);
 
-	printf("<tr><td class='dataVar'>Ö÷¶¯Ê½¼Æ»®·şÎñ¼ì²â</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[ACTIVE_SCHEDULED_SERVICE_CHECK_STATS][0], program_stats[ACTIVE_SCHEDULED_SERVICE_CHECK_STATS][1], program_stats[ACTIVE_SCHEDULED_SERVICE_CHECK_STATS][2]);
-	printf("<tr><td class='dataVar'>Ö÷¶¯Ê½°´Ğè·şÎñ¼ì²â</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[ACTIVE_ONDEMAND_SERVICE_CHECK_STATS][0], program_stats[ACTIVE_ONDEMAND_SERVICE_CHECK_STATS][1], program_stats[ACTIVE_ONDEMAND_SERVICE_CHECK_STATS][2]);
-	printf("<tr><td class='dataVar'>Ö÷¶¯»º´æÊ½·şÎñ¼ì²â</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[ACTIVE_CACHED_SERVICE_CHECK_STATS][0], program_stats[ACTIVE_CACHED_SERVICE_CHECK_STATS][1], program_stats[ACTIVE_CACHED_SERVICE_CHECK_STATS][2]);
-	printf("<tr><td class='dataVar'>±»¶¯Ê½·şÎñ¼ì²â</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[PASSIVE_SERVICE_CHECK_STATS][0], program_stats[PASSIVE_SERVICE_CHECK_STATS][1], program_stats[PASSIVE_SERVICE_CHECK_STATS][2]);
+	printf("<tr><td class='dataVar'>ä¸»åŠ¨å¼è®¡åˆ’æœåŠ¡æ£€æµ‹</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[ACTIVE_SCHEDULED_SERVICE_CHECK_STATS][0], program_stats[ACTIVE_SCHEDULED_SERVICE_CHECK_STATS][1], program_stats[ACTIVE_SCHEDULED_SERVICE_CHECK_STATS][2]);
+	printf("<tr><td class='dataVar'>ä¸»åŠ¨å¼æŒ‰éœ€æœåŠ¡æ£€æµ‹</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[ACTIVE_ONDEMAND_SERVICE_CHECK_STATS][0], program_stats[ACTIVE_ONDEMAND_SERVICE_CHECK_STATS][1], program_stats[ACTIVE_ONDEMAND_SERVICE_CHECK_STATS][2]);
+	printf("<tr><td class='dataVar'>ä¸»åŠ¨ç¼“å­˜å¼æœåŠ¡æ£€æµ‹</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[ACTIVE_CACHED_SERVICE_CHECK_STATS][0], program_stats[ACTIVE_CACHED_SERVICE_CHECK_STATS][1], program_stats[ACTIVE_CACHED_SERVICE_CHECK_STATS][2]);
+	printf("<tr><td class='dataVar'>è¢«åŠ¨å¼æœåŠ¡æ£€æµ‹</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[PASSIVE_SERVICE_CHECK_STATS][0], program_stats[PASSIVE_SERVICE_CHECK_STATS][1], program_stats[PASSIVE_SERVICE_CHECK_STATS][2]);
 
-	printf("<tr><td class='dataVar'>Íâ²¿ÃüÁî</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[EXTERNAL_COMMAND_STATS][0], program_stats[EXTERNAL_COMMAND_STATS][1], program_stats[EXTERNAL_COMMAND_STATS][2]);
+	printf("<tr><td class='dataVar'>å¤–éƒ¨å‘½ä»¤</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", program_stats[EXTERNAL_COMMAND_STATS][0], program_stats[EXTERNAL_COMMAND_STATS][1], program_stats[EXTERNAL_COMMAND_STATS][2]);
 
 	printf("</TABLE>\n");
 	printf("</TD></TR>\n");
@@ -2403,7 +2403,7 @@ void show_performance_data(void) {
 	/***** BUFFER STATS *****/
 
 	printf("<tr>\n");
-	printf("<td valign=center><div class='perfTypeTitle'>»º³åÇøÀûÓÃÂÊ:</div></td>\n");
+	printf("<td valign=center><div class='perfTypeTitle'>ç¼“å†²åŒºåˆ©ç”¨ç‡:</div></td>\n");
 	printf("<td valign=top colspan='2'>\n");
 
 
@@ -2411,8 +2411,8 @@ void show_performance_data(void) {
 	printf("<TR><TD class='stateInfoTable1'>\n");
 	printf("<TABLE BORDER=0>\n");
 
-	printf("<tr class='data'><th class='data'>ÀàĞÍ</th><th class='data'>ÔÚÓÃ</th><th class='data'>×î´ó¿ÉÓÃÊı</th><th class='data'>×ÜÁ¿</th></tr>\n");
-	printf("<tr><td class='dataVar'>Íâ²¿ÃüÁî&nbsp;</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", buffer_stats[0][1], buffer_stats[0][2], buffer_stats[0][0]);
+	printf("<tr class='data'><th class='data'>ç±»å‹</th><th class='data'>åœ¨ç”¨</th><th class='data'>æœ€å¤§å¯ç”¨æ•°</th><th class='data'>æ€»é‡</th></tr>\n");
+	printf("<tr><td class='dataVar'>å¤–éƒ¨å‘½ä»¤&nbsp;</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td><td class='dataVal'>%d</td></tr>", buffer_stats[0][1], buffer_stats[0][2], buffer_stats[0][0]);
 
 	printf("</TABLE>\n");
 	printf("</TD></TR>\n");
@@ -2461,7 +2461,7 @@ void display_comments(int type) {
 
 
 	printf("<A NAME=comments></A>\n");
-	printf("<DIV CLASS='commentTitle'>%s ×¢ÊÍ</DIV>\n", (type == HOST_COMMENT) ? "Ö÷»ú" : "·şÎñ");
+	printf("<DIV CLASS='commentTitle'>%s æ³¨é‡Š</DIV>\n", (type == HOST_COMMENT) ? "ä¸»æœº" : "æœåŠ¡");
 
 	if(is_authorized_for_read_only(&current_authdata)==FALSE){
 		printf("<TABLE BORDER=0>\n");
@@ -2474,7 +2474,7 @@ void display_comments(int type) {
 			printf("<a href='%s?cmd_typ=%d&host=%s&", COMMAND_CGI, CMD_ADD_SVC_COMMENT, url_encode(host_name));
 			printf("service=%s' CLASS='comment'>", url_encode(service_desc));
 			}
-		printf("Ôö¼ÓĞÂ×¢ÊÍ</a></td>\n");
+		printf("å¢åŠ æ–°æ³¨é‡Š</a></td>\n");
 
 		printf("<td valign=middle><img src='%s%s' border=0 align=center></td><td CLASS='comment'>", url_images_path, DELETE_ICON);
 		if(type == HOST_COMMENT)
@@ -2483,7 +2483,7 @@ void display_comments(int type) {
 			printf("<a href='%s?cmd_typ=%d&host=%s&", COMMAND_CGI, CMD_DEL_ALL_SVC_COMMENTS, url_encode(host_name));
 			printf("service=%s' CLASS='comment'>", url_encode(service_desc));
 			}
-		printf("É¾³ıËùÓĞ×¢ÊÍ</a></td>\n");
+		printf("åˆ é™¤æ‰€æœ‰æ³¨é‡Š</a></td>\n");
 		printf("</tr>\n");
 
 		printf("</TABLE>\n");
@@ -2493,9 +2493,9 @@ void display_comments(int type) {
 	printf("<DIV ALIGN=CENTER>\n");
 	printf("<TABLE BORDER=0 CLASS='comment'>\n");
 	if(is_authorized_for_read_only(&current_authdata)==FALSE)
-		printf("<TR CLASS='comment'><TH CLASS='comment'>Ê±¼ä</TH><TH CLASS='comment'>×÷Õß</TH><TH CLASS='comment'>×¢ÊÍ</TH><TH CLASS='comment'>×¢ÊÍ ID</TH><TH CLASS='comment'>±£³ÖÅäÖÃ</TH><TH CLASS='comment'>ÀàĞÍ</TH><TH CLASS='comment'>¹ıÆÚÊ±¼ä</TH><TH CLASS='comment'>¶¯×÷</TH></TR>\n");
+		printf("<TR CLASS='comment'><TH CLASS='comment'>æ—¶é—´</TH><TH CLASS='comment'>ä½œè€…</TH><TH CLASS='comment'>æ³¨é‡Š</TH><TH CLASS='comment'>æ³¨é‡Š ID</TH><TH CLASS='comment'>ä¿æŒé…ç½®</TH><TH CLASS='comment'>ç±»å‹</TH><TH CLASS='comment'>è¿‡æœŸæ—¶é—´</TH><TH CLASS='comment'>åŠ¨ä½œ</TH></TR>\n");
 	else
-		printf("<TR CLASS='comment'><TH CLASS='comment'>Ê±¼ä</TH><TH CLASS='comment'>×÷Õß</TH><TH CLASS='comment'>×¢ÊÍ</TH><TH CLASS='comment'>×¢ÊÍ ID</TH><TH CLASS='comment'>Persistent</TH><TH CLASS='comment'>ÀàĞÍ</TH><TH CLASS='comment'>¹ıÆÚÊ±¼ä</TH></TR>\n");
+		printf("<TR CLASS='comment'><TH CLASS='comment'>æ—¶é—´</TH><TH CLASS='comment'>ä½œè€…</TH><TH CLASS='comment'>æ³¨é‡Š</TH><TH CLASS='comment'>æ³¨é‡Š ID</TH><TH CLASS='comment'>Persistent</TH><TH CLASS='comment'>ç±»å‹</TH><TH CLASS='comment'>è¿‡æœŸæ—¶é—´</TH></TR>\n");
 
 	/* check all the comments to see if they apply to this host or service */
 	/* Comments are displayed in the order they are read from the status.dat file */
@@ -2554,10 +2554,10 @@ void display_comments(int type) {
 			if (temp_downtime)
 				printf("<hr>%s", temp_downtime->comment);
 			printf("</td><td CLASS='%s'>%lu</td><td CLASS='%s'>%s</td><td CLASS='%s'>%s</td><td CLASS='%s'>%s</td>",
-				bg_class, temp_comment->comment_id, bg_class, (temp_comment->persistent) ? "ÊÇ" : "·ñ",
+				bg_class, temp_comment->comment_id, bg_class, (temp_comment->persistent) ? "æ˜¯" : "å¦",
 				bg_class, comment_type, bg_class, (temp_comment->expires == TRUE) ? expire_time : "N/A");
 			if(is_authorized_for_read_only(&current_authdata)==FALSE)
-				printf("<td><a href='%s?cmd_typ=%d&com_id=%lu'><img src='%s%s' border=0 ALT='É¾³ı×¢ÊÍ' TITLE='É¾³ı×¢ÊÍ'></td>", COMMAND_CGI, (type == HOST_COMMENT) ? CMD_DEL_HOST_COMMENT : CMD_DEL_SVC_COMMENT, temp_comment->comment_id, url_images_path, DELETE_ICON);
+				printf("<td><a href='%s?cmd_typ=%d&com_id=%lu'><img src='%s%s' border=0 ALT='åˆ é™¤æ³¨é‡Š' TITLE='åˆ é™¤æ³¨é‡Š'></td>", COMMAND_CGI, (type == HOST_COMMENT) ? CMD_DEL_HOST_COMMENT : CMD_DEL_SVC_COMMENT, temp_comment->comment_id, url_images_path, DELETE_ICON);
 			printf("</tr>\n");
 
 			total_comments++;
@@ -2567,7 +2567,7 @@ void display_comments(int type) {
 
 	/* see if this host or service has any comments associated with it */
 	if(total_comments == 0)
-		printf("<TR CLASS='commentOdd'><TD CLASS='commentOdd' COLSPAN='%d'>¸Ã%sÎŞ¹ØÁªµÄ×¢ÊÍ</TD></TR>", (type == HOST_COMMENT) ? 9 : 10, (type == HOST_COMMENT) ? "Ö÷»ú" : "·şÎñ");
+		printf("<TR CLASS='commentOdd'><TD CLASS='commentOdd' COLSPAN='%d'>è¯¥%sæ— å…³è”çš„æ³¨é‡Š</TD></TR>", (type == HOST_COMMENT) ? 9 : 10, (type == HOST_COMMENT) ? "ä¸»æœº" : "æœåŠ¡");
 
 	printf("</TABLE></DIV>\n");
 
@@ -2593,20 +2593,20 @@ void show_all_downtime(void) {
 
 
 	printf("<BR />\n");
-	printf("<DIV CLASS='downtimeNav'>[&nbsp;<A HREF='#HOSTDOWNTIME' CLASS='downtimeNav'>Ö÷»ú¼Æ»®Í£»úÊ±¼ä</A>&nbsp;|&nbsp;<A HREF='#SERVICEDOWNTIME' CLASS='downtimeNav'>·şÎñ¼Æ»®Í£»úÊ±¼ä</A>&nbsp;]</DIV>\n");
+	printf("<DIV CLASS='downtimeNav'>[&nbsp;<A HREF='#HOSTDOWNTIME' CLASS='downtimeNav'>ä¸»æœºè®¡åˆ’åœæœºæ—¶é—´</A>&nbsp;|&nbsp;<A HREF='#SERVICEDOWNTIME' CLASS='downtimeNav'>æœåŠ¡è®¡åˆ’åœæœºæ—¶é—´</A>&nbsp;]</DIV>\n");
 	printf("<BR />\n");
 
 	printf("<A NAME=HOSTDOWNTIME></A>\n");
-	printf("<DIV CLASS='downtimeTitle'>Ö÷»úÔ¤¶¨µÄå´»úÊ±¼äÅäÖÃ</DIV>\n");
+	printf("<DIV CLASS='downtimeTitle'>ä¸»æœºé¢„å®šçš„å®•æœºæ—¶é—´é…ç½®</DIV>\n");
 
 	printf("<div CLASS='comment'><img src='%s%s' border=0>&nbsp;", url_images_path, DOWNTIME_ICON);
 	printf("<a href='%s?cmd_typ=%d'>", COMMAND_CGI, CMD_SCHEDULE_HOST_DOWNTIME);
-	printf("Ö÷»úµÄå´»úÊ±¼ä¼Æ»®ÊÇ</a></div>\n");
+	printf("ä¸»æœºçš„å®•æœºæ—¶é—´è®¡åˆ’æ˜¯</a></div>\n");
 
 	printf("<BR />\n");
 	printf("<DIV ALIGN=CENTER>\n");
 	printf("<TABLE BORDER=0 CLASS='downtime'>\n");
-	printf("<TR CLASS='downtime'><TH CLASS='downtime'>Ö÷»úÃû</TH><TH CLASS='downtime'>Ê±¼ä</TH><TH CLASS='downtime'>×÷Õß</TH><TH CLASS='downtime'>×¢ÊÍ</TH><TH CLASS='downtime'>¿ªÊ¼Ê±¼ä</TH><TH CLASS='downtime'>½áÊøÊ±¼ä</TH><TH CLASS='downtime'>ÀàĞÍ</TH><TH CLASS='downtime'>³ÖĞøÊ±¼ä</TH><TH CLASS='downtime'>å´»úÊ±¼ä ID</TH><TH CLASS='downtime'>´¥·¢Õß ID</TH><TH CLASS='downtime'>¶¯×÷</TH></TR>\n");
+	printf("<TR CLASS='downtime'><TH CLASS='downtime'>ä¸»æœºå</TH><TH CLASS='downtime'>æ—¶é—´</TH><TH CLASS='downtime'>ä½œè€…</TH><TH CLASS='downtime'>æ³¨é‡Š</TH><TH CLASS='downtime'>å¼€å§‹æ—¶é—´</TH><TH CLASS='downtime'>ç»“æŸæ—¶é—´</TH><TH CLASS='downtime'>ç±»å‹</TH><TH CLASS='downtime'>æŒç»­æ—¶é—´</TH><TH CLASS='downtime'>å®•æœºæ—¶é—´ ID</TH><TH CLASS='downtime'>è§¦å‘è€… ID</TH><TH CLASS='downtime'>åŠ¨ä½œ</TH></TR>\n");
 
 	/* display all the host downtime */
 	for(temp_downtime = scheduled_downtime_list, total_downtime = 0; temp_downtime != NULL; temp_downtime = temp_downtime->next) {
@@ -2641,7 +2641,7 @@ void show_all_downtime(void) {
 		printf("<td CLASS='%s'>%s</td>", bg_class, date_time);
 		get_time_string(&temp_downtime->end_time, date_time, (int)sizeof(date_time), SHORT_DATE_TIME);
 		printf("<td CLASS='%s'>%s</td>", bg_class, date_time);
-		printf("<td CLASS='%s'>%s</td>", bg_class, (temp_downtime->fixed == TRUE) ? "¹Ì¶¨" : "¿É±ä");
+		printf("<td CLASS='%s'>%s</td>", bg_class, (temp_downtime->fixed == TRUE) ? "å›ºå®š" : "å¯å˜");
 		get_time_breakdown(temp_downtime->duration, &days, &hours, &minutes, &seconds);
 		printf("<td CLASS='%s'>%dd %dh %dm %ds</td>", bg_class, days, hours, minutes, seconds);
 		printf("<td CLASS='%s'>%lu</td>", bg_class, temp_downtime->downtime_id);
@@ -2651,12 +2651,12 @@ void show_all_downtime(void) {
 		else
 			printf("%lu", temp_downtime->triggered_by);
 		printf("</td>\n");
-		printf("<td><a href='%s?cmd_typ=%d&down_id=%lu'><img src='%s%s' border=0 ALT='È¡Ïû¸Ãå´»úÊ±¼ä°²ÅÅ' TITLE='È¡Ïû¸Ãå´»úÊ±¼ä°²ÅÅ'></td>", COMMAND_CGI, CMD_DEL_HOST_DOWNTIME, temp_downtime->downtime_id, url_images_path, DELETE_ICON);
+		printf("<td><a href='%s?cmd_typ=%d&down_id=%lu'><img src='%s%s' border=0 ALT='å–æ¶ˆè¯¥å®•æœºæ—¶é—´å®‰æ’' TITLE='å–æ¶ˆè¯¥å®•æœºæ—¶é—´å®‰æ’'></td>", COMMAND_CGI, CMD_DEL_HOST_DOWNTIME, temp_downtime->downtime_id, url_images_path, DELETE_ICON);
 		printf("</tr>\n");
 		}
 
 	if(total_downtime == 0)
-		printf("<TR CLASS='downtimeOdd'><TD CLASS='downtimeOdd' COLSPAN=11>å´»úÊ±¼ä°²ÅÅºÃµÄÖ÷»ú²»´æÔÚ¡£</TD></TR>");
+		printf("<TR CLASS='downtimeOdd'><TD CLASS='downtimeOdd' COLSPAN=11>å®•æœºæ—¶é—´å®‰æ’å¥½çš„ä¸»æœºä¸å­˜åœ¨ã€‚</TD></TR>");
 
 	printf("</TABLE>\n");
 	printf("</DIV>\n");
@@ -2665,16 +2665,16 @@ void show_all_downtime(void) {
 
 
 	printf("<A NAME=SERVICEDOWNTIME></A>\n");
-	printf("<DIV CLASS='downtimeTitle'>·şÎñµÄå´»úÊ±¼äÅäÖÃ</DIV>\n");
+	printf("<DIV CLASS='downtimeTitle'>æœåŠ¡çš„å®•æœºæ—¶é—´é…ç½®</DIV>\n");
 
 	printf("<div CLASS='comment'><img src='%s%s' border=0>&nbsp;", url_images_path, DOWNTIME_ICON);
 	printf("<a href='%s?cmd_typ=%d'>", COMMAND_CGI, CMD_SCHEDULE_SVC_DOWNTIME);
-	printf("·şÎñµÄå´»úÊ±¼ä</a></div>\n");
+	printf("æœåŠ¡çš„å®•æœºæ—¶é—´</a></div>\n");
 
 	printf("<BR />\n");
 	printf("<DIV ALIGN=CENTER>\n");
 	printf("<TABLE BORDER=0 CLASS='downtime'>\n");
-	printf("<TR CLASS='downtime'><TH CLASS='downtime'>Ö÷»úÃû</TH><TH CLASS='downtime'>·şÎñ</TH><TH CLASS='downtime'>Ê±¼ä</TH><TH CLASS='downtime'>×÷Õß</TH><TH CLASS='downtime'>×¢ÊÍ</TH><TH CLASS='downtime'>¿ªÊ¼Ê±¼ä</TH><TH CLASS='downtime'>½áÊøÊ±¼ä</TH><TH CLASS='downtime'>ÀàĞÍ</TH><TH CLASS='downtime'>³ÖĞøÊ±¼ä</TH><TH CLASS='downtime'>å´»úÊ±¼ä ID</TH><TH CLASS='downtime'>´¥·¢Õß ID</TH><TH CLASS='downtime'>¶¯×÷</TH></TR>\n");
+	printf("<TR CLASS='downtime'><TH CLASS='downtime'>ä¸»æœºå</TH><TH CLASS='downtime'>æœåŠ¡</TH><TH CLASS='downtime'>æ—¶é—´</TH><TH CLASS='downtime'>ä½œè€…</TH><TH CLASS='downtime'>æ³¨é‡Š</TH><TH CLASS='downtime'>å¼€å§‹æ—¶é—´</TH><TH CLASS='downtime'>ç»“æŸæ—¶é—´</TH><TH CLASS='downtime'>ç±»å‹</TH><TH CLASS='downtime'>æŒç»­æ—¶é—´</TH><TH CLASS='downtime'>å®•æœºæ—¶é—´ ID</TH><TH CLASS='downtime'>è§¦å‘è€… ID</TH><TH CLASS='downtime'>åŠ¨ä½œ</TH></TR>\n");
 
 	/* display all the service downtime */
 	for(temp_downtime = scheduled_downtime_list, total_downtime = 0; temp_downtime != NULL; temp_downtime = temp_downtime->next) {
@@ -2711,7 +2711,7 @@ void show_all_downtime(void) {
 		printf("<td CLASS='%s'>%s</td>", bg_class, date_time);
 		get_time_string(&temp_downtime->end_time, date_time, (int)sizeof(date_time), SHORT_DATE_TIME);
 		printf("<td CLASS='%s'>%s</td>", bg_class, date_time);
-		printf("<td CLASS='%s'>%s</td>", bg_class, (temp_downtime->fixed == TRUE) ? "¹Ì¶¨" : "¿É±ä");
+		printf("<td CLASS='%s'>%s</td>", bg_class, (temp_downtime->fixed == TRUE) ? "å›ºå®š" : "å¯å˜");
 		get_time_breakdown(temp_downtime->duration, &days, &hours, &minutes, &seconds);
 		printf("<td CLASS='%s'>%dd %dh %dm %ds</td>", bg_class, days, hours, minutes, seconds);
 		printf("<td CLASS='%s'>%lu</td>", bg_class, temp_downtime->downtime_id);
@@ -2721,12 +2721,12 @@ void show_all_downtime(void) {
 		else
 			printf("%lu", temp_downtime->triggered_by);
 		printf("</td>\n");
-		printf("<td><a href='%s?cmd_typ=%d&down_id=%lu'><img src='%s%s' border=0 ALT='É¾³ı/È¡Ïû¸Ãå´»úÊ±¼ä°²ÅÅ' TITLE='É¾³ı/È¡Ïû¸Ãå´»úÊ±¼ä°²ÅÅ'></td>", COMMAND_CGI, CMD_DEL_SVC_DOWNTIME, temp_downtime->downtime_id, url_images_path, DELETE_ICON);
+		printf("<td><a href='%s?cmd_typ=%d&down_id=%lu'><img src='%s%s' border=0 ALT='åˆ é™¤/å–æ¶ˆè¯¥å®•æœºæ—¶é—´å®‰æ’' TITLE='åˆ é™¤/å–æ¶ˆè¯¥å®•æœºæ—¶é—´å®‰æ’'></td>", COMMAND_CGI, CMD_DEL_SVC_DOWNTIME, temp_downtime->downtime_id, url_images_path, DELETE_ICON);
 		printf("</tr>\n");
 		}
 
 	if(total_downtime == 0)
-		printf("<TR CLASS='downtimeOdd'><TD CLASS='downtimeOdd' COLSPAN=12>å´»úÊ±¼ä°²ÅÅºÃµÄ·şÎñ²»´æÔÚ¡£</TD></TR>");
+		printf("<TR CLASS='downtimeOdd'><TD CLASS='downtimeOdd' COLSPAN=12>å®•æœºæ—¶é—´å®‰æ’å¥½çš„æœåŠ¡ä¸å­˜åœ¨ã€‚</TD></TR>");
 
 	printf("</TABLE>\n");
 	printf("</DIV>\n");
@@ -2750,8 +2750,8 @@ void show_scheduling_queue(void) {
 	/* make sure the user has rights to view system information */
 	if(is_authorized_for_system_information(&current_authdata) == FALSE) {
 
-		printf("<P><DIV CLASS='errorMessage'>ÎŞÈ¨»ñÈ¡½ø³ÌĞÅÏ¢¡£</DIV></P>\n");
-		printf("<P><DIV CLASS='errorDescription'>Çë¼ì²éHTTP·şÎñÆ÷¹ØÓÚ¸ÃCGIµÄ·ÃÎÊÈ¨ÏŞÉèÖÃ¡£</DIV></P>\n");
+		printf("<P><DIV CLASS='errorMessage'>æ— æƒè·å–è¿›ç¨‹ä¿¡æ¯ã€‚</DIV></P>\n");
+		printf("<P><DIV CLASS='errorDescription'>è¯·æ£€æŸ¥HTTPæœåŠ¡å™¨å…³äºè¯¥CGIçš„è®¿é—®æƒé™è®¾ç½®ã€‚</DIV></P>\n");
 
 		return;
 		}
@@ -2759,18 +2759,18 @@ void show_scheduling_queue(void) {
 	/* sort hosts and services */
 	sort_data(sort_type, sort_option);
 
-	printf("<DIV ALIGN=CENTER CLASS='statusSort'>ÅÅĞò: <b>");
+	printf("<DIV ALIGN=CENTER CLASS='statusSort'>æ’åº: <b>");
 	if(sort_option == SORT_HOSTNAME)
-		printf("Ö÷»úÃû");
+		printf("ä¸»æœºå");
 	else if(sort_option == SORT_SERVICENAME)
-		printf("·şÎñÃû");
+		printf("æœåŠ¡å");
 	else if(sort_option == SORT_SERVICESTATUS)
-		printf("·şÎñ×´Ì¬");
+		printf("æœåŠ¡çŠ¶æ€");
 	else if(sort_option == SORT_LASTCHECKTIME)
-		printf("×î½ü¼ì²éÊ±¼ä");
+		printf("æœ€è¿‘æ£€æŸ¥æ—¶é—´");
 	else if(sort_option == SORT_NEXTCHECKTIME)
-		printf("ÏÂ´Î¼ì²éÊ±¼ä");
-	printf("</b> (%s)\n", (sort_type == SORT_ASCENDING) ? "ÉıĞò" : "½µĞò");
+		printf("ä¸‹æ¬¡æ£€æŸ¥æ—¶é—´");
+	printf("</b> (%s)\n", (sort_type == SORT_ASCENDING) ? "å‡åº" : "é™åº");
 	printf("</DIV>\n");
 
 	printf("<P>\n");
@@ -2781,16 +2781,16 @@ void show_scheduling_queue(void) {
 	snprintf(temp_url, sizeof(temp_url) - 1, "%s?type=%d", EXTINFO_CGI, DISPLAY_SCHEDULING_QUEUE);
 	temp_url[sizeof(temp_url) - 1] = '\x0';
 
-	printf("<TH CLASS='queue'>Ö÷»úÃû&nbsp;<A HREF='%s&sorttype=%d&sortoption=%d'><IMG SRC='%s%s' BORDER=0 ALT='Ö÷»úÃûÅÅĞò(ÉıĞò)' TITLE='Ö÷»úÃûÅÅĞò(ÉıĞò)'></A><A HREF='%s&sorttype=%d&sortoption=%d'><IMG SRC='%s%s' BORDER=0 ALT='Ö÷»úÃûÅÅĞò(½µĞò)' TITLE='Ö÷»úÃûÅÅĞò(½µĞò)'></A></TH>", temp_url, SORT_ASCENDING, SORT_HOSTNAME, url_images_path, UP_ARROW_ICON, temp_url, SORT_DESCENDING, SORT_HOSTNAME, url_images_path, DOWN_ARROW_ICON);
+	printf("<TH CLASS='queue'>ä¸»æœºå&nbsp;<A HREF='%s&sorttype=%d&sortoption=%d'><IMG SRC='%s%s' BORDER=0 ALT='ä¸»æœºåæ’åº(å‡åº)' TITLE='ä¸»æœºåæ’åº(å‡åº)'></A><A HREF='%s&sorttype=%d&sortoption=%d'><IMG SRC='%s%s' BORDER=0 ALT='ä¸»æœºåæ’åº(é™åº)' TITLE='ä¸»æœºåæ’åº(é™åº)'></A></TH>", temp_url, SORT_ASCENDING, SORT_HOSTNAME, url_images_path, UP_ARROW_ICON, temp_url, SORT_DESCENDING, SORT_HOSTNAME, url_images_path, DOWN_ARROW_ICON);
 
-	printf("<TH CLASS='queue'>·şÎñ&nbsp;<A HREF='%s&sorttype=%d&sortoption=%d'><IMG SRC='%s%s' BORDER=0 ALT='·şÎñÅÅĞò(ÉıĞò)' TITLE='·şÎñÅÅĞò(ÉıĞò)'></A><A HREF='%s&sorttype=%d&sortoption=%d'><IMG SRC='%s%s' BORDER=0 ALT='·şÎñÅÅĞò(½µĞò)' TITLE='·şÎñÅÅĞò(½µĞò)'></A></TH>", temp_url, SORT_ASCENDING, SORT_SERVICENAME, url_images_path, UP_ARROW_ICON, temp_url, SORT_DESCENDING, SORT_SERVICENAME, url_images_path, DOWN_ARROW_ICON);
+	printf("<TH CLASS='queue'>æœåŠ¡&nbsp;<A HREF='%s&sorttype=%d&sortoption=%d'><IMG SRC='%s%s' BORDER=0 ALT='æœåŠ¡æ’åº(å‡åº)' TITLE='æœåŠ¡æ’åº(å‡åº)'></A><A HREF='%s&sorttype=%d&sortoption=%d'><IMG SRC='%s%s' BORDER=0 ALT='æœåŠ¡æ’åº(é™åº)' TITLE='æœåŠ¡æ’åº(é™åº)'></A></TH>", temp_url, SORT_ASCENDING, SORT_SERVICENAME, url_images_path, UP_ARROW_ICON, temp_url, SORT_DESCENDING, SORT_SERVICENAME, url_images_path, DOWN_ARROW_ICON);
 
-	printf("<TH CLASS='queue'>×î½ü¼ì²éÊ±¼ä&nbsp;<A HREF='%s&sorttype=%d&sortoption=%d'><IMG SRC='%s%s' BORDER=0 ALT='×î½ü¼ì²éÊ±¼äÅÅĞò(ÉıĞò)' TITLE='×î½ü¼ì²éÊ±¼äÅÅĞò(ÉıĞò)'></A><A HREF='%s&sorttype=%d&sortoption=%d'><IMG SRC='%s%s' BORDER=0 ALT='×î½ü¼ì²éÊ±¼äÅÅĞò(½µĞò)' TITLE='×î½ü¼ì²éÊ±¼äÅÅĞò(½µĞò)'></A></TH>", temp_url, SORT_ASCENDING, SORT_LASTCHECKTIME, url_images_path, UP_ARROW_ICON, temp_url, SORT_DESCENDING, SORT_LASTCHECKTIME, url_images_path, DOWN_ARROW_ICON);
+	printf("<TH CLASS='queue'>æœ€è¿‘æ£€æŸ¥æ—¶é—´&nbsp;<A HREF='%s&sorttype=%d&sortoption=%d'><IMG SRC='%s%s' BORDER=0 ALT='æœ€è¿‘æ£€æŸ¥æ—¶é—´æ’åº(å‡åº)' TITLE='æœ€è¿‘æ£€æŸ¥æ—¶é—´æ’åº(å‡åº)'></A><A HREF='%s&sorttype=%d&sortoption=%d'><IMG SRC='%s%s' BORDER=0 ALT='æœ€è¿‘æ£€æŸ¥æ—¶é—´æ’åº(é™åº)' TITLE='æœ€è¿‘æ£€æŸ¥æ—¶é—´æ’åº(é™åº)'></A></TH>", temp_url, SORT_ASCENDING, SORT_LASTCHECKTIME, url_images_path, UP_ARROW_ICON, temp_url, SORT_DESCENDING, SORT_LASTCHECKTIME, url_images_path, DOWN_ARROW_ICON);
 
-	printf("<TH CLASS='queue'>ÏÂ´Î¼ì²éÊ±¼ä&nbsp;<A HREF='%s&sorttype=%d&sortoption=%d'><IMG SRC='%s%s' BORDER=0 ALT='ÏÂ´Î¼ì²éÊ±¼äÅÅĞò(ÉıĞò)' TITLE='ÏÂ´Î¼ì²éÊ±¼äÅÅĞò(ÉıĞò)'></A><A HREF='%s&sorttype=%d&sortoption=%d'><IMG SRC='%s%s' BORDER=0 ALT='ÏÂ´Î¼ì²éÊ±¼äÅÅĞò(½µĞò)' TITLE='ÏÂ´Î¼ì²éÊ±¼äÅÅĞò(½µĞò)'></A></TH>", temp_url, SORT_ASCENDING, SORT_NEXTCHECKTIME, url_images_path, UP_ARROW_ICON, temp_url, SORT_DESCENDING, SORT_NEXTCHECKTIME, url_images_path, DOWN_ARROW_ICON);
+	printf("<TH CLASS='queue'>ä¸‹æ¬¡æ£€æŸ¥æ—¶é—´&nbsp;<A HREF='%s&sorttype=%d&sortoption=%d'><IMG SRC='%s%s' BORDER=0 ALT='ä¸‹æ¬¡æ£€æŸ¥æ—¶é—´æ’åº(å‡åº)' TITLE='ä¸‹æ¬¡æ£€æŸ¥æ—¶é—´æ’åº(å‡åº)'></A><A HREF='%s&sorttype=%d&sortoption=%d'><IMG SRC='%s%s' BORDER=0 ALT='ä¸‹æ¬¡æ£€æŸ¥æ—¶é—´æ’åº(é™åº)' TITLE='ä¸‹æ¬¡æ£€æŸ¥æ—¶é—´æ’åº(é™åº)'></A></TH>", temp_url, SORT_ASCENDING, SORT_NEXTCHECKTIME, url_images_path, UP_ARROW_ICON, temp_url, SORT_DESCENDING, SORT_NEXTCHECKTIME, url_images_path, DOWN_ARROW_ICON);
 
 
-	printf("<TH CLASS='queue'>ÀàĞÍ</TH><TH CLASS='queue'>Ö÷¶¯¼ì²é</TH><TH CLASS='queue'>¶¯×÷</TH></TR>\n");
+	printf("<TH CLASS='queue'>ç±»å‹</TH><TH CLASS='queue'>ä¸»åŠ¨æ£€æŸ¥</TH><TH CLASS='queue'>åŠ¨ä½œ</TH></TR>\n");
 
 
 	/* display all services and hosts */
@@ -2841,30 +2841,30 @@ void show_scheduling_queue(void) {
 
 			printf("<TD CLASS='queue%s'>", bgclass);
 			if(temp_svcstatus->check_options == CHECK_OPTION_NONE)
-				printf("Õı³£ ");
+				printf("æ­£å¸¸ ");
 			else {
 				if(temp_svcstatus->check_options & CHECK_OPTION_FORCE_EXECUTION)
-					printf("Ç¿ÖÆ ");
+					printf("å¼ºåˆ¶ ");
 				if(temp_svcstatus->check_options & CHECK_OPTION_FRESHNESS_CHECK)
-					printf("Ë¢ĞÂ ");
+					printf("åˆ·æ–° ");
 				if(temp_svcstatus->check_options & CHECK_OPTION_ORPHAN_CHECK)
-					printf("¹ÂÁ¢ ");
+					printf("å­¤ç«‹ ");
 				}
 			printf("</TD>");
 
-			printf("<TD CLASS='queue%s'>%s</TD>", (temp_svcstatus->checks_enabled == TRUE) ? "ENABLED" : "DISABLED", (temp_svcstatus->checks_enabled == TRUE) ? "ÓĞĞ§" : "ÎŞĞ§");
+			printf("<TD CLASS='queue%s'>%s</TD>", (temp_svcstatus->checks_enabled == TRUE) ? "ENABLED" : "DISABLED", (temp_svcstatus->checks_enabled == TRUE) ? "æœ‰æ•ˆ" : "æ— æ•ˆ");
 
 			printf("<TD CLASS='queue%s'>", bgclass);
 			if(temp_svcstatus->checks_enabled == TRUE) {
 				printf("<a href='%s?cmd_typ=%d&host=%s", COMMAND_CGI, CMD_DISABLE_SVC_CHECK, url_encode(temp_svcstatus->host_name));
-				printf("&service=%s'><img src='%s%s' border=0 ALT='½ûÓÃ¸Ã·şÎñµÄÖ÷¶¯¼ì²é' TITLE='½ûÓÃ¸Ã·şÎñµÄÖ÷¶¯¼ì²é'></a>\n", url_encode(temp_svcstatus->description), url_images_path, DISABLED_ICON);
+				printf("&service=%s'><img src='%s%s' border=0 ALT='ç¦ç”¨è¯¥æœåŠ¡çš„ä¸»åŠ¨æ£€æŸ¥' TITLE='ç¦ç”¨è¯¥æœåŠ¡çš„ä¸»åŠ¨æ£€æŸ¥'></a>\n", url_encode(temp_svcstatus->description), url_images_path, DISABLED_ICON);
 				}
 			else {
 				printf("<a href='%s?cmd_typ=%d&host=%s", COMMAND_CGI, CMD_ENABLE_SVC_CHECK, url_encode(temp_svcstatus->host_name));
-				printf("&service=%s'><img src='%s%s' border=0 ALT='ÆôÓÃ¸Ã·şÎñµÄÖ÷¶¯¼ì²é' TITLE='ÆôÓÃ¸Ã·şÎñµÄÖ÷¶¯¼ì²é'></a>\n", url_encode(temp_svcstatus->description), url_images_path, ENABLED_ICON);
+				printf("&service=%s'><img src='%s%s' border=0 ALT='å¯ç”¨è¯¥æœåŠ¡çš„ä¸»åŠ¨æ£€æŸ¥' TITLE='å¯ç”¨è¯¥æœåŠ¡çš„ä¸»åŠ¨æ£€æŸ¥'></a>\n", url_encode(temp_svcstatus->description), url_images_path, ENABLED_ICON);
 				}
 			printf("<a href='%s?cmd_typ=%d&host=%s", COMMAND_CGI, CMD_SCHEDULE_SVC_CHECK, url_encode(temp_svcstatus->host_name));
-			printf("&service=%s%s'><img src='%s%s' border=0 ALT='ÖØĞÂ°²ÅÅ¸Ã·şÎñ¼ì²é' TITLE='ÖØĞÂ°²ÅÅ¸Ã·şÎñ¼ì²é'></a>\n", url_encode(temp_svcstatus->description), (temp_svcstatus->checks_enabled == TRUE) ? "&force_check" : "", url_images_path, DELAY_ICON);
+			printf("&service=%s%s'><img src='%s%s' border=0 ALT='é‡æ–°å®‰æ’è¯¥æœåŠ¡æ£€æŸ¥' TITLE='é‡æ–°å®‰æ’è¯¥æœåŠ¡æ£€æŸ¥'></a>\n", url_encode(temp_svcstatus->description), (temp_svcstatus->checks_enabled == TRUE) ? "&force_check" : "", url_images_path, DELAY_ICON);
 			printf("</TD>\n");
 			}
 
@@ -2883,30 +2883,30 @@ void show_scheduling_queue(void) {
 
 			printf("<TD CLASS='queue%s'>", bgclass);
 			if(temp_hststatus->check_options == CHECK_OPTION_NONE)
-				printf("Normal ");
+				printf("æ­£å¸¸ ");
 			else {
 				if(temp_hststatus->check_options & CHECK_OPTION_FORCE_EXECUTION)
-					printf("Forced ");
+					printf("å¼ºåˆ¶ ");
 				if(temp_hststatus->check_options & CHECK_OPTION_FRESHNESS_CHECK)
-					printf("Freshness ");
+					printf("åˆ·æ–° ");
 				if(temp_hststatus->check_options & CHECK_OPTION_ORPHAN_CHECK)
-					printf("Orphan ");
+					printf("å­¤ç«‹ ");
 				}
 			printf("</TD>");
 
-			printf("<TD CLASS='queue%s'>%s</TD>", (temp_hststatus->checks_enabled == TRUE) ? "ENABLED" : "DISABLED", (temp_hststatus->checks_enabled == TRUE) ? "ÓĞĞ§" : "ÎŞĞ§");
+			printf("<TD CLASS='queue%s'>%s</TD>", (temp_hststatus->checks_enabled == TRUE) ? "ENABLED" : "DISABLED", (temp_hststatus->checks_enabled == TRUE) ? "æœ‰æ•ˆ" : "æ— æ•ˆ");
 
 			printf("<TD CLASS='queue%s'>", bgclass);
 			if(temp_hststatus->checks_enabled == TRUE) {
 				printf("<a href='%s?cmd_typ=%d&host=%s", COMMAND_CGI, CMD_DISABLE_HOST_CHECK, url_encode(temp_hststatus->host_name));
-				printf("'><img src='%s%s' border=0 ALT='½ûÓÃ¸ÃÖ÷»úµÄÖ÷¶¯¼ì²é' TITLE='½ûÓÃ¸ÃÖ÷»úµÄÖ÷¶¯¼ì²é'></a>\n", url_images_path, DISABLED_ICON);
+				printf("'><img src='%s%s' border=0 ALT='ç¦ç”¨è¯¥ä¸»æœºçš„ä¸»åŠ¨æ£€æŸ¥' TITLE='ç¦ç”¨è¯¥ä¸»æœºçš„ä¸»åŠ¨æ£€æŸ¥'></a>\n", url_images_path, DISABLED_ICON);
 				}
 			else {
 				printf("<a href='%s?cmd_typ=%d&host=%s", COMMAND_CGI, CMD_ENABLE_HOST_CHECK, url_encode(temp_hststatus->host_name));
-				printf("'><img src='%s%s' border=0 ALT='ÆôÓÃ¸ÃÖ÷»úµÄÖ÷¶¯¼ì²é' TITLE='ÆôÓÃ¸ÃÖ÷»úµÄÖ÷¶¯¼ì²é'></a>\n", url_images_path, ENABLED_ICON);
+				printf("'><img src='%s%s' border=0 ALT='å¯ç”¨è¯¥ä¸»æœºçš„ä¸»åŠ¨æ£€æŸ¥' TITLE='å¯ç”¨è¯¥ä¸»æœºçš„ä¸»åŠ¨æ£€æŸ¥'></a>\n", url_images_path, ENABLED_ICON);
 				}
 			printf("<a href='%s?cmd_typ=%d&host=%s%s", COMMAND_CGI, CMD_SCHEDULE_HOST_CHECK, url_encode(temp_hststatus->host_name), (temp_hststatus->checks_enabled == TRUE) ? "&force_check" : "");
-			printf("'><img src='%s%s' border=0 ALT='ÖØĞÂ°²ÅÅ¸ÃÖ÷»ú¼ì²é' TITLE='ÖØĞÂ°²ÅÅ¸ÃÖ÷»ú¼ì²é'></a>\n", url_images_path, DELAY_ICON);
+			printf("'><img src='%s%s' border=0 ALT='é‡æ–°å®‰æ’è¯¥ä¸»æœºæ£€æŸ¥' TITLE='é‡æ–°å®‰æ’è¯¥ä¸»æœºæ£€æŸ¥'></a>\n", url_images_path, DELAY_ICON);
 			printf("</TD>\n");
 			}
 
