@@ -110,32 +110,32 @@ int main(void) {
 		printf("<td align=left valign=top width=33%%>\n");
 
 		if(display_type == DISPLAY_SERVICES)
-			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "Service Alert History");
+			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "服务的告警历史");
 		else if(show_all_hosts == TRUE)
-			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "Alert History");
+			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "告警历史");
 		else
-			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "Host Alert History");
+			snprintf(temp_buffer, sizeof(temp_buffer) - 1, "主机的告警历史");
 		temp_buffer[sizeof(temp_buffer) - 1] = '\x0';
 		display_info_table(temp_buffer, FALSE, &current_authdata);
 
 		printf("<TABLE BORDER=1 CELLPADDING=0 CELLSPACING=0 CLASS='linkBox'>\n");
 		printf("<TR><TD CLASS='linkBox'>\n");
 		if(display_type == DISPLAY_HOSTS) {
-			printf("<A HREF='%s?host=%s'>View Status Detail For %s</A><BR />\n", STATUS_CGI, (show_all_hosts == TRUE) ? "all" : url_encode(host_name), (show_all_hosts == TRUE) ? "All Hosts" : "This Host");
-			printf("<A HREF='%s?host=%s'>View Notifications For %s</A><BR />\n", NOTIFICATIONS_CGI, (show_all_hosts == TRUE) ? "all" : url_encode(host_name), (show_all_hosts == TRUE) ? "All Hosts" : "This Host");
+			printf("<A HREF='%s?host=%s'>%s的详细状态</A><BR />\n", STATUS_CGI, (show_all_hosts == TRUE) ? "all" : url_encode(host_name), (show_all_hosts == TRUE) ? "所有主机" : "该主机");
+			printf("<A HREF='%s?host=%s'>%s的通知信息</A><BR />\n", NOTIFICATIONS_CGI, (show_all_hosts == TRUE) ? "all" : url_encode(host_name), (show_all_hosts == TRUE) ? "所有主机" : "该主机");
 #ifdef USE_TRENDS
 			if(show_all_hosts == FALSE)
-				printf("<A HREF='%s?host=%s'>View Trends For This Host</A>\n", TRENDS_CGI, url_encode(host_name));
+				printf("<A HREF='%s?host=%s'>查看该主机趋势</A>\n", TRENDS_CGI, url_encode(host_name));
 #endif
 			}
 		else {
 			printf("<A HREF='%s?host=%s&", NOTIFICATIONS_CGI, url_encode(host_name));
-			printf("service=%s'>View Notifications For This Service</A><BR />\n", url_encode(svc_description));
+			printf("service=%s'>查看该服务的通知</A><BR />\n", url_encode(svc_description));
 #ifdef USE_TRENDS
 			printf("<A HREF='%s?host=%s&", TRENDS_CGI, url_encode(host_name));
-			printf("service=%s'>View Trends For This Service</A><BR />\n", url_encode(svc_description));
+			printf("service=%s'>查看该服务趋势</A><BR />\n", url_encode(svc_description));
 #endif
-			printf("<A HREF='%s?host=%s'>View History For This Host</A>\n", HISTORY_CGI, url_encode(host_name));
+			printf("<A HREF='%s?host=%s'>查看该主机的历史</A>\n", HISTORY_CGI, url_encode(host_name));
 			}
 		printf("</TD></TR>\n");
 		printf("</TABLE>\n");
@@ -148,11 +148,11 @@ int main(void) {
 
 		printf("<DIV ALIGN=CENTER CLASS='dataTitle'>\n");
 		if(display_type == DISPLAY_SERVICES)
-			printf("Service '%s' On Host '%s'", svc_description, host_name);
+			printf("主机 '%s' 上的 '%s' 服务",host_name,svc_description);
 		else if(show_all_hosts == TRUE)
-			printf("All Hosts and Services");
+			printf("所有的主机及服务");
 		else
-			printf("Host '%s'", host_name);
+			printf("主机 '%s'", host_name);
 		printf("</DIV>\n");
 		printf("<BR />\n");
 
@@ -180,21 +180,21 @@ int main(void) {
 		printf("<input type='hidden' name='archive' value='%d'>\n", log_archive);
 
 		printf("<tr>\n");
-		printf("<td align=left CLASS='optBoxItem'>State type options:</td>\n");
+		printf("<td align=left CLASS='optBoxItem'>状态类型:</td>\n");
 		printf("</tr>\n");
 
 		printf("<tr>\n");
 		printf("<td align=left CLASS='optBoxItem'><select name='statetype'>\n");
-		printf("<option value=%d %s>All state types</option>\n", STATE_ALL, (state_options == STATE_ALL) ? "selected" : "");
-		printf("<option value=%d %s>Soft states</option>\n", STATE_SOFT, (state_options == STATE_SOFT) ? "selected" : "");
-		printf("<option value=%d %s>Hard states</option>\n", STATE_HARD, (state_options == STATE_HARD) ? "selected" : "");
+		printf("<option value=%d %s>所有的状态</option>\n", STATE_ALL, (state_options == STATE_ALL) ? "selected" : "");
+		printf("<option value=%d %s>软(Soft)状态</option>\n", STATE_SOFT, (state_options == STATE_SOFT) ? "selected" : "");
+		printf("<option value=%d %s>硬(Hard)状态</option>\n", STATE_HARD, (state_options == STATE_HARD) ? "selected" : "");
 		printf("</select></td>\n");
 		printf("</tr>\n");
 
 		printf("<tr>\n");
-		printf("<td align=left CLASS='optBoxItem'>History detail level for ");
+		printf("<td align=left CLASS='optBoxItem'>历史详细级别 ");
 		if(display_type == DISPLAY_HOSTS)
-			printf("%s host%s", (show_all_hosts == TRUE) ? "all" : "this", (show_all_hosts == TRUE) ? "s" : "");
+			printf("%s 主机%s", (show_all_hosts == TRUE) ? "所有" : "该", (show_all_hosts == TRUE) ? "s" : "");
 		else
 			printf("service");
 		printf(":</td>\n");
@@ -203,38 +203,38 @@ int main(void) {
 		printf("<tr>\n");
 		printf("<td align=left CLASS='optBoxItem'><select name='type'>\n");
 		if(display_type == DISPLAY_HOSTS)
-			printf("<option value=%d %s>All alerts</option>\n", HISTORY_ALL, (history_options == HISTORY_ALL) ? "selected" : "");
-		printf("<option value=%d %s>All service alerts</option>\n", HISTORY_SERVICE_ALL, (history_options == HISTORY_SERVICE_ALL) ? "selected" : "");
+			printf("<option value=%d %s>所有的报警</option>\n", HISTORY_ALL, (history_options == HISTORY_ALL) ? "selected" : "");
+		printf("<option value=%d %s>所有服务的报警</option>\n", HISTORY_SERVICE_ALL, (history_options == HISTORY_SERVICE_ALL) ? "selected" : "");
 		if(display_type == DISPLAY_HOSTS)
-			printf("<option value=%d %s>All host alerts</option>\n", HISTORY_HOST_ALL, (history_options == HISTORY_HOST_ALL) ? "selected" : "");
-		printf("<option value=%d %s>Service warning</option>\n", HISTORY_SERVICE_WARNING, (history_options == HISTORY_SERVICE_WARNING) ? "selected" : "");
-		printf("<option value=%d %s>Service unknown</option>\n", HISTORY_SERVICE_UNKNOWN, (history_options == HISTORY_SERVICE_UNKNOWN) ? "selected" : "");
-		printf("<option value=%d %s>Service critical</option>\n", HISTORY_SERVICE_CRITICAL, (history_options == HISTORY_SERVICE_CRITICAL) ? "selected" : "");
-		printf("<option value=%d %s>Service recovery</option>\n", HISTORY_SERVICE_RECOVERY, (history_options == HISTORY_SERVICE_RECOVERY) ? "selected" : "");
+			printf("<option value=%d %s>所有主机的报警</option>\n", HISTORY_HOST_ALL, (history_options == HISTORY_HOST_ALL) ? "selected" : "");
+		printf("<option value=%d %s>服务的告警状态</option>\n", HISTORY_SERVICE_WARNING, (history_options == HISTORY_SERVICE_WARNING) ? "selected" : "");
+		printf("<option value=%d %s>服务的未知状态</option>\n", HISTORY_SERVICE_UNKNOWN, (history_options == HISTORY_SERVICE_UNKNOWN) ? "selected" : "");
+		printf("<option value=%d %s>服务的紧急状态</option>\n", HISTORY_SERVICE_CRITICAL, (history_options == HISTORY_SERVICE_CRITICAL) ? "selected" : "");
+		printf("<option value=%d %s>服务的恢复状态(RECOVERY)</option>\n", HISTORY_SERVICE_RECOVERY, (history_options == HISTORY_SERVICE_RECOVERY) ? "selected" : "");
 		if(display_type == DISPLAY_HOSTS) {
-			printf("<option value=%d %s>Host down</option>\n", HISTORY_HOST_DOWN, (history_options == HISTORY_HOST_DOWN) ? "selected" : "");
-			printf("<option value=%d %s>Host unreachable</option>\n", HISTORY_HOST_UNREACHABLE, (history_options == HISTORY_HOST_UNREACHABLE) ? "selected" : "");
-			printf("<option value=%d %s>Host recovery</option>\n", HISTORY_HOST_RECOVERY, (history_options == HISTORY_HOST_RECOVERY) ? "selected" : "");
+			printf("<option value=%d %s>主机的宕机状态</option>\n", HISTORY_HOST_DOWN, (history_options == HISTORY_HOST_DOWN) ? "selected" : "");
+			printf("<option value=%d %s>主机的不可达状态</option>\n", HISTORY_HOST_UNREACHABLE, (history_options == HISTORY_HOST_UNREACHABLE) ? "selected" : "");
+			printf("<option value=%d %s>主机的恢复状态(RECOVERY)</option>\n", HISTORY_HOST_RECOVERY, (history_options == HISTORY_HOST_RECOVERY) ? "selected" : "");
 			}
 		printf("</select></td>\n");
 		printf("</tr>\n");
 
 		printf("<tr>\n");
-		printf("<td align=left valign=bottom CLASS='optBoxItem'><input type='checkbox' name='noflapping' %s> Hide Flapping Alerts</td>", (display_flapping_alerts == FALSE) ? "checked" : "");
+		printf("<td align=left valign=bottom CLASS='optBoxItem'><input type='checkbox' name='noflapping' %s> 隐藏心跳监测报警</td>", (display_flapping_alerts == FALSE) ? "checked" : "");
 		printf("</tr>\n");
 		printf("<tr>\n");
-		printf("<td align=left valign=bottom CLASS='optBoxItem'><input type='checkbox' name='nodowntime' %s> Hide Downtime Alerts</td>", (display_downtime_alerts == FALSE) ? "checked" : "");
-		printf("</tr>\n");
-
-		printf("<tr>\n");
-		printf("<td align=left valign=bottom CLASS='optBoxItem'><input type='checkbox' name='nosystem' %s> Hide Process Messages</td>", (display_system_messages == FALSE) ? "checked" : "");
-		printf("</tr>\n");
-		printf("<tr>\n");
-		printf("<td align=left valign=bottom CLASS='optBoxItem'><input type='checkbox' name='oldestfirst' %s> Older Entries First</td>", (use_lifo == FALSE) ? "checked" : "");
+		printf("<td align=left valign=bottom CLASS='optBoxItem'><input type='checkbox' name='nodowntime' %s> 隐藏宕机时间报警</td>", (display_downtime_alerts == FALSE) ? "checked" : "");
 		printf("</tr>\n");
 
 		printf("<tr>\n");
-		printf("<td align=left CLASS='optBoxItem'><input type='submit' value='Update'></td>\n");
+		printf("<td align=left valign=bottom CLASS='optBoxItem'><input type='checkbox' name='nosystem' %s> 隐藏进程消息</td>", (display_system_messages == FALSE) ? "checked" : "");
+		printf("</tr>\n");
+		printf("<tr>\n");
+		printf("<td align=left valign=bottom CLASS='optBoxItem'><input type='checkbox' name='oldestfirst' %s> 旧的数据项优先</td>", (use_lifo == FALSE) ? "checked" : "");
+		printf("</tr>\n");
+
+		printf("<tr>\n");
+		printf("<td align=left CLASS='optBoxItem'><input type='submit' value='更新'></td>\n");
 		printf("</tr>\n");
 
 		/* display context-sensitive help */
@@ -294,7 +294,7 @@ void document_header(int use_stylesheet) {
 	printf("<head>\n");
 	printf("<link rel=\"shortcut icon\" href=\"%sfavicon.ico\" type=\"image/ico\">\n", url_images_path);
 	printf("<title>\n");
-	printf("Nagios History\n");
+	printf("Nagios 历史\n");
 	printf("</title>\n");
 
 	if(use_stylesheet == TRUE) {
@@ -485,10 +485,10 @@ void get_history(void) {
 		result = read_file_into_lifo(log_file_to_use);
 		if(result != LIFO_OK) {
 			if(result == LIFO_ERROR_MEMORY) {
-				printf("<P><DIV CLASS='warningMessage'>Not enough memory to reverse log file - displaying history in natural order...</DIV></P>\n");
+				printf("<P><DIV CLASS='warningMessage'>没有足够内存保留内存文件，历史记录用原有顺序显示。</DIV></P>\n");
 				}
 			else if(result == LIFO_ERROR_FILE) {
-				printf("<HR><P><DIV CLASS='errorMessage'>Error: Cannot open log file '%s' for reading!</DIV></P><HR>", log_file_to_use);
+				printf("<HR><P><DIV CLASS='errorMessage'>错误: 无法打开日志文件进行读!</DIV></P><HR>", log_file_to_use);
 				return;
 				}
 			use_lifo = FALSE;
@@ -498,7 +498,7 @@ void get_history(void) {
 	if(use_lifo == FALSE) {
 
 		if((thefile = mmap_fopen(log_file_to_use)) == NULL) {
-			printf("<HR><P><DIV CLASS='errorMessage'>Error: Cannot open log file '%s' for reading!</DIV></P><HR>", log_file_to_use);
+			printf("<HR><P><DIV CLASS='errorMessage'>错误: 无法打开日志文件进行读!</DIV></P><HR>", log_file_to_use);
 			return;
 			}
 		}
@@ -776,21 +776,21 @@ void get_history(void) {
 
 				if(history_type == HOST_HISTORY || history_type == SERVICE_HISTORY) {
 					snprintf(match1, sizeof( match1),
-							" HOST ALERT: %s;", host_name);
+							" 主机告警: %s;", host_name);
 					snprintf(match2, sizeof( match2),
-							" SERVICE ALERT: %s;", host_name);
+							" 服务告警: %s;", host_name);
 					}
 				else if(history_type == HOST_FLAPPING_HISTORY || history_type == SERVICE_FLAPPING_HISTORY) {
 					snprintf(match1, sizeof( match1),
-							" HOST FLAPPING ALERT: %s;", host_name);
+							" 主机抖动告警: %s;", host_name);
 					snprintf(match2, sizeof( match2),
-							" SERVICE FLAPPING ALERT: %s;", host_name);
+							" 服务抖动告警: %s;", host_name);
 					}
 				else if(history_type == HOST_DOWNTIME_HISTORY || history_type == SERVICE_DOWNTIME_HISTORY) {
 					snprintf(match1, sizeof( match1),
-							" HOST DOWNTIME ALERT: %s;", host_name);
+							" 主机宕机告警: %s;", host_name);
 					snprintf(match2, sizeof( match2),
-							" SERVICE DOWNTIME ALERT: %s;", host_name);
+							" 服务宕机告警: %s;", host_name);
 					}
 
 				if(show_all_hosts == TRUE)
@@ -829,11 +829,11 @@ void get_history(void) {
 			else if(display_type == DISPLAY_SERVICES) {
 
 				if(history_type == SERVICE_HISTORY)
-					snprintf(match1, sizeof( match1), " SERVICE ALERT: %s;%s;", host_name, svc_description);
+					snprintf(match1, sizeof( match1), " 服务告警: %s;%s;", host_name, svc_description);
 				else if(history_type == SERVICE_FLAPPING_HISTORY)
-					snprintf(match1, sizeof( match1), " SERVICE FLAPPING ALERT: %s;%s;", host_name, svc_description);
+					snprintf(match1, sizeof( match1), " 服务抖动告警: %s;%s;", host_name, svc_description);
 				else if(history_type == SERVICE_DOWNTIME_HISTORY)
-					snprintf(match1, sizeof( match1), " SERVICE DOWNTIME ALERT: %s;%s;", host_name, svc_description);
+					snprintf(match1, sizeof( match1), " 服务宕机告警: %s;%s;", host_name, svc_description);
 
 				if(strstr(temp_buffer, match1) && (history_type == SERVICE_HISTORY || history_type == SERVICE_FLAPPING_HISTORY || history_type == SERVICE_DOWNTIME_HISTORY))
 					display_line = TRUE;
@@ -919,12 +919,12 @@ void get_history(void) {
 
 	if(found_line == FALSE) {
 		printf("<HR>\n");
-		printf("<P><DIV CLASS='warningMessage'>No history information was found ");
+		printf("<P><DIV CLASS='warningMessage'>未找到历史信息");
 		if(display_type == DISPLAY_HOSTS)
-			printf("%s", (show_all_hosts == TRUE) ? "" : "for this host ");
+			printf("%s", (show_all_hosts == TRUE) ? "" : "该主机的 ");
 		else
-			printf("for this service ");
-		printf("in %s log file</DIV></P>", (log_archive == 0) ? "the current" : "this archived");
+			printf("该服务的");
+		printf("在%s的日志文件</DIV></P>", (log_archive == 0) ? "当前" : "该档案");
 		}
 
 	printf("<HR>\n");
